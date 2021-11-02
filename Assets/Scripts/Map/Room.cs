@@ -2,10 +2,10 @@
 
 namespace Bug.Map
 {
-    public class RoomInfo
+    public class Room
     {
-        public RoomInfo()
-            => (Id, Position, Size) = (_idRef++, Vector2Int.zero, Vector2Int.one);
+        public Room(Vector2Int size, Vector2Int position)
+            => (Id, Position, Size) = (_idRef++, size, position);
 
         public int Id { private set; get; }
 
