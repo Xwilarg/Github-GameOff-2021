@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="AudioFile" id="{199265f8-fa48-43bf-8622-0e25303fc07d}">
+		<property name="assetPath">
+			<value>GRAVITY3_Theme.mp3</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>83.330612244897964</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{fa3b07e0-b0bc-44bd-87b2-fac49cf9126b}</destination>
+		</relationship>
+	</object>
+</objects>
