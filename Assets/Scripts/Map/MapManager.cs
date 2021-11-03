@@ -129,7 +129,8 @@ namespace Bug.Map
 
         private Room CreateFromRoomInfo(Vector2 position, RoomInfo info, RoomType type)
         {
-            return new(info.Size, position, type, info);
+            var go = Instantiate(info.gameObject, new Vector3(position.x + info.Size.x / 2f, 0f, position.y + info.Size.y / 2f), Quaternion.identity);
+            return new(info.Size, position, type, info, go);
         }
 
         private void OnDrawGizmos()
@@ -166,30 +167,30 @@ namespace Bug.Map
                 // Red doors are the ones that doesn't lead anywhere, the others are blue
                 var colorOk = new Color(0f, 0f, 1f, .2f);
                 var colorNo = new Color(1f, 0f, 0f, .2f);
-                var center = pos + size / 2f;
+                var center = pos + size / 2f + Vector3.up * 1f;
                 if (r.Info.HaveSouthDoor)
                 {
                     if (r.Down == null) Gizmos.color = colorNo;
                     else Gizmos.color = colorOk;
-                    Gizmos.DrawCube(center + size.z * Vector3.back / 2f, new Vector3(1f, 0f, .3f));
+                    Gizmos.DrawCube(center + size.z * Vector3.back / 2f, new Vector3(1f, 2f, .3f));
                 }
                 if (r.Info.HaveNorthDoor)
                 {
                     if (r.Up == null) Gizmos.color = colorNo;
                     else Gizmos.color = colorOk;
-                    Gizmos.DrawCube(center + size.z * Vector3.forward / 2f, new Vector3(1f, 0f, .3f));
+                    Gizmos.DrawCube(center + size.z * Vector3.forward / 2f, new Vector3(1f, 2f, .3f));
                 }
                 if (r.Info.HaveEastDoor)
                 {
                     if (r.Right == null) Gizmos.color = colorNo;
                     else Gizmos.color = colorOk;
-                    Gizmos.DrawCube(center + size.x * Vector3.right / 2f, new Vector3(.3f, 0f, 1f));
+                    Gizmos.DrawCube(center + size.x * Vector3.right / 2f, new Vector3(.3f, 2f, 1f));
                 }
                 if (r.Info.HaveWestDoor)
                 {
                     if (r.Left == null) Gizmos.color = colorNo;
                     else Gizmos.color = colorOk;
-                    Gizmos.DrawCube(center + size.x * Vector3.left / 2f, new Vector3(.3f, 0f, 1f));
+                    Gizmos.DrawCube(center + size.x * Vector3.left / 2f, new Vector3(.3f, 2f, 1f));
                 }
             }
         }
