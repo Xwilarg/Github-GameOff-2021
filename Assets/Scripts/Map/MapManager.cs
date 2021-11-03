@@ -91,13 +91,13 @@ namespace Bug.Map
                 var r = CreateFromRoomInfo(ri.currPos, ri.x, remainingIteration > _mapInfo.UnlockedRange ? RoomType.AVAILABLE : RoomType.LOCKED);
                 if (direction == Vector2Int.up)
                 {
-                    lastRoom.Down = r;
-                    r.Up = lastRoom;
+                    lastRoom.Up = r;
+                    r.Down = lastRoom;
                 }
                 if (direction == Vector2Int.down)
                 {
-                    lastRoom.Up = r;
-                    r.Down = lastRoom;
+                    lastRoom.Down = r;
+                    r.Up = lastRoom;
                 }
                 if (direction == Vector2Int.left)
                 {
