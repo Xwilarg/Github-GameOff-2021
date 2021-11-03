@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Size: {x: 2, y: 2}
   HaveSouthDoor: 1
-  HaveNorthDoor: 0
-  HaveEastDoor: 0
-  HaveWestDoor: 0
+  HaveNorthDoor: 1
+  HaveEastDoor: 1
+  HaveWestDoor: 1
