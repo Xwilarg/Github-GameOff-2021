@@ -35,6 +35,14 @@ namespace Bug.Map
             {
                 // Get all rooms that can fit
                 var available = _availableRooms
+                    .Where(x => // Make sure there is a door matching where we want to go
+                    {
+                        return
+                            (direction == Vector2Int.up && x.HaveSouthDoor) ||
+                            (direction == Vector2Int.down && x.HaveNorthDoor) ||
+                            (direction == Vector2Int.left && x.HaveEastDoor) ||
+                            (direction == Vector2Int.right && x.HaveWestDoor);
+                    })
                     .Select(x =>
                     {
                         // Let's say we have a 3x3 room called R and we want to add a new room called N
