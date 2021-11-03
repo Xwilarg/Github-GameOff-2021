@@ -16,6 +16,9 @@ namespace Bug.Map
         [SerializeField]
         private RoomInfo _startingRoom;
 
+        [SerializeField]
+        private string _seed;
+
         private readonly List<Room> _currentRooms = new();
 
         private void Start()
@@ -23,10 +26,15 @@ namespace Bug.Map
             // Add starting room and generate everything from there
             var start = CreateFromRoomInfo(Vector2Int.zero, _startingRoom, RoomType.STARTING);
             _currentRooms.Add(start);
+
+            Random.InitState(_seed.GetHashCode());
+
             if (_startingRoom.HaveSouthDoor) AddRoom(Vector2Int.zero, start, _mapInfo.MaxPathLength, Vector2Int.down);
             if (_startingRoom.HaveNorthDoor) AddRoom(Vector2Int.zero, start, _mapInfo.MaxPathLength, Vector2Int.up);
             if (_startingRoom.HaveEastDoor) AddRoom(Vector2Int.zero, start, _mapInfo.MaxPathLength, Vector2Int.right);
             if (_startingRoom.HaveWestDoor) AddRoom(Vector2Int.zero, start, _mapInfo.MaxPathLength, Vector2Int.left);
+
+            Random.InitState((int)System.DateTime.Now.Ticks);
         }
 
         private void AddRoom(Vector2 lastPosition, Room lastRoom, int remainingIteration, Vector2Int direction)

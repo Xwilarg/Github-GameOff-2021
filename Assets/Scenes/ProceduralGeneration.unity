@@ -288,6 +288,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a4b106972016d8849adb40c2eeda9dbb, type: 2}
   - {fileID: 11400000, guid: 817aeb90cc398c845aae0e81d0e674d0, type: 2}
   _startingRoom: {fileID: 11400000, guid: 359cbd8e876c22442a6fc3e6bed457e5, type: 2}
+  _seed: Zekamashi
 --- !u!1 &886738968
 GameObject:
   m_ObjectHideFlags: 0
