@@ -18,8 +18,6 @@ namespace Bug.Player
 		
 		private bool _onGround = false;
 		private Vector2 _groundMovement = Vector2.zero;
-		private Vector2 _cursorMovement = Vector2.zero;
-		private Vector3 _auxCursorMovement = Vector3.zero;
 		private Rigidbody _rb;
 		
 		private void Awake()
@@ -27,14 +25,6 @@ namespace Bug.Player
 			_rb = GetComponent<Rigidbody>();
 			_playerInput = GetComponent<PlayerInput>();
 			Cursor.lockState = CursorLockMode.Locked;
-		}
-		
-		private void Update()
-		{
-			_auxCursorMovement.x = _cursorMovement.y * _verticalLookMultiplier;
-			_auxCursorMovement.y = _cursorMovement.x * _horizontalLookMultiplier;
-			_fpsCamera.transform.rotation = Quaternion.Euler(_fpsCamera.transform.rotation.eulerAngles + _auxCursorMovement);
-			//#TODO Clamp the max vertical rotation
 		}
 		
 		private void FixedUpdate()
@@ -46,7 +36,7 @@ namespace Bug.Player
 
 			if (_groundMovement.magnitude != 0f) // Don't rotate the body if we are not moving
 			{
-				var mov = (_fpsCamera.transform.forward * _groundMovement.y + _fpsCamera.transform.right * _groundMovement.x) * _forceMultiplier;
+				var mov = (transform.forward * _groundMovement.y + transform.right * _groundMovement.x) * _forceMultiplier;
 				_rb.velocity = new Vector3(mov.x, _rb.velocity.y, mov.z);
 			}
 
@@ -85,8 +75,8 @@ namespace Bug.Player
 		public void OnLook(InputAction.CallbackContext value)
 		{
 			var rot = value.ReadValue<Vector2>();
-			transform.rotation *= Quaternion.Euler(0f, rot.x * .1f, 0f);
-			_fpsCamera.transform.rotation *= Quaternion.Euler(-rot.y * .1f, 0f, 0f);
+			transform.rotation *= Quaternion.Euler(0f, rot.x * _horizontalLookMultiplier, 0f);
+			_fpsCamera.transform.rotation *= Quaternion.Euler(rot.y * _verticalLookMultiplier, 0f, 0f);
 		}
 		
 		//#TODO ask about jumping. Implement it, if needed.
