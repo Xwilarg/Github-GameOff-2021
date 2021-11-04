@@ -34,11 +34,8 @@ namespace Bug.Player
 			* restrict movement to the xz plane.
 			*/
 
-			if (_groundMovement.magnitude != 0f) // Don't rotate the body if we are not moving
-			{
-				var mov = (transform.forward * _groundMovement.y + transform.right * _groundMovement.x) * _forceMultiplier;
-				_rb.velocity = new Vector3(mov.x, _rb.velocity.y, mov.z);
-			}
+			var mov = (transform.forward * _groundMovement.y + transform.right * _groundMovement.x) * _forceMultiplier;
+			_rb.velocity = new Vector3(mov.x, _rb.velocity.y, mov.z);
 
 			/*_charMov.x = _groundMovement.x;
 			_charMov.z = _groundMovement.y;
@@ -48,14 +45,14 @@ namespace Bug.Player
 			groundDirection.Normalize();
 			Vector3 force = Quaternion.Euler(groundDirection) * _charMov * _forceMultiplier * Time.fixedDeltaTime;
 			_rb.AddForce(force, ForceMode.Acceleration);*/
-			
+
 			// Looking around
 			// apply vertical rotation to the head
 			// apply horizontal rotation to the body
-			
+
 			// the mouse delta stuff is a mess... gotta' undo/recalculate their accumulations on updates, to be able to use it here [in fixed updates]
-			
-			
+
+
 			/* _fpsCamera.transform.rotation = Quaternion.Euler(
 				(_fpsCamera.transform.rotation.eulerAngles 
 				+ (new Vector3(
@@ -63,7 +60,7 @@ namespace Bug.Player
 						_cursorMovement.x * _verticalLookMultiplier * Time.fixedDeltaTime,
 						0)
 					)).normalized); */
-			
+
 		}
 
 		public void OnMovement(InputAction.CallbackContext value)
