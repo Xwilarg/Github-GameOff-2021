@@ -287,7 +287,7 @@ namespace Bug.Map
                 foreach (var room in _currentRooms)
                 {
                     var force = room.Distance * 1f / _mapInfo.MaxPathLength;
-                    Gizmos.color = new Color(255, force, force);
+                    Gizmos.color = new Color(1f - force, force, 0f);
                     Gizmos.DrawCube(new Vector3(room.Position.x + room.Size.x / 2f, 2f, room.Position.y + room.Size.y / 2f), new Vector3(room.Size.x, 4f, room.Size.y));
                 }
                 #endregion
