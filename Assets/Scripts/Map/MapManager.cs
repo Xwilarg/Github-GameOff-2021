@@ -156,15 +156,35 @@ namespace Bug.Map
                     {
                         r.Up, r.Down, r.Left, r.Right
                     };
-                    rooms.RemoveAll(x => x == null || x.ZoneId == 0 || x.Type != RoomType.LOCKED);
+                    // Remove rooms we don't want
+                    // If 2 rooms have a strictly positive ID, we merge them with the biggest
+                    rooms.RemoveAll(x => x == null || x.Type != RoomType.LOCKED || (x.ZoneId == 0 || (x.ZoneId > 0 && x.ZoneId >= r.ZoneId)));
                     foreach (var nr in rooms)
                     {
-                        if (nr.ZoneId == -1 || r.ZoneId > nr.ZoneId)
-                        {
-                            nr.ZoneId = r.ZoneId;
-                        }
+                        nr.ZoneId = r.ZoneId;
                     }
                     _nextRooms.AddRange(rooms);
+                }
+            }
+
+            // We have a lot of IDs but since some were merge, lot of numbers are missing between them
+            // So we clean that a bit
+            id = 1;
+            Dictionary<int, int> ids = new();
+            foreach (var room in _currentRooms)
+            {
+                if (room.ZoneId > 0)
+                {
+                    if (!ids.ContainsKey(room.ZoneId))
+                    {
+                        var tmp = id++;
+                        ids.Add(room.ZoneId, tmp);
+                        room.ZoneId = tmp;
+                    }
+                    else
+                    {
+                        room.ZoneId = ids[room.ZoneId];
+                    }
                 }
             }
         }
@@ -257,6 +277,17 @@ namespace Bug.Map
                         -1 => Color.black, // Not supposed to happen
                         _ => colors[(room.ZoneId - 1) % colors.Length]
                     };
+                    Gizmos.DrawCube(new Vector3(room.Position.x + room.Size.x / 2f, 2f, room.Position.y + room.Size.y / 2f), new Vector3(room.Size.x, 4f, room.Size.y));
+                }
+                #endregion
+            }
+            else if (id == 3)
+            {
+                #region distance
+                foreach (var room in _currentRooms)
+                {
+                    var force = room.Distance * 1f / _mapInfo.MaxPathLength;
+                    Gizmos.color = new Color(255, force, force);
                     Gizmos.DrawCube(new Vector3(room.Position.x + room.Size.x / 2f, 2f, room.Position.y + room.Size.y / 2f), new Vector3(room.Size.x, 4f, room.Size.y));
                 }
                 #endregion
