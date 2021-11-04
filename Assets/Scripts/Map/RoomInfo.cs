@@ -1,9 +1,8 @@
 ﻿using UnityEngine;
 
-namespace Bug.SO
+namespace Bug.Map
 {
-    [CreateAssetMenu(menuName = "ScriptableObject/RoomInfo", fileName = "RoomInfo")]
-    public class RoomInfo : ScriptableObject
+    public class RoomInfo : MonoBehaviour
     {
         public Vector2Int Size;
 

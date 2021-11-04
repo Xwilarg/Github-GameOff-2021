@@ -284,10 +284,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mapInfo: {fileID: 11400000, guid: 89b258d2b8d3f5b47a1cad7179da183d, type: 2}
   _availableRooms:
-  - {fileID: 11400000, guid: 87eed5b2252da0c4e928384ab8a8f01d, type: 2}
-  - {fileID: 11400000, guid: a4b106972016d8849adb40c2eeda9dbb, type: 2}
-  - {fileID: 11400000, guid: 817aeb90cc398c845aae0e81d0e674d0, type: 2}
-  _startingRoom: {fileID: 11400000, guid: 359cbd8e876c22442a6fc3e6bed457e5, type: 2}
+  - {fileID: 8396149927105140909, guid: cd0f739d34af5fb4295ad3fe455f4fad, type: 3}
+  - {fileID: 6993427876658535758, guid: f6a5f955511d1f6448dc093f8b57fb3c, type: 3}
+  - {fileID: -6918844536806175057, guid: 8a7f17406e58b3340ac5fd8f54ec8fe4, type: 3}
+  - {fileID: 7282100081989194296, guid: aa958c98913d967499852cff593146ea, type: 3}
+  _startingRoom: {fileID: 8396149927105140909, guid: cd0f739d34af5fb4295ad3fe455f4fad, type: 3}
   _seed: Zekamashi
 --- !u!1 &886738968
 GameObject:

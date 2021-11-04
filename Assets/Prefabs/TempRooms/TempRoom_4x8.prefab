@@ -72,6 +72,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5237526815545604747}
+  - component: {fileID: 8396149927105140909}
   m_Layer: 0
   m_Name: TempRoom_4x8
   m_TagString: Untagged
@@ -97,6 +98,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8396149927105140909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6894298741998578080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cd23883daa4e3e44832ce29d06b0da7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Size: {x: 8, y: 16}
+  HaveSouthDoor: 1
+  HaveNorthDoor: 1
+  HaveEastDoor: 1
+  HaveWestDoor: 1
 --- !u!1 &7620322621987105239
 GameObject:
   m_ObjectHideFlags: 0
