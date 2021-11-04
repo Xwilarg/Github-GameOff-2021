@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.EventSystems;
 
 namespace Bug.Player
 {
@@ -23,17 +22,18 @@ namespace Bug.Player
 		private Vector3 _auxCursorMovement = Vector3.zero;
 		private Vector3 _charMov = Vector3.zero;
 		private Rigidbody _rb;
+
+		private Quaternion _camRot;
 		
 		private void Awake()
 		{
-			_rb = gameObject.GetComponent<Rigidbody>();
-			_playerInput = gameObject.GetComponent<PlayerInput>();
+			_rb = GetComponent<Rigidbody>();
+			_playerInput = GetComponent<PlayerInput>();
 			Cursor.lockState = CursorLockMode.Locked;
 		}
 		
 		private void Update()
 		{
-			
 			_auxCursorMovement.x = _cursorMovement.y * _verticalLookMultiplier;
 			_auxCursorMovement.y = _cursorMovement.x * _horizontalLookMultiplier;
 			_fpsCamera.transform.rotation = Quaternion.Euler(_fpsCamera.transform.rotation.eulerAngles + _auxCursorMovement);
@@ -46,14 +46,25 @@ namespace Bug.Player
 			/* Ground Movement
 			* restrict movement to the xz plane.
 			*/
-			_charMov.x = _groundMovement.x;
+
+			if (_groundMovement.magnitude != 0f) // Don't rotate the body if we are not moving
+			{
+				transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, _fpsCamera.transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
+				_fpsCamera.transform.rotation = Quaternion.Euler(_fpsCamera.transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, _fpsCamera.transform.rotation.eulerAngles.z);
+
+				var mov = (transform.forward * _groundMovement.y + transform.right * _groundMovement.x) * _forceMultiplier;
+
+				_rb.velocity = new Vector3(mov.x, _rb.velocity.y, mov.z);
+			}
+
+			/*_charMov.x = _groundMovement.x;
 			_charMov.z = _groundMovement.y;
 			// Vector3 groundDirection = _fpsCamera.transform.forward;
 			Vector3 groundDirection = _fpsCamera.transform.rotation.eulerAngles;
 			groundDirection.x = groundDirection.z = 0f; // Restrict the angle to the Y axis
 			groundDirection.Normalize();
 			Vector3 force = Quaternion.Euler(groundDirection) * _charMov * _forceMultiplier * Time.fixedDeltaTime;
-			_rb.AddForce(force, ForceMode.Acceleration);
+			_rb.AddForce(force, ForceMode.Acceleration);*/
 			
 			// Looking around
 			// apply vertical rotation to the head
