@@ -20,10 +20,7 @@ namespace Bug.Player
 		private Vector2 _groundMovement = Vector2.zero;
 		private Vector2 _cursorMovement = Vector2.zero;
 		private Vector3 _auxCursorMovement = Vector3.zero;
-		private Vector3 _charMov = Vector3.zero;
 		private Rigidbody _rb;
-
-		private Quaternion _camRot;
 		
 		private void Awake()
 		{
@@ -49,11 +46,7 @@ namespace Bug.Player
 
 			if (_groundMovement.magnitude != 0f) // Don't rotate the body if we are not moving
 			{
-				transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, _fpsCamera.transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
-				_fpsCamera.transform.rotation = Quaternion.Euler(_fpsCamera.transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, _fpsCamera.transform.rotation.eulerAngles.z);
-
-				var mov = (transform.forward * _groundMovement.y + transform.right * _groundMovement.x) * _forceMultiplier;
-
+				var mov = (_fpsCamera.transform.forward * _groundMovement.y + _fpsCamera.transform.right * _groundMovement.x) * _forceMultiplier;
 				_rb.velocity = new Vector3(mov.x, _rb.velocity.y, mov.z);
 			}
 
@@ -82,7 +75,7 @@ namespace Bug.Player
 					)).normalized); */
 			
 		}
-		
+
 		public void OnMovement(InputAction.CallbackContext value)
 		{
 			// Vector2 inputMovement = value.ReadValue<Vector2>().normalized;
@@ -91,7 +84,9 @@ namespace Bug.Player
 		
 		public void OnLook(InputAction.CallbackContext value)
 		{
-			_cursorMovement = value.ReadValue<Vector2>();
+			var rot = value.ReadValue<Vector2>();
+			transform.rotation *= Quaternion.Euler(0f, rot.x * .1f, 0f);
+			_fpsCamera.transform.rotation *= Quaternion.Euler(-rot.y * .1f, 0f, 0f);
 		}
 		
 		//#TODO ask about jumping. Implement it, if needed.
