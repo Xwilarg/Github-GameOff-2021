@@ -23,17 +23,23 @@ namespace Bug.Map
 
         private void Start()
         {
-            // Add starting room and generate everything from there
-            var start = CreateFromRoomInfo(Vector2Int.zero, _startingRoom, RoomType.STARTING);
+            // Add starting room
+            var start = CreateFromRoomInfo(Vector2Int.zero, _startingRoom, RoomType.STARTING, _mapInfo.MaxPathLength);
             _currentRooms.Add(start);
 
+            // Init seed
             Random.InitState(_seed.GetHashCode());
 
+            // Add all rooms
             if (_startingRoom.HaveSouthDoor) AddRoom(Vector2Int.zero, start, _mapInfo.MaxPathLength, Vector2Int.down);
             if (_startingRoom.HaveNorthDoor) AddRoom(Vector2Int.zero, start, _mapInfo.MaxPathLength, Vector2Int.up);
             if (_startingRoom.HaveEastDoor) AddRoom(Vector2Int.zero, start, _mapInfo.MaxPathLength, Vector2Int.right);
             if (_startingRoom.HaveWestDoor) AddRoom(Vector2Int.zero, start, _mapInfo.MaxPathLength, Vector2Int.left);
 
+            // Set zones
+            DrawZones();
+
+            // Reset seed
             Random.InitState((int)System.DateTime.Now.Ticks);
         }
 
@@ -96,7 +102,7 @@ namespace Bug.Map
                 var ri = available[Random.Range(0, available.Length)];
 
                 // Create room and set variables
-                var r = CreateFromRoomInfo(ri.currPos, ri.x, remainingIteration > _mapInfo.UnlockedRange ? RoomType.AVAILABLE : RoomType.LOCKED);
+                var r = CreateFromRoomInfo(ri.currPos, ri.x, remainingIteration > _mapInfo.UnlockedRange ? RoomType.AVAILABLE : RoomType.LOCKED, remainingIteration - 1);
                 if (direction == Vector2Int.up)
                 {
                     lastRoom.Up = r;
@@ -127,71 +133,133 @@ namespace Bug.Map
             }
         }
 
-        private Room CreateFromRoomInfo(Vector2 position, RoomInfo info, RoomType type)
+        private void DrawZones()
+        {
+            List<Room> _endRooms;
+            List<Room> _nextRooms // Take all the rooms that were generated last
+                = _currentRooms
+                .Where(x => x.Distance == 0 && x.Type != RoomType.AVAILABLE)
+                .ToList();
+            int id = 1;
+            foreach (var r in _nextRooms)
+            {
+                r.ZoneId = id++;
+            }
+
+            while (_nextRooms.Any())
+            {
+                _endRooms = new(_nextRooms);
+                _nextRooms.Clear();
+                foreach (var r in _endRooms)
+                {
+                    List<Room> rooms = new()
+                    {
+                        r.Up, r.Down, r.Left, r.Right
+                    };
+                    rooms.RemoveAll(x => x == null || x.ZoneId == 0 || x.Type != RoomType.LOCKED);
+                    foreach (var nr in rooms)
+                    {
+                        if (nr.ZoneId == -1 || r.ZoneId > nr.ZoneId)
+                        {
+                            nr.ZoneId = r.ZoneId;
+                        }
+                    }
+                    _nextRooms.AddRange(rooms);
+                }
+            }
+        }
+
+        private Room CreateFromRoomInfo(Vector2 position, RoomInfo info, RoomType type, int distance)
         {
             var go = Instantiate(info.gameObject, new Vector3(position.x + info.Size.x / 2f, 0f, position.y + info.Size.y / 2f), Quaternion.identity);
-            return new(info.Size, position, type, info, go);
+            return new(info.Size, position, type, info, go, distance);
         }
 
         private void OnDrawGizmos()
         {
-            foreach (var r in _currentRooms.OrderBy(x =>
+            int id = MapDebugger.S?.DebugId ?? 0;
+            if (id == 1)
             {
-                return x.Type switch
+                #region limits
+                foreach (var r in _currentRooms.OrderBy(x =>
                 {
-                    RoomType.STARTING => 1,
-                    RoomType.AVAILABLE => 0,
-                    RoomType.LOCKED => -1,
-                    _ => throw new System.NotImplementedException($"Invalid type {x.Type}")
-                };
-            }))
-            {
-                // Draw room
-                Gizmos.color = r.Type switch
+                    return x.Type switch
+                    {
+                        RoomType.STARTING => 1,
+                        RoomType.AVAILABLE => 0,
+                        RoomType.LOCKED => -1,
+                        _ => throw new System.NotImplementedException($"Invalid type {x.Type}")
+                    };
+                }))
                 {
-                    RoomType.STARTING => Color.green,
-                    RoomType.AVAILABLE => Color.white,
-                    RoomType.LOCKED => Color.grey,
-                    _ => throw new System.NotImplementedException($"Invalid type {r.Type}")
-                };
-                Vector3 pos = new(r.Position.x, 0f, r.Position.y);
-                Vector3 size = new(r.Size.x, 0f, r.Size.y);
-                Gizmos.DrawLine(pos, pos + Vector3.right * size.x);
-                Gizmos.DrawLine(pos, pos + Vector3.forward * size.z);
-                Gizmos.DrawLine(pos + size, pos + Vector3.right * size.x);
-                Gizmos.DrawLine(pos + size, pos + Vector3.forward * size.z);
-                Gizmos.DrawLine(pos, pos + size);
-                Gizmos.DrawLine(pos + Vector3.right * r.Size.x, pos + Vector3.forward * r.Size.y);
+                    // Draw room
+                    Gizmos.color = r.Type switch
+                    {
+                        RoomType.STARTING => Color.green,
+                        RoomType.AVAILABLE => Color.white,
+                        RoomType.LOCKED => Color.grey,
+                        _ => throw new System.NotImplementedException($"Invalid type {r.Type}")
+                    };
+                    Vector3 pos = new(r.Position.x, 0f, r.Position.y);
+                    Vector3 size = new(r.Size.x, 0f, r.Size.y);
+                    Gizmos.DrawLine(pos, pos + Vector3.right * size.x);
+                    Gizmos.DrawLine(pos, pos + Vector3.forward * size.z);
+                    Gizmos.DrawLine(pos + size, pos + Vector3.right * size.x);
+                    Gizmos.DrawLine(pos + size, pos + Vector3.forward * size.z);
+                    Gizmos.DrawLine(pos, pos + size);
+                    Gizmos.DrawLine(pos + Vector3.right * r.Size.x, pos + Vector3.forward * r.Size.y);
 
-                // Draw door
-                // Red doors are the ones that doesn't lead anywhere, the others are blue
-                var colorOk = new Color(0f, 0f, 1f, .2f);
-                var colorNo = new Color(1f, 0f, 0f, .2f);
-                var center = pos + size / 2f + Vector3.up * 1f;
-                if (r.Info.HaveSouthDoor)
-                {
-                    if (r.Down == null) Gizmos.color = colorNo;
-                    else Gizmos.color = colorOk;
-                    Gizmos.DrawCube(center + size.z * Vector3.back / 2f, new Vector3(1f, 2f, .3f));
+                    // Draw door
+                    // Red doors are the ones that doesn't lead anywhere, the others are blue
+                    var colorOk = new Color(0f, 0f, 1f, .2f);
+                    var colorNo = new Color(1f, 0f, 0f, .2f);
+                    var center = pos + size / 2f + Vector3.up * 1f;
+                    if (r.Info.HaveSouthDoor)
+                    {
+                        if (r.Down == null) Gizmos.color = colorNo;
+                        else Gizmos.color = colorOk;
+                        Gizmos.DrawCube(center + size.z * Vector3.back / 2f, new Vector3(1f, 2f, .3f));
+                    }
+                    if (r.Info.HaveNorthDoor)
+                    {
+                        if (r.Up == null) Gizmos.color = colorNo;
+                        else Gizmos.color = colorOk;
+                        Gizmos.DrawCube(center + size.z * Vector3.forward / 2f, new Vector3(1f, 2f, .3f));
+                    }
+                    if (r.Info.HaveEastDoor)
+                    {
+                        if (r.Right == null) Gizmos.color = colorNo;
+                        else Gizmos.color = colorOk;
+                        Gizmos.DrawCube(center + size.x * Vector3.right / 2f, new Vector3(.3f, 2f, 1f));
+                    }
+                    if (r.Info.HaveWestDoor)
+                    {
+                        if (r.Left == null) Gizmos.color = colorNo;
+                        else Gizmos.color = colorOk;
+                        Gizmos.DrawCube(center + size.x * Vector3.left / 2f, new Vector3(.3f, 2f, 1f));
+                    }
                 }
-                if (r.Info.HaveNorthDoor)
+                #endregion
+            }
+            else if (id == 2)
+            {
+                #region zones
+                var colors = new[]
                 {
-                    if (r.Up == null) Gizmos.color = colorNo;
-                    else Gizmos.color = colorOk;
-                    Gizmos.DrawCube(center + size.z * Vector3.forward / 2f, new Vector3(1f, 2f, .3f));
-                }
-                if (r.Info.HaveEastDoor)
+                    Color.red, Color.blue, Color.green,
+                    Color.magenta, Color.cyan, Color.yellow
+                };
+                foreach (var room in _currentRooms)
                 {
-                    if (r.Right == null) Gizmos.color = colorNo;
-                    else Gizmos.color = colorOk;
-                    Gizmos.DrawCube(center + size.x * Vector3.right / 2f, new Vector3(.3f, 2f, 1f));
+                    Gizmos.color = room.ZoneId switch
+                    {
+                        0 => Color.white, // Starting zone
+                        -1 => Color.black, // Not supposed to happen
+                        _ => colors[(room.ZoneId - 1) % colors.Length]
+                    };
+                    Gizmos.DrawCube(new Vector3(room.Position.x + room.Size.x / 2f, 2f, room.Position.y + room.Size.y / 2f), new Vector3(room.Size.x, 4f, room.Size.y));
                 }
-                if (r.Info.HaveWestDoor)
-                {
-                    if (r.Left == null) Gizmos.color = colorNo;
-                    else Gizmos.color = colorOk;
-                    Gizmos.DrawCube(center + size.x * Vector3.left / 2f, new Vector3(.3f, 2f, 1f));
-                }
+                #endregion
             }
         }
     }
