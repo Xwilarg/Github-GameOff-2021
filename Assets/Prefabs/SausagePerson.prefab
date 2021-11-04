@@ -794,7 +794,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _fpsCamera: {fileID: 2274999824569895482}
   _playerInput: {fileID: 2274999824273732737}
-  _forceMultiplier: 800
+  _forceMultiplier: 5
   _horizontalLookMultiplier: 0.05
   _verticalLookMultiplier: -0.05
 --- !u!1 &2274999824464697299
