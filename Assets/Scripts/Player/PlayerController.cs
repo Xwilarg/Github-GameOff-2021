@@ -14,12 +14,13 @@ namespace Bug.Player
 		[Range(0f, 1000000f)]
 		private float _forceMultiplier = 1f;
 		[SerializeField]
-		[Range(0f, 1000000f)]
+		[Range(-1f, 1f)]
 		private float _horizontalLookMultiplier = 1f, _verticalLookMultiplier = 1f;
 		
 		private bool _onGround = false;
 		private Vector2 _groundMovement = Vector2.zero;
 		private Vector2 _cursorMovement = Vector2.zero;
+		private Vector3 _auxCursorMovement = Vector3.zero;
 		private Vector3 _charMov = Vector3.zero;
 		private Rigidbody _rb;
 		
@@ -27,6 +28,16 @@ namespace Bug.Player
 		{
 			_rb = gameObject.GetComponent<Rigidbody>();
 			_playerInput = gameObject.GetComponent<PlayerInput>();
+			Cursor.lockState = CursorLockMode.Locked;
+		}
+		
+		private void Update()
+		{
+			
+			_auxCursorMovement.x = _cursorMovement.y * _verticalLookMultiplier;
+			_auxCursorMovement.y = _cursorMovement.x * _horizontalLookMultiplier;
+			_fpsCamera.transform.rotation = Quaternion.Euler(_fpsCamera.transform.rotation.eulerAngles + _auxCursorMovement);
+			//#TODO Clamp the max vertical rotation
 		}
 		
 		private void FixedUpdate()
@@ -37,7 +48,8 @@ namespace Bug.Player
 			*/
 			_charMov.x = _groundMovement.x;
 			_charMov.z = _groundMovement.y;
-			Vector3 groundDirection = _fpsCamera.transform.forward;
+			// Vector3 groundDirection = _fpsCamera.transform.forward;
+			Vector3 groundDirection = _fpsCamera.transform.rotation.eulerAngles;
 			groundDirection.x = groundDirection.z = 0f; // Restrict the angle to the Y axis
 			groundDirection.Normalize();
 			Vector3 force = Quaternion.Euler(groundDirection) * _charMov * _forceMultiplier * Time.fixedDeltaTime;
