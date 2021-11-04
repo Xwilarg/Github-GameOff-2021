@@ -19,12 +19,19 @@ namespace Bug.Map
         [SerializeField]
         private string _seed;
 
+        [SerializeField]
+        private GameObject _playerPrefab;
+
         private readonly List<Room> _currentRooms = new();
+        private GameObject _roomContainer;
 
         private void Start()
         {
+            _roomContainer = new("Rooms");
+
             // Add starting room
             var start = CreateFromRoomInfo(Vector2Int.zero, _startingRoom, RoomType.STARTING, _mapInfo.MaxPathLength);
+            Instantiate(_playerPrefab, new Vector3(start.Position.x + start.Size.x / 2f, 2f, start.Position.y + start.Size.y / 2f), Quaternion.identity);
             _currentRooms.Add(start);
 
             // Init seed
@@ -192,6 +199,7 @@ namespace Bug.Map
         private Room CreateFromRoomInfo(Vector2 position, RoomInfo info, RoomType type, int distance)
         {
             var go = Instantiate(info.gameObject, new Vector3(position.x + info.Size.x / 2f, 0f, position.y + info.Size.y / 2f), Quaternion.identity);
+            go.transform.parent = _roomContainer.transform;
             return new(info.Size, position, type, info, go, distance);
         }
 
