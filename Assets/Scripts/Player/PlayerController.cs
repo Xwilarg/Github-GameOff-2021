@@ -24,8 +24,8 @@ namespace Bug.Player
 		private Transform _gunEnd;
 		[SerializeField]
 		private int _gunForce;
-		
-		private bool _onGround = false;
+
+		private CharacterController _controller;
 		private Vector2 _groundMovement = Vector2.zero;
 		private Rigidbody _rb;
 		
@@ -33,43 +33,33 @@ namespace Bug.Player
 		{
 			_rb = GetComponent<Rigidbody>();
 			_playerInput = GetComponent<PlayerInput>();
+			_controller = GetComponent<CharacterController>();
 			Cursor.lockState = CursorLockMode.Locked;
 		}
 		
 		private void FixedUpdate()
 		{
-			//#TODO Check that player is on the ground. Use raycasting.
-			/* Ground Movement
-			* restrict movement to the xz plane.
-			*/
+			Vector3 desiredMove = transform.forward * _groundMovement.y + transform.right * _groundMovement.x;
 
-			var mov = (transform.forward * _groundMovement.y + transform.right * _groundMovement.x) * _forceMultiplier;
-			_rb.velocity = new Vector3(mov.x, _rb.velocity.y, mov.z);
+			// Get a normal for the surface that is being touched to move along it
+			Physics.SphereCast(transform.position, _controller.radius, Vector3.down, out RaycastHit hitInfo,
+							   _controller.height / 2f, Physics.AllLayers, QueryTriggerInteraction.Ignore);
+			desiredMove = Vector3.ProjectOnPlane(desiredMove, hitInfo.normal).normalized;
 
-			/*_charMov.x = _groundMovement.x;
-			_charMov.z = _groundMovement.y;
-			// Vector3 groundDirection = _fpsCamera.transform.forward;
-			Vector3 groundDirection = _fpsCamera.transform.rotation.eulerAngles;
-			groundDirection.x = groundDirection.z = 0f; // Restrict the angle to the Y axis
-			groundDirection.Normalize();
-			Vector3 force = Quaternion.Euler(groundDirection) * _charMov * _forceMultiplier * Time.fixedDeltaTime;
-			_rb.AddForce(force, ForceMode.Acceleration);*/
-
-			// Looking around
-			// apply vertical rotation to the head
-			// apply horizontal rotation to the body
-
-			// the mouse delta stuff is a mess... gotta' undo/recalculate their accumulations on updates, to be able to use it here [in fixed updates]
+			Vector3 moveDir = Vector3.zero;
+			moveDir.x = desiredMove.x * _forceMultiplier;
+			moveDir.z = desiredMove.z * _forceMultiplier;
 
 
-			/* _fpsCamera.transform.rotation = Quaternion.Euler(
-				(_fpsCamera.transform.rotation.eulerAngles 
-				+ (new Vector3(
-						_cursorMovement.y * _horizontalLookMultiplier * Time.fixedDeltaTime,
-						_cursorMovement.x * _verticalLookMultiplier * Time.fixedDeltaTime,
-						0)
-					)).normalized); */
-
+			if (_controller.isGrounded)
+			{
+				moveDir.y = -.1f;
+			}
+			else
+			{
+				moveDir += Physics.gravity;
+			}
+			_controller.Move(moveDir);
 		}
 
 		public void OnMovement(InputAction.CallbackContext value)
@@ -94,7 +84,5 @@ namespace Bug.Player
 				Destroy(go, 2f);
             }
         }
-		
-		//#TODO ask about jumping. Implement it, if needed.
 	}
 }
