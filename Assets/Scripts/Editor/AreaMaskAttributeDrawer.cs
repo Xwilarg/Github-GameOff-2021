@@ -1,8 +1,9 @@
-﻿using UnityEditor;
+﻿using Bug.Navigation;
+using UnityEditor;
 using UnityEditor.AI;
 using UnityEngine;
 
-namespace Bug.Navigation
+namespace Bug.Editor.Navigation
 {
 	[CustomPropertyDrawer(typeof(AreaMaskAttribute))]
 	public class AreaMaskAttributeDrawer : PropertyDrawer

@@ -1,9 +1,10 @@
-﻿using UnityEditor;
+﻿using Bug.Navigation;
+using UnityEditor;
 using UnityEditor.AI;
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace Bug.Navigation
+namespace Bug.Editor.Navigation
 {
 	[CustomPropertyDrawer(typeof(AgentTypeAttribute))]
 	public class AgentTypeAttributeDrawer : PropertyDrawer
