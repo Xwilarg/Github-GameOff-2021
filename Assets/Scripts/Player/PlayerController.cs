@@ -5,6 +5,7 @@ namespace Bug.Player
 {
 	public class PlayerController : MonoBehaviour
 	{
+		[Header("Movements")]
 		[SerializeField]
 		private Camera _fpsCamera;
 		[SerializeField]
@@ -15,6 +16,14 @@ namespace Bug.Player
 		[SerializeField]
 		[Range(-1f, 1f)]
 		private float _horizontalLookMultiplier = 1f, _verticalLookMultiplier = 1f;
+
+		[Header("Shooting")]
+		[SerializeField]
+		private GameObject _bulletPrefab;
+		[SerializeField]
+		private Transform _gunEnd;
+		[SerializeField]
+		private int _gunForce;
 		
 		private bool _onGround = false;
 		private Vector2 _groundMovement = Vector2.zero;
@@ -75,6 +84,16 @@ namespace Bug.Player
 			transform.rotation *= Quaternion.Euler(0f, rot.x * _horizontalLookMultiplier, 0f);
 			_fpsCamera.transform.rotation *= Quaternion.Euler(rot.y * _verticalLookMultiplier, 0f, 0f);
 		}
+
+		public void OnShoot(InputAction.CallbackContext value)
+        {
+			if (value.phase == InputActionPhase.Performed)
+            {
+				var go = Instantiate(_bulletPrefab, _gunEnd.position, Quaternion.identity);
+				go.GetComponent<Rigidbody>().AddForce(_gunEnd.forward * _gunForce, ForceMode.Impulse);
+				Destroy(go, 2f);
+            }
+        }
 		
 		//#TODO ask about jumping. Implement it, if needed.
 	}

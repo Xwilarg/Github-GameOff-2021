@@ -748,7 +748,19 @@ MonoBehaviour:
     m_ActionId: b0cda70c-f69c-493e-b269-60c16b24d873
     m_ActionName: Character/Translation[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2274999824273732736}
+        m_TargetAssemblyTypeName: Bug.Player.PlayerController, Assembly-CSharp
+        m_MethodName: OnShoot
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: c7b5927d-50d7-4926-9cdd-17c7e1dfb7c1
     m_ActionName: Character/Shoot[/Mouse/leftButton]
   - m_PersistentCalls:
@@ -797,6 +809,9 @@ MonoBehaviour:
   _forceMultiplier: 5
   _horizontalLookMultiplier: 0.05
   _verticalLookMultiplier: -0.05
+  _bulletPrefab: {fileID: 4506322839194982373, guid: 7427124b05d669b4c9e2ab378bb7b371, type: 3}
+  _gunEnd: {fileID: 2647975266864798159}
+  _gunForce: 30
 --- !u!1 &2274999824464697299
 GameObject:
   m_ObjectHideFlags: 0
@@ -989,6 +1004,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2274999824569895483}
     m_Modifications:
+    - target: {fileID: 4054010914519113142, guid: 00a6eaa778f0ae641bb04bfe597f0209, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4054010914519113142, guid: 00a6eaa778f0ae641bb04bfe597f0209, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4054010914519113142, guid: 00a6eaa778f0ae641bb04bfe597f0209, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4054010914519113142, guid: 00a6eaa778f0ae641bb04bfe597f0209, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4054010914519113142, guid: 00a6eaa778f0ae641bb04bfe597f0209, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 4054010915004109627, guid: 00a6eaa778f0ae641bb04bfe597f0209, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1051,6 +1086,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 00a6eaa778f0ae641bb04bfe597f0209, type: 3}
+--- !u!4 &2647975266864798159 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4054010914519113142, guid: 00a6eaa778f0ae641bb04bfe597f0209, type: 3}
+  m_PrefabInstance: {fileID: 2089039156147176569}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2647975267349862210 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4054010915004109627, guid: 00a6eaa778f0ae641bb04bfe597f0209, type: 3}
