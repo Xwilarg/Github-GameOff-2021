@@ -47,10 +47,10 @@ namespace Bug.Map
             Random.InitState(_seed.GetHashCode());
 
             // Add all rooms
-            if (_startingRoom.HaveSouthDoor) AddRoom(Vector2Int.zero, start, _mapInfo.MaxPathLength, Vector2Int.down);
-            if (_startingRoom.HaveNorthDoor) AddRoom(Vector2Int.zero, start, _mapInfo.MaxPathLength, Vector2Int.up);
-            if (_startingRoom.HaveEastDoor) AddRoom(Vector2Int.zero, start, _mapInfo.MaxPathLength, Vector2Int.right);
-            if (_startingRoom.HaveWestDoor) AddRoom(Vector2Int.zero, start, _mapInfo.MaxPathLength, Vector2Int.left);
+            if (_startingRoom.HaveSouthDoor) AddRoom(Vector2Int.zero, start, 0, Vector2Int.down);
+            if (_startingRoom.HaveNorthDoor) AddRoom(Vector2Int.zero, start, 0, Vector2Int.up);
+            if (_startingRoom.HaveEastDoor) AddRoom(Vector2Int.zero, start, 0, Vector2Int.right);
+            if (_startingRoom.HaveWestDoor) AddRoom(Vector2Int.zero, start, 0, Vector2Int.left);
 
             // Set zones
             DrawZones();
@@ -61,7 +61,7 @@ namespace Bug.Map
 
         private void AddRoom(Vector2 lastPosition, Room lastRoom, int remainingIteration, Vector2Int direction)
         {
-            if (remainingIteration > 0)
+            if (remainingIteration < _mapInfo.MaxPathLength)
             {
                 // Get all rooms that can fit
                 var available = _availableRooms
@@ -118,7 +118,7 @@ namespace Bug.Map
                 var ri = available[Random.Range(0, available.Length)];
 
                 // Create room and set variables
-                var r = CreateFromRoomInfo(ri.currPos, ri.x, remainingIteration > _mapInfo.UnlockedRange ? RoomType.AVAILABLE : RoomType.LOCKED, remainingIteration - 1);
+                var r = CreateFromRoomInfo(ri.currPos, ri.x, remainingIteration < _mapInfo.UnlockedRange ? RoomType.AVAILABLE : RoomType.LOCKED, remainingIteration);
                 if (direction == Vector2Int.up)
                 {
                     lastRoom.Up = r;
@@ -142,10 +142,10 @@ namespace Bug.Map
                 _currentRooms.Add(r);
 
                 // Create child rooms
-                if (ri.x.HaveSouthDoor && direction != Vector2Int.down) AddRoom(ri.currPos, r, remainingIteration - 1, Vector2Int.down);
-                if (ri.x.HaveNorthDoor && direction != Vector2Int.up) AddRoom(ri.currPos, r, remainingIteration - 1, Vector2Int.up);
-                if (ri.x.HaveEastDoor && direction != Vector2Int.left) AddRoom(ri.currPos, r, remainingIteration - 1, Vector2Int.right);
-                if (ri.x.HaveWestDoor && direction != Vector2Int.right) AddRoom(ri.currPos, r, remainingIteration - 1, Vector2Int.left);
+                if (ri.x.HaveSouthDoor && direction != Vector2Int.down) AddRoom(ri.currPos, r, remainingIteration + 1, Vector2Int.down);
+                if (ri.x.HaveNorthDoor && direction != Vector2Int.up) AddRoom(ri.currPos, r, remainingIteration + 1, Vector2Int.up);
+                if (ri.x.HaveEastDoor && direction != Vector2Int.left) AddRoom(ri.currPos, r, remainingIteration + 1, Vector2Int.right);
+                if (ri.x.HaveWestDoor && direction != Vector2Int.right) AddRoom(ri.currPos, r, remainingIteration + 1, Vector2Int.left);
             }
         }
 
@@ -154,7 +154,7 @@ namespace Bug.Map
             List<Room> _endRooms;
             List<Room> _nextRooms // Take all the rooms that were generated last
                 = _currentRooms
-                .Where(x => x.Distance == 0 && x.Type != RoomType.AVAILABLE)
+                .Where(x => x.Distance == _mapInfo.MaxPathLength - 1 && x.Type != RoomType.AVAILABLE)
                 .ToList();
             int id = 1;
             foreach (var r in _nextRooms)
@@ -311,7 +311,7 @@ namespace Bug.Map
                 foreach (var room in _currentRooms)
                 {
                     var force = room.Distance * 1f / _mapInfo.MaxPathLength;
-                    Gizmos.color = new Color(1f - force, force, 0f);
+                    Gizmos.color = new Color(force, 1f - force, 0f);
                     Gizmos.DrawCube(GetRoomCenter(room), new Vector3(room.Size.x, 4f, room.Size.y));
                 }
                 #endregion
