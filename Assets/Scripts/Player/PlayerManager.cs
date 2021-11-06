@@ -1,4 +1,5 @@
 using Bug.Menu;
+using TMPro;
 using UnityEngine;
 
 namespace Bug.Player
@@ -14,5 +15,6 @@ namespace Bug.Player
 
         public PauseMenu PauseMenu;
         public GameObject PressE;
+        public TMP_Text AmmoDisplay;
     }
 }

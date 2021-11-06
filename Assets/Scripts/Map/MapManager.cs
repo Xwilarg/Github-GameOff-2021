@@ -1,4 +1,3 @@
-using System;
 using Bug.SO;
 using Bug.Visual;
 using System.Collections.Generic;
@@ -15,7 +14,7 @@ namespace Bug.Map
         private MapInfo _mapInfo;
 
         [SerializeField]
-        private RoomSpawnInfo[] _availableRooms;
+        private RoomInfo[] _availableRooms;
 
         [SerializeField]
         private RoomInfo _startingRoom;
@@ -32,16 +31,9 @@ namespace Bug.Map
         [SerializeField]
         private GameObject _spawner;
 
-        public ReadOnlyCollection<Room> AllRooms { get; private set; }
-
-        private readonly List<Room> _currentRooms = new();
+        public List<Room> AllRooms { get; } = new();
         private GameObject _roomContainer;
 
-
-        private void Awake()
-        {
-	        AllRooms = _currentRooms.AsReadOnly();
-        }
 
         private void Start()
         {
@@ -52,7 +44,7 @@ namespace Bug.Map
             var playerIns = Instantiate(_playerPrefab, new Vector3(start.Position.x + start.Size.x / 2f, 2f, start.Position.y + start.Size.y / 2f), Quaternion.identity);
             _follow.Target = playerIns.transform; // Make sure minimap follow player
 
-            _currentRooms.Add(start);
+            AllRooms.Add(start);
 
             // Init seed
             Random.InitState(_seed.GetHashCode());
@@ -76,15 +68,15 @@ namespace Bug.Map
             {
                 // Get all rooms that can fit
                 var available = _availableRooms
-                    .Where(x => // Make sure there is a door matching where we want to go
+                    .Where(roomInfo => // Make sure there is a door matching where we want to go
                     {
                         return
-                            (direction == Vector2Int.up && x.RoomInfo.HaveSouthDoor) ||
-                            (direction == Vector2Int.down && x.RoomInfo.HaveNorthDoor) ||
-                            (direction == Vector2Int.left && x.RoomInfo.HaveEastDoor) ||
-                            (direction == Vector2Int.right && x.RoomInfo.HaveWestDoor);
+                            (direction == Vector2Int.up && roomInfo.HaveSouthDoor) ||
+                            (direction == Vector2Int.down && roomInfo.HaveNorthDoor) ||
+                            (direction == Vector2Int.left && roomInfo.HaveEastDoor) ||
+                            (direction == Vector2Int.right && roomInfo.HaveWestDoor);
                     })
-                    .Select(x =>
+                    .Select(roomInfo =>
                     {
                         // Let's say we have a 3x3 room called R and we want to add a new room called N
                         // We start by taking the position of the room R
@@ -92,9 +84,9 @@ namespace Bug.Map
                         // - If our direction go in the position, we need to add the size of the room R to place it next to it
                         int xOffset = 0, yOffset = 0;
                         if (direction.x > 0) xOffset = lastRoom.Size.x;
-                        else if (direction.x < 0) xOffset = -x.RoomInfo.Size.x;
+                        else if (direction.x < 0) xOffset = -roomInfo.Size.x;
                         if (direction.y > 0) yOffset = lastRoom.Size.y;
-                        else if (direction.y < 0) yOffset = -x.RoomInfo.Size.y;
+                        else if (direction.y < 0) yOffset = -roomInfo.Size.y;
                         var currPos = lastPosition + new Vector2(xOffset, yOffset);
 
                         // So now we need to offset the doors so everything match
@@ -104,20 +96,20 @@ namespace Bug.Map
                             Mathf.Abs(direction.x) == 1 ? 0 : 1,
                             Mathf.Abs(direction.y) == 1 ? 0 : 1
                         ) * new Vector2Int(
-                            lastRoom.Size.x / 2 - x.RoomInfo.Size.x / 2,
-                            lastRoom.Size.y / 2 - x.RoomInfo.Size.y / 2
+                            lastRoom.Size.x / 2 - roomInfo.Size.x / 2,
+                            lastRoom.Size.y / 2 - roomInfo.Size.y / 2
                         );
 
                         currPos += additionalOffset;
 
-                        return (x.RoomInfo, currPos);
+                        return (roomInfo, currPos);
                     })
                     .Where(x => // https://stackoverflow.com/a/306332/6663248
                     {
-                        return !_currentRooms.Any(r =>
+                        return !AllRooms.Any(r =>
                         {
-                            return x.currPos.x < (r.Position.x + r.Size.x) && (x.currPos.x + x.RoomInfo.Size.x) > r.Position.x &&
-                                x.currPos.y < (r.Position.y + r.Size.y) && (x.currPos.y + x.RoomInfo.Size.y) > r.Position.y;
+                            return x.currPos.x < (r.Position.x + r.Size.x) && (x.currPos.x + x.roomInfo.Size.x) > r.Position.x &&
+                                x.currPos.y < (r.Position.y + r.Size.y) && (x.currPos.y + x.roomInfo.Size.y) > r.Position.y;
                         });
                     })
                     .ToArray();
@@ -129,7 +121,7 @@ namespace Bug.Map
                 var ri = available[Random.Range(0, available.Length)];
 
                 // Create room and set variables
-                var r = CreateFromRoomInfo(ri.currPos, ri.RoomInfo, remainingIteration < _mapInfo.UnlockedRange ? RoomState.AVAILABLE : RoomState.LOCKED, remainingIteration);
+                var r = CreateFromRoomInfo(ri.currPos, ri.roomInfo, remainingIteration < _mapInfo.UnlockedRange ? RoomState.AVAILABLE : RoomState.LOCKED, remainingIteration);
                 if (direction == Vector2Int.up)
                 {
                     lastRoom.Up = r;
@@ -150,13 +142,13 @@ namespace Bug.Map
                     lastRoom.Right = r;
                     r.Left = lastRoom;
                 }
-                _currentRooms.Add(r);
+                AllRooms.Add(r);
 
                 // Create child rooms
-                if (ri.RoomInfo.HaveSouthDoor && direction != Vector2Int.down) AddRoom(ri.currPos, r, remainingIteration + 1, Vector2Int.down);
-                if (ri.RoomInfo.HaveNorthDoor && direction != Vector2Int.up) AddRoom(ri.currPos, r, remainingIteration + 1, Vector2Int.up);
-                if (ri.RoomInfo.HaveEastDoor && direction != Vector2Int.left) AddRoom(ri.currPos, r, remainingIteration + 1, Vector2Int.right);
-                if (ri.RoomInfo.HaveWestDoor && direction != Vector2Int.right) AddRoom(ri.currPos, r, remainingIteration + 1, Vector2Int.left);
+                if (ri.roomInfo.HaveSouthDoor && direction != Vector2Int.down) AddRoom(ri.currPos, r, remainingIteration + 1, Vector2Int.down);
+                if (ri.roomInfo.HaveNorthDoor && direction != Vector2Int.up) AddRoom(ri.currPos, r, remainingIteration + 1, Vector2Int.up);
+                if (ri.roomInfo.HaveEastDoor && direction != Vector2Int.left) AddRoom(ri.currPos, r, remainingIteration + 1, Vector2Int.right);
+                if (ri.roomInfo.HaveWestDoor && direction != Vector2Int.right) AddRoom(ri.currPos, r, remainingIteration + 1, Vector2Int.left);
             }
         }
 
@@ -164,7 +156,7 @@ namespace Bug.Map
         {
             List<Room> _endRooms;
             List<Room> _nextRooms // Take all the rooms that were generated last
-                = _currentRooms
+                = AllRooms
                 .Where(x => x.Distance == _mapInfo.MaxPathLength - 1 && x.Type != RoomState.AVAILABLE)
                 .ToList();
             int id = 1;
@@ -200,7 +192,7 @@ namespace Bug.Map
             // So we clean that a bit
             id = 1;
             Dictionary<int, int> ids = new();
-            foreach (var room in _currentRooms)
+            foreach (var room in AllRooms)
             {
                 if (room.ZoneId > 0)
                 {
@@ -238,7 +230,7 @@ namespace Bug.Map
             if (id == 1)
             {
                 #region limits
-                foreach (var r in _currentRooms.OrderBy(x =>
+                foreach (var r in AllRooms.OrderBy(x =>
                 {
                     return x.Type switch
                     {
@@ -306,7 +298,7 @@ namespace Bug.Map
                     Color.red, Color.blue, Color.green,
                     Color.magenta, Color.cyan, Color.yellow
                 };
-                foreach (var room in _currentRooms)
+                foreach (var room in AllRooms)
                 {
                     Gizmos.color = room.ZoneId switch
                     {
@@ -321,7 +313,7 @@ namespace Bug.Map
             else if (id == 3)
             {
                 #region distance
-                foreach (var room in _currentRooms)
+                foreach (var room in AllRooms)
                 {
                     var force = room.Distance * 1f / _mapInfo.MaxPathLength;
                     Gizmos.color = new Color(force, 1f - force, 0f);
