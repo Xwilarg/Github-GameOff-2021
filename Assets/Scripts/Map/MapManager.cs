@@ -1,8 +1,11 @@
+using System;
 using Bug.SO;
 using Bug.Visual;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Bug.Map
 {
@@ -29,8 +32,16 @@ namespace Bug.Map
         [SerializeField]
         private GameObject _spawner;
 
+        public ReadOnlyCollection<Room> AllRooms { get; private set; }
+
         private readonly List<Room> _currentRooms = new();
         private GameObject _roomContainer;
+
+
+        private void Awake()
+        {
+	        AllRooms = _currentRooms.AsReadOnly();
+        }
 
         private void Start()
         {
@@ -161,7 +172,7 @@ namespace Bug.Map
             {
                 r.ZoneId = id++;
                 var spawner = Instantiate(_spawner, GetRoomCenter(r), Quaternion.identity);
-                spawner.transform.parent = r.GameObject.transform;
+                spawner.transform.parent = r.gameObject.transform;
             }
 
             while (_nextRooms.Any())
@@ -211,7 +222,9 @@ namespace Bug.Map
         {
             var go = Instantiate(info.gameObject, new Vector3(position.x + info.Size.x / 2f, 0f, position.y + info.Size.y / 2f), Quaternion.identity);
             go.transform.parent = _roomContainer.transform;
-            return new(info.Size, position, type, info, go, distance);
+            var room = go.AddComponent<Room>();
+            room.Configure(info.Size, position, type, info, distance);
+            return room;
         }
 
         private Vector3 GetRoomCenter(Room r)
