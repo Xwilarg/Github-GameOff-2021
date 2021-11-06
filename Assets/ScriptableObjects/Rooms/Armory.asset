@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ea3c88348318304b9da9ac846fcae93, type: 3}
-  m_Name: Map
+  m_Script: {fileID: 11500000, guid: 80e780e24b8b62747bb16c35534038e7, type: 3}
+  m_Name: Armory
   m_EditorClassIdentifier: 
-  MaxPathLength: 15
-  UnlockedRange: 5
+  RoomInfo: {fileID: 8396149927105140909, guid: 10cd559c60e67384f8319a588134e6f3, type: 3}

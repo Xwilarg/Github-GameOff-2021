@@ -1,3 +1,4 @@
+using Bug.Menu;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -39,6 +40,11 @@ namespace Bug.Player
 		
 		private void FixedUpdate()
 		{
+			if (IsGamePaused())
+            {
+				return; // We can't move if we are in the menu
+            }
+
 			Vector3 desiredMove = transform.forward * _groundMovement.y + transform.right * _groundMovement.x;
 
 			// Get a normal for the surface that is being touched to move along it
@@ -62,27 +68,43 @@ namespace Bug.Player
 			_controller.Move(moveDir);
 		}
 
-		public void OnMovement(InputAction.CallbackContext value)
+		private bool IsGamePaused()
+			=> PlayerManager.S.PauseMenu.IsActive();
+
+        #region Input callbacks
+
+        public void OnMovement(InputAction.CallbackContext value)
 		{
-			// Vector2 inputMovement = value.ReadValue<Vector2>().normalized;
 			_groundMovement = value.ReadValue<Vector2>().normalized;
 		}
 		
 		public void OnLook(InputAction.CallbackContext value)
 		{
-			var rot = value.ReadValue<Vector2>();
-			transform.rotation *= Quaternion.Euler(0f, rot.x * _horizontalLookMultiplier, 0f);
-			_fpsCamera.transform.rotation *= Quaternion.Euler(rot.y * _verticalLookMultiplier, 0f, 0f);
+			if (!IsGamePaused())
+			{
+				var rot = value.ReadValue<Vector2>();
+				transform.rotation *= Quaternion.Euler(0f, rot.x * _horizontalLookMultiplier, 0f);
+				_fpsCamera.transform.rotation *= Quaternion.Euler(rot.y * _verticalLookMultiplier, 0f, 0f);
+			}
 		}
 
 		public void OnShoot(InputAction.CallbackContext value)
         {
-			if (value.phase == InputActionPhase.Performed)
+			if (value.phase == InputActionPhase.Performed && !IsGamePaused())
             {
 				var go = Instantiate(_bulletPrefab, _gunEnd.position, Quaternion.identity);
 				go.GetComponent<Rigidbody>().AddForce(_gunEnd.forward * _gunForce, ForceMode.Impulse);
 				Destroy(go, 2f);
             }
         }
-	}
+
+		public void OnMenu(InputAction.CallbackContext value)
+        {
+			PlayerManager.S.PauseMenu.Toggle();
+			Cursor.lockState = PlayerManager.S.PauseMenu.IsActive() ? CursorLockMode.None : CursorLockMode.Locked;
+			Cursor.visible = PlayerManager.S.PauseMenu.IsActive();
+        }
+
+        #endregion
+    }
 }

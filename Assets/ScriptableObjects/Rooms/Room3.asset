@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ea3c88348318304b9da9ac846fcae93, type: 3}
-  m_Name: Map
+  m_Script: {fileID: 11500000, guid: 80e780e24b8b62747bb16c35534038e7, type: 3}
+  m_Name: Room3
   m_EditorClassIdentifier: 
-  MaxPathLength: 15
-  UnlockedRange: 5
+  RoomInfo: {fileID: -6918844536806175057, guid: 8a7f17406e58b3340ac5fd8f54ec8fe4, type: 3}

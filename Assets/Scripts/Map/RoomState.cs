@@ -1,7 +1,7 @@
 ﻿
 namespace Bug.Map
 {
-    public enum RoomType
+    public enum RoomState
     {
         STARTING,
         AVAILABLE,

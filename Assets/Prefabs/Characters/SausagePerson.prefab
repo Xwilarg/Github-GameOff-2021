@@ -788,6 +788,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 6880b569-6889-4176-ad7b-fe5772d8f275
     m_ActionName: Character/Look[/Mouse/delta]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2274999824273732736}
+        m_TargetAssemblyTypeName: Bug.Player.PlayerController, Assembly-CSharp
+        m_MethodName: OnMenu
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: fcafdf50-4aea-4223-96b1-45c75e3d00a3
+    m_ActionName: Character/Menu[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboad & Mouse
   m_DefaultActionMap: Character
@@ -812,7 +828,7 @@ MonoBehaviour:
   _verticalLookMultiplier: -0.05
   _bulletPrefab: {fileID: 4506322839194982373, guid: 7427124b05d669b4c9e2ab378bb7b371, type: 3}
   _gunEnd: {fileID: 7184362263129266094}
-  _gunForce: 30
+  _gunForce: 10
 --- !u!143 &4184560181533889216
 CharacterController:
   m_ObjectHideFlags: 0
