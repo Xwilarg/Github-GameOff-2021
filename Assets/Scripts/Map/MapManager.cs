@@ -1,4 +1,5 @@
 using Bug.SO;
+using Bug.Visual;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -23,6 +24,9 @@ namespace Bug.Map
         private GameObject _playerPrefab;
 
         [SerializeField]
+        private FollowPlayer _follow;
+
+        [SerializeField]
         private GameObject _spawner;
 
         private readonly List<Room> _currentRooms = new();
@@ -32,9 +36,11 @@ namespace Bug.Map
         {
             _roomContainer = new("Rooms");
 
-            // Add starting room
+            // Add starting room and spawn player
             var start = CreateFromRoomInfo(Vector2Int.zero, _startingRoom, RoomType.STARTING, _mapInfo.MaxPathLength);
-            Instantiate(_playerPrefab, new Vector3(start.Position.x + start.Size.x / 2f, 2f, start.Position.y + start.Size.y / 2f), Quaternion.identity);
+            var playerIns = Instantiate(_playerPrefab, new Vector3(start.Position.x + start.Size.x / 2f, 2f, start.Position.y + start.Size.y / 2f), Quaternion.identity);
+            _follow.Target = playerIns.transform; // Make sure minimap follow player
+
             _currentRooms.Add(start);
 
             // Init seed
