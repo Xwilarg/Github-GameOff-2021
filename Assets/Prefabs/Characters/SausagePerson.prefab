@@ -765,7 +765,19 @@ MonoBehaviour:
     m_ActionId: c7b5927d-50d7-4926-9cdd-17c7e1dfb7c1
     m_ActionName: Character/Shoot[/Mouse/leftButton]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2274999824273732736}
+        m_TargetAssemblyTypeName: Bug.Player.PlayerController, Assembly-CSharp
+        m_MethodName: OnAction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: dddc3793-ffe1-4f53-8f7d-d7dabc19e377
     m_ActionName: Character/Interact[/Keyboard/e]
   - m_PersistentCalls:

@@ -1,4 +1,5 @@
 using Bug.Menu;
+using Bug.Prop;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -29,6 +30,8 @@ namespace Bug.Player
 		private CharacterController _controller;
 		private Vector2 _groundMovement = Vector2.zero;
 		private Rigidbody _rb;
+
+		private Interactible _eTarget;
 		
 		private void Awake()
 		{
@@ -44,6 +47,27 @@ namespace Bug.Player
             {
 				return; // We can't move if we are in the menu
             }
+
+			if (Physics.Raycast(new Ray(_fpsCamera.transform.position, _fpsCamera.transform.forward), out RaycastHit hit, 1f))
+            {
+				var interac = hit.collider.GetComponent<Interactible>();
+				if (interac != null)
+                {
+					PlayerManager.S.PressE.SetActive(true);
+					_eTarget = interac;
+
+				}
+				else
+				{
+					PlayerManager.S.PressE.SetActive(false);
+					_eTarget = null;
+				}
+			}
+			else
+			{
+				PlayerManager.S.PressE.SetActive(false);
+				_eTarget = null;
+			}
 
 			Vector3 desiredMove = transform.forward * _groundMovement.y + transform.right * _groundMovement.x;
 
@@ -104,6 +128,11 @@ namespace Bug.Player
 			Cursor.lockState = PlayerManager.S.PauseMenu.IsActive() ? CursorLockMode.None : CursorLockMode.Locked;
 			Cursor.visible = PlayerManager.S.PauseMenu.IsActive();
         }
+
+		public void OnAction(InputAction.CallbackContext value)
+        {
+			_eTarget?.InvokeCallback(this);
+		}
 
         #endregion
     }
