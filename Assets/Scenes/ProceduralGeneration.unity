@@ -585,6 +585,7 @@ MonoBehaviour:
   _startingRoom: {fileID: 8396149927105140909, guid: cd0f739d34af5fb4295ad3fe455f4fad, type: 3}
   _seed: Zekamashi
   _playerPrefab: {fileID: 2274999824273732741, guid: 084c561a9f4c17f4082f9338346c84bc, type: 3}
+  _spawner: {fileID: 7504251229411816750, guid: 101e8646b1285a0418de1beac2705268, type: 3}
 --- !u!1 &696854321
 GameObject:
   m_ObjectHideFlags: 0

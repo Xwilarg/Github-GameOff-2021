@@ -22,6 +22,9 @@ namespace Bug.Map
         [SerializeField]
         private GameObject _playerPrefab;
 
+        [SerializeField]
+        private GameObject _spawner;
+
         private readonly List<Room> _currentRooms = new();
         private GameObject _roomContainer;
 
@@ -151,6 +154,8 @@ namespace Bug.Map
             foreach (var r in _nextRooms)
             {
                 r.ZoneId = id++;
+                var spawner = Instantiate(_spawner, GetRoomCenter(r), Quaternion.identity);
+                spawner.transform.parent = r.GameObject.transform;
             }
 
             while (_nextRooms.Any())
@@ -201,6 +206,11 @@ namespace Bug.Map
             var go = Instantiate(info.gameObject, new Vector3(position.x + info.Size.x / 2f, 0f, position.y + info.Size.y / 2f), Quaternion.identity);
             go.transform.parent = _roomContainer.transform;
             return new(info.Size, position, type, info, go, distance);
+        }
+
+        private Vector3 GetRoomCenter(Room r)
+        {
+            return new Vector3(r.Position.x + r.Size.x / 2f, 2f, r.Position.y + r.Size.y / 2f);
         }
 
         private void OnDrawGizmos()
@@ -285,7 +295,7 @@ namespace Bug.Map
                         -1 => Color.black, // Not supposed to happen
                         _ => colors[(room.ZoneId - 1) % colors.Length]
                     };
-                    Gizmos.DrawCube(new Vector3(room.Position.x + room.Size.x / 2f, 2f, room.Position.y + room.Size.y / 2f), new Vector3(room.Size.x, 4f, room.Size.y));
+                    Gizmos.DrawCube(GetRoomCenter(room), new Vector3(room.Size.x, 4f, room.Size.y));
                 }
                 #endregion
             }
@@ -296,7 +306,7 @@ namespace Bug.Map
                 {
                     var force = room.Distance * 1f / _mapInfo.MaxPathLength;
                     Gizmos.color = new Color(1f - force, force, 0f);
-                    Gizmos.DrawCube(new Vector3(room.Position.x + room.Size.x / 2f, 2f, room.Position.y + room.Size.y / 2f), new Vector3(room.Size.x, 4f, room.Size.y));
+                    Gizmos.DrawCube(GetRoomCenter(room), new Vector3(room.Size.x, 4f, room.Size.y));
                 }
                 #endregion
             }
