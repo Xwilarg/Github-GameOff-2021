@@ -1,6 +1,7 @@
 using Bug.Prop;
 using Bug.SO;
 using Bug.Weapon;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,6 +9,8 @@ namespace Bug.Player
 {
 	public class PlayerController : MonoBehaviour
 	{
+		public PlayerInfo _info;
+
 		[Header("Movements")]
 		[SerializeField]
 		private Camera _fpsCamera;
@@ -27,28 +30,26 @@ namespace Bug.Player
 		private Transform _gunEnd;
 		[SerializeField]
 		private int _gunForce;
-		[SerializeField]
-		private WeaponInfo _defaultWeapon;
 
 		private WeaponData _mainWeapon;
 		private CharacterController _controller;
 		private Vector2 _groundMovement = Vector2.zero;
-		private Rigidbody _rb;
+		private bool _isReloading;
 
 		private Interactible _eTarget;
 		
-		private void Awake()
+		private void Start()
 		{
-			_rb = GetComponent<Rigidbody>();
 			_playerInput = GetComponent<PlayerInput>();
 			_controller = GetComponent<CharacterController>();
 			Cursor.lockState = CursorLockMode.Locked;
 			_mainWeapon = new()
 			{
-				Info = _defaultWeapon,
-				AmmoInGun = _defaultWeapon.MaxNbOfBullets,
-				NbOfMagazines = 10
+				Info = _info._mainWeapon,
+				AmmoInGun = _info._mainWeapon.MaxNbOfBullets,
+				NbOfMagazines = _info.NbOfMagazine
 			};
+			UpdateAmmoDisplay();
 		}
 		
 		private void FixedUpdate()
@@ -102,8 +103,24 @@ namespace Bug.Player
 			_controller.Move(moveDir);
 		}
 
+		private void UpdateAmmoDisplay()
+        {
+			PlayerManager.S.AmmoDisplay.text = $"{_mainWeapon.AmmoInGun} / {_mainWeapon.NbOfMagazines}";
+        }
+
 		private bool IsGamePaused()
 			=> PlayerManager.S.PauseMenu.IsActive();
+
+		private IEnumerator Reload()
+        {
+			_isReloading = true;
+			yield return new WaitForSeconds(_mainWeapon.Info.ReloadDuration);
+			_mainWeapon.AmmoInGun = _mainWeapon.Info.MaxNbOfBullets;
+			_mainWeapon.NbOfMagazines--;
+			UpdateAmmoDisplay();
+			_isReloading = false;
+
+		}
 
         #region Input callbacks
 
@@ -124,22 +141,32 @@ namespace Bug.Player
 
 		public void OnShoot(InputAction.CallbackContext value)
         {
-			if (value.phase == InputActionPhase.Performed && !IsGamePaused())
+			if (value.phase == InputActionPhase.Performed && // Already done the action when the button is pressed
+				!IsGamePaused() && // Don't shoot if the game is paused
+				!_isReloading && // We can't do it if we are reloading
+				_mainWeapon.AmmoInGun > 0) // We can't do it if there are no ammo left
             {
 				var go = Instantiate(_bulletPrefab, _gunEnd.position, Quaternion.identity);
 				go.GetComponent<Rigidbody>().AddForce(_gunEnd.forward * _gunForce, ForceMode.Impulse);
 				Destroy(go, 2f);
-            }
+
+				_mainWeapon.AmmoInGun--;
+				if (_mainWeapon.AmmoInGun == 0 && _mainWeapon.NbOfMagazines > 0)
+                {
+					StartCoroutine(Reload());
+                }
+				UpdateAmmoDisplay();
+			}
         }
 
-		public void OnMenu(InputAction.CallbackContext value)
+		public void OnMenu(InputAction.CallbackContext _)
         {
 			PlayerManager.S.PauseMenu.Toggle();
 			Cursor.lockState = PlayerManager.S.PauseMenu.IsActive() ? CursorLockMode.None : CursorLockMode.Locked;
 			Cursor.visible = PlayerManager.S.PauseMenu.IsActive();
         }
 
-		public void OnAction(InputAction.CallbackContext value)
+		public void OnAction(InputAction.CallbackContext _)
         {
 			_eTarget?.InvokeCallback(this);
 		}

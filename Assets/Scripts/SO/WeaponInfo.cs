@@ -7,5 +7,6 @@ namespace Bug.SO
     {
         public string Name;
         public int MaxNbOfBullets;
+        public float ReloadDuration;
     }
 }
