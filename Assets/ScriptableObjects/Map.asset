@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Map
   m_EditorClassIdentifier: 
   MaxPathLength: 15
-  UnlockedRange: 10
+  UnlockedRange: 1
