@@ -840,11 +840,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mapInfo: {fileID: 11400000, guid: 89b258d2b8d3f5b47a1cad7179da183d, type: 2}
   _availableRooms:
-  - {fileID: 11400000, guid: 897c09fede10a404f8bd540f259f3bcc, type: 2}
-  - {fileID: 11400000, guid: a0265a7ed69bcf346843cadb993e16ae, type: 2}
-  - {fileID: 11400000, guid: c14450053b8ec9f4fa8f547f867d57a8, type: 2}
-  - {fileID: 11400000, guid: 5975505a84c11e340bdf1708b54fab09, type: 2}
-  - {fileID: 11400000, guid: 0892ac0e22ff6de45bb5c2e232ca44f4, type: 2}
+  - {fileID: 8396149927105140909, guid: 10cd559c60e67384f8319a588134e6f3, type: 3}
+  - {fileID: 8396149927105140909, guid: cd0f739d34af5fb4295ad3fe455f4fad, type: 3}
+  - {fileID: 6993427876658535758, guid: f6a5f955511d1f6448dc093f8b57fb3c, type: 3}
+  - {fileID: -6918844536806175057, guid: 8a7f17406e58b3340ac5fd8f54ec8fe4, type: 3}
+  - {fileID: 7282100081989194296, guid: aa958c98913d967499852cff593146ea, type: 3}
   _startingRoom: {fileID: 8396149927105140909, guid: cd0f739d34af5fb4295ad3fe455f4fad, type: 3}
   _seed: Zekamashi
   _playerPrefab: {fileID: 2274999824273732741, guid: 084c561a9f4c17f4082f9338346c84bc, type: 3}
