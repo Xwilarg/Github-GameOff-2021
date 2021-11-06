@@ -69,7 +69,7 @@ namespace Bug.Player
 		}
 
 		private bool IsGamePaused()
-			=> PauseMenu.S?.IsActive() ?? false;
+			=> PlayerManager.S.PauseMenu.IsActive();
 
         #region Input callbacks
 
@@ -100,14 +100,9 @@ namespace Bug.Player
 
 		public void OnMenu(InputAction.CallbackContext value)
         {
-			if (PauseMenu.S == null)
-            {
-				Debug.LogWarning("Debug menu not found");
-				return;
-            }
-			PauseMenu.S.Toggle();
-			Cursor.lockState = PauseMenu.S.IsActive() ? CursorLockMode.None : CursorLockMode.Locked;
-			Cursor.visible = PauseMenu.S.IsActive();
+			PlayerManager.S.PauseMenu.Toggle();
+			Cursor.lockState = PlayerManager.S.PauseMenu.IsActive() ? CursorLockMode.None : CursorLockMode.Locked;
+			Cursor.visible = PlayerManager.S.PauseMenu.IsActive();
         }
 
         #endregion
