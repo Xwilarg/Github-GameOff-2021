@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6212580399632945695
+--- !u!1 &6423258064566031576
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,49 +8,48 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6212580399632945691}
-  - component: {fileID: 6212580399632945688}
-  - component: {fileID: 6212580399632945689}
-  - component: {fileID: 6212580399632945694}
-  - component: {fileID: -1374517408051843716}
-  - component: {fileID: -1358322717477548279}
+  - component: {fileID: 5938048340283313762}
+  - component: {fileID: 7334098886469894599}
+  - component: {fileID: 4765656531636106509}
+  - component: {fileID: 4274834054108234075}
+  - component: {fileID: 222442366734715976}
   m_Layer: 0
-  m_Name: TurretBox
+  m_Name: AmmoBox_Test
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6212580399632945691
+--- !u!4 &5938048340283313762
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6212580399632945695}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_GameObject: {fileID: 6423258064566031576}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0, y: 0.0002756691, z: 0.00019432067}
+  m_LocalScale: {x: 48.244213, y: 48.244213, z: 48.244213}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &6212580399632945688
+--- !u!33 &7334098886469894599
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6212580399632945695}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &6212580399632945689
+  m_GameObject: {fileID: 6423258064566031576}
+  m_Mesh: {fileID: 7513689708110951403, guid: 53c95801eb6f9cd41b2b21d81f32e6b8, type: 3}
+--- !u!23 &4765656531636106509
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6212580399632945695}
+  m_GameObject: {fileID: 6423258064566031576}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -64,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 5561349426305759274, guid: 53c95801eb6f9cd41b2b21d81f32e6b8, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -86,26 +85,26 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &6212580399632945694
+--- !u!65 &4274834054108234075
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6212580399632945695}
+  m_GameObject: {fileID: 6423258064566031576}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-1374517408051843716
+  m_Size: {x: 0.002193456, y: 0.0014845608, z: 0.0034607104}
+  m_Center: {x: 0, y: 0.0007453549, z: -0.00007142947}
+--- !u!114 &222442366734715976
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6212580399632945695}
+  m_GameObject: {fileID: 6423258064566031576}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dd8b9c82f2fcf6841a8268cf28557249, type: 3}
@@ -113,28 +112,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _callback:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: -1358322717477548279}
-        m_TargetAssemblyTypeName: Bug.Prop.TurretBox, Assembly-CSharp
-        m_MethodName: Pick
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &-1358322717477548279
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6212580399632945695}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2dbc565fe7b0984698ecbaf8dfd0597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+      m_Calls: []
