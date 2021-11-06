@@ -4,9 +4,9 @@ namespace Bug.Map
 {
     public class Room
     {
-        public Room(Vector2Int size, Vector2 position, RoomType type, RoomInfo info, GameObject gameObject, int distance)
+        public Room(Vector2Int size, Vector2 position, RoomState type, RoomInfo info, GameObject gameObject, int distance)
             => (Id, Size, Position, Type, Info, GameObject, Distance, ZoneId)
-            = (_idRef++, size, position, type, info, gameObject, distance, type == RoomType.LOCKED ? -1 : 0);
+            = (_idRef++, size, position, type, info, gameObject, distance, type == RoomState.LOCKED ? -1 : 0);
 
         /// <summary>
         /// Unique id of the room
@@ -24,7 +24,7 @@ namespace Bug.Map
         /// <summary>
         /// Type of the room
         /// </summary>
-        public RoomType Type { private set; get; }
+        public RoomState Type { private set; get; }
         /// <summary>
         /// Prefab information about the room
         /// </summary>
