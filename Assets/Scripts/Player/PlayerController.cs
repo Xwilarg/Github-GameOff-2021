@@ -111,6 +111,12 @@ namespace Bug.Player
 		private bool IsGamePaused()
 			=> PlayerManager.S.PauseMenu.IsActive();
 
+		public void EarnMagazine()
+        {
+			_mainWeapon.NbOfMagazines++;
+			UpdateAmmoDisplay();
+        }
+
 		private IEnumerator Reload()
         {
 			_isReloading = true;
