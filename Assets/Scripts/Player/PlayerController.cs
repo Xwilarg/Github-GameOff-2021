@@ -1,5 +1,6 @@
-using Bug.Menu;
 using Bug.Prop;
+using Bug.SO;
+using Bug.Weapon;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -26,7 +27,10 @@ namespace Bug.Player
 		private Transform _gunEnd;
 		[SerializeField]
 		private int _gunForce;
+		[SerializeField]
+		private WeaponInfo _defaultWeapon;
 
+		private WeaponData _mainWeapon;
 		private CharacterController _controller;
 		private Vector2 _groundMovement = Vector2.zero;
 		private Rigidbody _rb;
@@ -39,6 +43,12 @@ namespace Bug.Player
 			_playerInput = GetComponent<PlayerInput>();
 			_controller = GetComponent<CharacterController>();
 			Cursor.lockState = CursorLockMode.Locked;
+			_mainWeapon = new()
+			{
+				Info = _defaultWeapon,
+				AmmoInGun = _defaultWeapon.MaxNbOfBullets,
+				NbOfMagazines = 10
+			};
 		}
 		
 		private void FixedUpdate()
