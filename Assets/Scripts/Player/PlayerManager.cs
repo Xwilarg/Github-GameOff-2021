@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Bug.Menu;
 using TMPro;
@@ -19,6 +20,20 @@ namespace Bug.Player
         private void Awake()
         {
             S = this;
+            GameStateManager.OnPauseStateChanged += HandleOnPauseStateChanged;
+        }
+
+        private void OnDestroy()
+        {
+            GameStateManager.OnPauseStateChanged -= HandleOnPauseStateChanged;
+        }
+
+        private void HandleOnPauseStateChanged(bool paused)
+        {
+            if (PauseMenu != null)
+            {
+                PauseMenu.SetActive(paused);
+            }
         }
 
         public static PlayerBehaviour GetPlayer(int index = 0)
