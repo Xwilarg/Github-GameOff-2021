@@ -11,24 +11,31 @@ namespace Bug.Map
     public class MapManager : MonoBehaviour
     {
         [SerializeField]
+        [Tooltip("Information about the map")]
         private MapInfo _mapInfo;
 
         [SerializeField]
+        [Tooltip("Rooms that will be used for the generation")]
         private RoomInfo[] _availableRooms;
 
         [SerializeField]
+        [Tooltip("Rooom the player will start in")]
         private RoomInfo _startingRoom;
 
         [SerializeField]
+        [Tooltip("Seed used for the generation")]
         private string _seed;
 
         [SerializeField]
+        [Tooltip("Player prefab to spawn once the map is generated")]
         private GameObject _playerPrefab;
 
         [SerializeField]
+        [Tooltip("Camera script that make it to follow the player (used for the minimap)")]
         private FollowPlayer _follow;
 
         [SerializeField]
+        [Tooltip("Prefab for enemy spawners")]
         private GameObject _spawner;
 
         [SerializeField]
