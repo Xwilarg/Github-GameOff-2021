@@ -29,7 +29,7 @@ namespace Bug.Navigation
 		{
 			bool shouldBeEnabled = false;
 
-			PlayerBehaviour player = PlayerManager.S.GetPlayer();
+			PlayerBehaviour player = PlayerManager.GetPlayer();
 			if (player != null)
 			{
 				float distance = Vector3.Distance(player.transform.position, transform.position);

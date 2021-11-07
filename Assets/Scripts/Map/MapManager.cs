@@ -232,17 +232,17 @@ namespace Bug.Map
 
         private void RunPostProcessors()
         {
-	        foreach (MapPostProcessor postProcessor in _postProcessors)
-	        {
-		        try
-		        {
-			        postProcessor.Execute(this);
-		        }
-		        catch (Exception e)
-		        {
-			        Debug.LogException(e);
-		        }
-	        }
+            foreach (MapPostProcessor postProcessor in _postProcessors)
+            {
+                try
+                {
+                    postProcessor.Execute(this);
+                }
+                catch (Exception e)
+                {
+                    Debug.LogException(e);
+                }
+            }
         }
 
         private void OnDrawGizmos()

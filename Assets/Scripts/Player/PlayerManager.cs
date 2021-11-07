@@ -23,22 +23,22 @@ namespace Bug.Player
 
         public static PlayerBehaviour GetPlayer(int index = 0)
         {
-	        if (index < AllPlayers.Count - 1)
-		        return null;
+            if (index < AllPlayers.Count - 1)
+                return null;
 
-	        return AllPlayers[index];
+            return AllPlayers[index];
         }
 
         public static void AddPlayer(PlayerBehaviour playerBehaviour)
         {
-	        if (!AllPlayers.Contains(playerBehaviour))
-		        AllPlayers.Add(playerBehaviour);
+            if (!AllPlayers.Contains(playerBehaviour))
+                AllPlayers.Add(playerBehaviour);
         }
 
         public static void RemovePlayer(PlayerBehaviour playerBehaviour)
         {
-	        if (AllPlayers.Contains(playerBehaviour))
-		        AllPlayers.Remove(playerBehaviour);
+            if (AllPlayers.Contains(playerBehaviour))
+                AllPlayers.Remove(playerBehaviour);
         }
     }
 }
