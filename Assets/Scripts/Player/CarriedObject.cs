@@ -22,8 +22,7 @@ namespace Bug.Player
 
         public bool CanBePlaced()
         {
-            _placeInfo.GetOverlappingObjects();
-            return false;
+            return !_placeInfo.IsOverlappingObjects();
         }
 
         private GameObject _hint;

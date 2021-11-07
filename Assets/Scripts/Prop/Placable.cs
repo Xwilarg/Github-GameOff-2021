@@ -7,12 +7,14 @@ namespace Bug.Prop
         [SerializeField]
         private Collider _detectionCollider;
 
-        public void GetOverlappingObjects()
+        public bool IsOverlappingObjects()
         {
-            if (_detectionCollider.Raycast(new(_detectionCollider.transform.position, Vector3.zero), out RaycastHit hit, 0f))
+            if (_detectionCollider.Raycast(new(_detectionCollider.transform.position, Vector3.forward), out RaycastHit hit, .1f))
             {
                 Debug.Log(hit.collider.name);
+                return true;
             }
+            return false;
         }
     }
 }

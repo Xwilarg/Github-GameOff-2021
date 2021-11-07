@@ -218,7 +218,7 @@ namespace Bug.Player
 
 				transform.rotation *= Quaternion.AngleAxis(rot.x * _horizontalLookMultiplier, Vector3.up);
 
-				_headRotation -= rot.y * _verticalLookMultiplier;
+				_headRotation += rot.y * _verticalLookMultiplier;
 				_headRotation = Mathf.Clamp(_headRotation, -89, 89);
 				_head.transform.localRotation = Quaternion.AngleAxis(_headRotation, Vector3.right);
 			}

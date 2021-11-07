@@ -835,12 +835,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _info: {fileID: 11400000, guid: ec1ddae8427179749adfda16283466c6, type: 2}
   _fpsCamera: {fileID: 2274999824569895482}
-  _head: {fileID: 0}
+  _head: {fileID: 2274999824531319196}
   _playerInput: {fileID: 2274999824273732737}
   _forceMultiplier: 0.1
   _horizontalLookMultiplier: 0.05
   _verticalLookMultiplier: -0.05
-  _skeletonRoot: {fileID: 0}
+  _skeletonRoot: {fileID: 2274999824273732741}
   _leftHandAnchorName: Anchor_Left
   _rightHandAnchorName: Anchor_Right
   _bulletPrefab: {fileID: 4506322839194982373, guid: 7427124b05d669b4c9e2ab378bb7b371, type: 3}
