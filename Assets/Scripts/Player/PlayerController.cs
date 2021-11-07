@@ -1,3 +1,4 @@
+using System;
 using Bug.Menu;
 using Bug.Prop;
 using Bug.SO;
@@ -17,6 +18,8 @@ namespace Bug.Player
 		[SerializeField]
 		private Camera _fpsCamera;
 		[SerializeField]
+		private Transform _head;
+		[SerializeField]
 		private PlayerInput _playerInput;
 		[SerializeField]
 		[Range(0f, 1000000f)]
@@ -24,6 +27,11 @@ namespace Bug.Player
 		[SerializeField]
 		[Range(-1f, 1f)]
 		private float _horizontalLookMultiplier = 1f, _verticalLookMultiplier = 1f;
+
+		[Header("Skeleton")]
+		[SerializeField] private GameObject _skeletonRoot;
+		[SerializeField] private string _leftHandAnchorName = "Anchor_Left";
+		[SerializeField] private string _rightHandAnchorName = "Anchor_Right";
 
 		[Header("Shooting")]
 		[SerializeField]
@@ -33,17 +41,36 @@ namespace Bug.Player
 		[SerializeField]
 		private int _gunForce;
 
+		[Header("Animations")]
+		[SerializeField] private Animator _armsAnimator;
+		[SerializeField] private string _animShootTrigger = "Shoot";
+
 		private WeaponData[] _slotWeapons;
 		private WeaponType _currentWeapon;
 		private Pickable _carriedObject;
 		public Camera Camera => _fpsCamera;
 		public CharacterController Controller => _controller;
 
+		public Transform LeftHandAnchor { get; private set; }
+		public Transform RightHandAnchor { get; private set; }
+
+		private int _animShootTriggerHash;
+
 		private CharacterController _controller;
+		private float _headRotation;
 		private Vector2 _groundMovement = Vector2.zero;
 		private bool _isReloading;
 
 		private Interactible _eTarget;
+
+
+		private void Awake()
+		{
+			LeftHandAnchor = _skeletonRoot.transform.FindChildRecursive(_leftHandAnchorName);
+			RightHandAnchor = _skeletonRoot.transform.FindChildRecursive(_rightHandAnchorName);
+
+			_animShootTriggerHash = Animator.StringToHash(_animShootTrigger);
+		}
 
 		private void Start()
 		{
@@ -72,26 +99,29 @@ namespace Bug.Player
 				return; // We can't move if we are in the menu
 			}
 
-			if (_carriedObject == null &&
-				Physics.Raycast(new Ray(_fpsCamera.transform.position, _fpsCamera.transform.forward), out RaycastHit hit, 1f))
+			if (PlayerManager.S.PressE != null)
 			{
-				var interac = hit.collider.GetComponent<Interactible>();
-				if (interac != null)
+				if (_carriedObject == null &&
+				    Physics.Raycast(new Ray(_head.transform.position, _head.transform.forward), out RaycastHit hit, 1f))
 				{
-					PlayerManager.S.PressE.SetActive(true);
-					_eTarget = interac;
+					var interac = hit.collider.GetComponent<Interactible>();
+					if (interac != null)
+					{
+						PlayerManager.S.PressE.SetActive(true);
+						_eTarget = interac;
 
+					}
+					else
+					{
+						PlayerManager.S.PressE.SetActive(false);
+						_eTarget = null;
+					}
 				}
 				else
 				{
 					PlayerManager.S.PressE.SetActive(false);
 					_eTarget = null;
 				}
-			}
-			else
-			{
-				PlayerManager.S.PressE.SetActive(false);
-				_eTarget = null;
 			}
 
 			Vector3 desiredMove = transform.forward * _groundMovement.y + transform.right * _groundMovement.x;
@@ -138,11 +168,13 @@ namespace Bug.Player
 
 		private void UpdateAmmoDisplay()
 		{
-			PlayerManager.S.AmmoDisplay.text = $"{_slotWeapons[(int)_currentWeapon].AmmoInGun} / {_slotWeapons[(int)_currentWeapon].NbOfMagazines}";
+			if (PlayerManager.S.AmmoDisplay != null)
+			{
+				PlayerManager.S.AmmoDisplay.text = $"{_slotWeapons[(int)_currentWeapon].AmmoInGun} / {_slotWeapons[(int)_currentWeapon].NbOfMagazines}";
+			}
 		}
 
-		private bool IsGamePaused()
-			=> PlayerManager.S.PauseMenu.IsActive();
+		private bool IsGamePaused() => GameStateManager.Paused;
 
 		public void EarnMagazine()
 		{
@@ -173,8 +205,12 @@ namespace Bug.Player
 			if (!IsGamePaused())
 			{
 				var rot = value.ReadValue<Vector2>();
-				transform.rotation *= Quaternion.Euler(0f, rot.x * _horizontalLookMultiplier, 0f);
-				_fpsCamera.transform.rotation *= Quaternion.Euler(rot.y * _verticalLookMultiplier, 0f, 0f);
+
+				transform.rotation *= Quaternion.AngleAxis(rot.x * _horizontalLookMultiplier, Vector3.up);
+
+				_headRotation -= rot.y * _verticalLookMultiplier;
+				_headRotation = Mathf.Clamp(_headRotation, -89, 89);
+				_head.transform.localRotation = Quaternion.AngleAxis(_headRotation, Vector3.right);
 			}
 		}
 
@@ -190,6 +226,11 @@ namespace Bug.Player
 				go.GetComponent<Rigidbody>().AddForce(_gunEnd.forward * _gunForce, ForceMode.Impulse);
 				Destroy(go, 2f);
 
+				if (_armsAnimator != null)
+				{
+					_armsAnimator.SetTrigger(_animShootTriggerHash);
+				}
+
 				_slotWeapons[(int)_currentWeapon].AmmoInGun--;
 				if (_slotWeapons[(int)_currentWeapon].AmmoInGun == 0 && _slotWeapons[(int)_currentWeapon].NbOfMagazines > 0)
 				{
@@ -201,9 +242,9 @@ namespace Bug.Player
 
 		public void OnMenu(InputAction.CallbackContext _)
 		{
-			PlayerManager.S.PauseMenu.Toggle();
-			Cursor.lockState = PlayerManager.S.PauseMenu.IsActive() ? CursorLockMode.None : CursorLockMode.Locked;
-			Cursor.visible = PlayerManager.S.PauseMenu.IsActive();
+			GameStateManager.Paused = !GameStateManager.Paused;
+			Cursor.lockState = GameStateManager.Paused ? CursorLockMode.None : CursorLockMode.Locked;
+			Cursor.visible = GameStateManager.Paused;
 		}
 
 		public void OnAction(InputAction.CallbackContext value)

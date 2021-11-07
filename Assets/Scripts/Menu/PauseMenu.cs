@@ -12,7 +12,12 @@ namespace Bug.Menu
 
         public void Toggle()
         {
-            _target.SetActive(!_target.activeInHierarchy);
+            SetActive(!IsActive());
+        }
+
+        public void SetActive(bool active)
+        {
+            _target.SetActive(active);
         }
 
         public bool IsActive()
