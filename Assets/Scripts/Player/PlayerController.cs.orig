@@ -1,8 +1,12 @@
-using Bug.Menu;
+<<<<<<< Updated upstream
 using Bug.Prop;
 using Bug.SO;
 using Bug.Weapon;
 using System.Collections;
+=======
+using System;
+using Bug.Menu;
+>>>>>>> Stashed changes
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -32,10 +36,13 @@ namespace Bug.Player
 		[SerializeField]
 		private int _gunForce;
 
+<<<<<<< Updated upstream
+		private WeaponData _mainWeapon;
+=======
 		public Camera Camera => _fpsCamera;
 		public bool IsGrounded { get; private set; }
 
-		private WeaponData _mainWeapon;
+>>>>>>> Stashed changes
 		private CharacterController _controller;
 		private Vector2 _groundMovement = Vector2.zero;
 		private bool _isReloading;

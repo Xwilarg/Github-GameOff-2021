@@ -1,3 +1,4 @@
+using System;
 using Bug.SO;
 using Bug.Visual;
 using System.Collections.Generic;
@@ -31,6 +32,9 @@ namespace Bug.Map
         [SerializeField]
         private GameObject _spawner;
 
+        [SerializeField]
+        private MapPostProcessor[] _postProcessors;
+
         public List<Room> AllRooms { get; } = new();
         private GameObject _roomContainer;
 
@@ -60,6 +64,8 @@ namespace Bug.Map
 
             // Reset seed
             Random.InitState((int)System.DateTime.Now.Ticks);
+
+            RunPostProcessors();
         }
 
         private void AddRoom(Vector2 lastPosition, Room lastRoom, int remainingIteration, Vector2Int direction)
@@ -222,6 +228,21 @@ namespace Bug.Map
         private Vector3 GetRoomCenter(Room r)
         {
             return new Vector3(r.Position.x + r.Size.x / 2f, 2f, r.Position.y + r.Size.y / 2f);
+        }
+
+        private void RunPostProcessors()
+        {
+	        foreach (MapPostProcessor postProcessor in _postProcessors)
+	        {
+		        try
+		        {
+			        postProcessor.Execute(this);
+		        }
+		        catch (Exception e)
+		        {
+			        Debug.LogException(e);
+		        }
+	        }
         }
 
         private void OnDrawGizmos()

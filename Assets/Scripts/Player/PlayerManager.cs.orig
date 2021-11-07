@@ -12,7 +12,6 @@ namespace Bug.Player
 
         public PauseMenu PauseMenu;
         public GameObject PressE;
-        public TMP_Text AmmoDisplay;
 
         public List<PlayerBehaviour> AllPlayers { get; } = new List<PlayerBehaviour>();
 
@@ -22,6 +21,11 @@ namespace Bug.Player
             S = this;
         }
 
+<<<<<<< Updated upstream
+        public PauseMenu PauseMenu;
+        public GameObject PressE;
+        public TMP_Text AmmoDisplay;
+=======
         public PlayerBehaviour GetPlayer(int index = 0)
         {
 	        if (index < AllPlayers.Count - 1)
@@ -41,5 +45,6 @@ namespace Bug.Player
 	        if (AllPlayers.Contains(playerBehaviour))
 		        AllPlayers.Remove(playerBehaviour);
         }
+>>>>>>> Stashed changes
     }
 }
