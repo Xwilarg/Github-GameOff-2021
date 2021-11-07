@@ -130,6 +130,7 @@ namespace Bug.Player
 					_eTarget = null;
 
 					_carriedObject.UpdatePosition(transform);
+					_carriedObject.CanBePlaced();
 				}
 			}
 
