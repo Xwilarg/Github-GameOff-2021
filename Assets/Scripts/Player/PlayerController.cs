@@ -35,7 +35,7 @@ namespace Bug.Player
 
 		private WeaponData[] _slotWeapons;
 		private WeaponType _currentWeapon;
-		private Pickable _carriedObject;
+		private GameObject _carriedObject;
 		public Camera Camera => _fpsCamera;
 		public CharacterController Controller => _controller;
 
@@ -131,7 +131,7 @@ namespace Bug.Player
 			};
 		}
 
-		public void PickObject(Pickable obj)
+		public void PickObject(GameObject obj)
 		{
 			_carriedObject = obj;
 		}

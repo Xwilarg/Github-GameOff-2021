@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 6212580399632945694}
   - component: {fileID: -1374517408051843716}
   - component: {fileID: -1358322717477548279}
-  - component: {fileID: 7939939686423107882}
   m_Layer: 0
   m_Name: TurretBox
   m_TagString: Untagged
@@ -139,15 +138,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2dbc565fe7b0984698ecbaf8dfd0597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &7939939686423107882
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6212580399632945695}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce5b193bd656cba459cf91a1068b3895, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  _turretPrefab: {fileID: 1620160551293673826, guid: 1fa4f3f77ef95094bb0de93b557072f5, type: 3}

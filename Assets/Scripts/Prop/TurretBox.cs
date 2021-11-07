@@ -5,16 +5,12 @@ namespace Bug.Prop
 {
     public class TurretBox : MonoBehaviour
     {
-        private Pickable _pickInfo;
-
-        private void Start()
-        {
-            _pickInfo = GetComponent<Pickable>();
-        }
+        [SerializeField]
+        private GameObject _turretPrefab;
 
         public void Pick(PlayerController pc)
         {
-            pc.PickObject(_pickInfo);
+            pc.PickObject(_turretPrefab);
             Destroy(gameObject);
         }
     }
