@@ -39,6 +39,10 @@ namespace Bug.Map
         private GameObject _spawner;
 
         [SerializeField]
+        [Tooltip("Prefab for doors")]
+        private GameObject _doorPrefab;
+
+        [SerializeField]
         private MapPostProcessor[] _postProcessors;
 
         public List<Room> AllRooms { get; } = new();
@@ -67,6 +71,9 @@ namespace Bug.Map
 
             // Set zones
             DrawZones();
+
+            // Set doors
+            PlaceDoors();
 
             // Reset seed
             Random.InitState((int)System.DateTime.Now.Ticks);
@@ -218,6 +225,23 @@ namespace Bug.Map
                     {
                         room.ZoneId = ids[room.ZoneId];
                     }
+                }
+            }
+        }
+
+        private void PlaceDoors()
+        {
+            foreach (var room in AllRooms)
+            {
+                if (room.Up == null)
+                {
+                    var go = Instantiate(_doorPrefab, new Vector3(room.Position.x + room.Size.x / 2f + 2f, 0f, room.Position.y + room.Size.y - .1f), Quaternion.Euler(0f, 90f, 0f));
+                    go.transform.parent = go.transform;
+                }
+                if (room.Down == null)
+                {
+                    var go = Instantiate(_doorPrefab, new Vector3(room.Position.x + room.Size.x / 2f + 2f, 0f, room.Position.y), Quaternion.Euler(0f, 90f, 0f));
+                    go.transform.parent = go.transform;
                 }
             }
         }
