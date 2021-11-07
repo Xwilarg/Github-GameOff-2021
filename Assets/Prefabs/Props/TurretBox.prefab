@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6212580399632945694}
   - component: {fileID: -1374517408051843716}
   - component: {fileID: -1358322717477548279}
-  - component: {fileID: -1978127799141265784}
+  - component: {fileID: 7939939686423107882}
   m_Layer: 0
   m_Name: TurretBox
   m_TagString: Untagged
@@ -139,7 +139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2dbc565fe7b0984698ecbaf8dfd0597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-1978127799141265784
+--- !u!114 &7939939686423107882
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

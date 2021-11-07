@@ -1,3 +1,4 @@
+using Bug.Menu;
 using Bug.Prop;
 using Bug.SO;
 using Bug.Weapon;
@@ -8,7 +9,7 @@ using UnityEngine.InputSystem;
 
 namespace Bug.Player
 {
-	public class PlayerController : MonoBehaviour
+	public class PlayerController : MonoBehaviour, IPlayerController
 	{
 		public PlayerInfo _info;
 
@@ -35,6 +36,8 @@ namespace Bug.Player
 		private WeaponData[] _slotWeapons;
 		private WeaponType _currentWeapon;
 		private Pickable _carriedObject;
+		public Camera Camera => _fpsCamera;
+		public CharacterController Controller => _controller;
 
 		private CharacterController _controller;
 		private Vector2 _groundMovement = Vector2.zero;
