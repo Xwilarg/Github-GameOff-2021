@@ -37,7 +37,7 @@ namespace Bug.Player
 		private WeaponType _currentWeapon;
 		private Pickable _carriedObject;
 		public Camera Camera => _fpsCamera;
-		public bool IsGrounded { get; private set; }
+		public CharacterController Controller => _controller;
 
 		private CharacterController _controller;
 		private Vector2 _groundMovement = Vector2.zero;
