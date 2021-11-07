@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Bug.Weapon;
+using UnityEngine;
 
 namespace Bug.SO
 {
@@ -8,5 +9,6 @@ namespace Bug.SO
         public string Name;
         public int MaxNbOfBullets;
         public float ReloadDuration;
+        public WeaponType Type;
     }
 }
