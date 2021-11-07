@@ -35,7 +35,7 @@ namespace Bug.Player
 
 		private WeaponData[] _slotWeapons;
 		private WeaponType _currentWeapon;
-		private GameObject _carriedObject;
+		private CarriedObject _carriedObject;
 		public Camera Camera => _fpsCamera;
 		public CharacterController Controller => _controller;
 
@@ -72,15 +72,22 @@ namespace Bug.Player
 				return; // We can't move if we are in the menu
 			}
 
-			if (_carriedObject == null &&
-				Physics.Raycast(new Ray(_fpsCamera.transform.position, _fpsCamera.transform.forward), out RaycastHit hit, 1f))
-			{
-				var interac = hit.collider.GetComponent<Interactible>();
-				if (interac != null)
+			if (_carriedObject == null) // Since we are not carrying an object, we are able to pick one
+            {
+				if (Physics.Raycast(new Ray(_fpsCamera.transform.position, _fpsCamera.transform.forward), out RaycastHit hit, 1f))
 				{
-					PlayerManager.S.PressE.SetActive(true);
-					_eTarget = interac;
+					var interac = hit.collider.GetComponent<Interactible>();
+					if (interac != null)
+					{
+						PlayerManager.S.PressE.SetActive(true);
+						_eTarget = interac;
 
+					}
+					else
+					{
+						PlayerManager.S.PressE.SetActive(false);
+						_eTarget = null;
+					}
 				}
 				else
 				{
@@ -88,11 +95,14 @@ namespace Bug.Player
 					_eTarget = null;
 				}
 			}
-			else
-			{
+			else // We are carrying an object, update position
+            {
 				PlayerManager.S.PressE.SetActive(false);
 				_eTarget = null;
+
+				_carriedObject.UpdatePosition(transform);
 			}
+			
 
 			Vector3 desiredMove = transform.forward * _groundMovement.y + transform.right * _groundMovement.x;
 
@@ -133,7 +143,7 @@ namespace Bug.Player
 
 		public void PickObject(GameObject obj)
 		{
-			_carriedObject = obj;
+			_carriedObject = new(transform, obj);
 		}
 
 		private void UpdateAmmoDisplay()
