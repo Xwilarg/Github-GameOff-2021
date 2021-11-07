@@ -99,7 +99,7 @@ namespace Bug.Player
 				return; // We can't move if we are in the menu
 			}
 
-			if (PlayerManager.S.PressE != null)
+			if (PlayerManager.S != null && PlayerManager.S.PressE != null)
 			{
 				if (_carriedObject == null &&
 				    Physics.Raycast(new Ray(_head.transform.position, _head.transform.forward), out RaycastHit hit, 1f))
@@ -168,7 +168,7 @@ namespace Bug.Player
 
 		private void UpdateAmmoDisplay()
 		{
-			if (PlayerManager.S.AmmoDisplay != null)
+			if (PlayerManager.S != null && PlayerManager.S.AmmoDisplay != null)
 			{
 				PlayerManager.S.AmmoDisplay.text = $"{_slotWeapons[(int)_currentWeapon].AmmoInGun} / {_slotWeapons[(int)_currentWeapon].NbOfMagazines}";
 			}

@@ -38,10 +38,9 @@ namespace Bug.Player
 
         public static PlayerBehaviour GetPlayer(int index = 0)
         {
-            if (index < AllPlayers.Count - 1)
-                return null;
-
-            return AllPlayers[index];
+            if (AllPlayers.Count > 0 && index < AllPlayers.Count)
+                return AllPlayers[index];
+            return null;
         }
 
         public static void AddPlayer(PlayerBehaviour playerBehaviour)
