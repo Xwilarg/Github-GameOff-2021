@@ -5,7 +5,6 @@ using UnityEngine;
 
 namespace Bug.Player
 {
-	[DefaultExecutionOrder(-100)]
     public class PlayerManager : MonoBehaviour
     {
         public static PlayerManager S;
@@ -14,7 +13,7 @@ namespace Bug.Player
         public GameObject PressE;
         public TMP_Text AmmoDisplay;
 
-        public List<PlayerBehaviour> AllPlayers { get; } = new List<PlayerBehaviour>();
+        public static List<PlayerBehaviour> AllPlayers { get; } = new List<PlayerBehaviour>();
 
 
         private void Awake()
@@ -22,7 +21,7 @@ namespace Bug.Player
             S = this;
         }
 
-        public PlayerBehaviour GetPlayer(int index = 0)
+        public static PlayerBehaviour GetPlayer(int index = 0)
         {
 	        if (index < AllPlayers.Count - 1)
 		        return null;
@@ -30,13 +29,13 @@ namespace Bug.Player
 	        return AllPlayers[index];
         }
 
-        public void AddPlayer(PlayerBehaviour playerBehaviour)
+        public static void AddPlayer(PlayerBehaviour playerBehaviour)
         {
 	        if (!AllPlayers.Contains(playerBehaviour))
 		        AllPlayers.Add(playerBehaviour);
         }
 
-        public void RemovePlayer(PlayerBehaviour playerBehaviour)
+        public static void RemovePlayer(PlayerBehaviour playerBehaviour)
         {
 	        if (AllPlayers.Contains(playerBehaviour))
 		        AllPlayers.Remove(playerBehaviour);

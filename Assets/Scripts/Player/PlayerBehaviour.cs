@@ -11,12 +11,12 @@ namespace Bug.Player
 
 		private void Awake()
 		{
-			PlayerManager.S.AddPlayer(this);
+			PlayerManager.AddPlayer(this);
 		}
 
 		private void OnDestroy()
 		{
-			PlayerManager.S.RemovePlayer(this);
+			PlayerManager.RemovePlayer(this);
 		}
 	}
 }
