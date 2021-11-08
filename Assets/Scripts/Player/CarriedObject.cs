@@ -36,6 +36,7 @@ namespace Bug.Player
             {
                 Debug.LogWarning("Couldn't find ground while placing object...");
             }
+            _placeInfo.IsPlaced = true;
         }
 
         private GameObject _hint;

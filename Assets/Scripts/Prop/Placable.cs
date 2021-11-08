@@ -10,6 +10,15 @@ namespace Bug.Prop
         [SerializeField]
         private Transform _groundPoint;
 
+        [SerializeField]
+        private bool _isPlaced;
+
+        public bool IsPlaced
+        {
+            set => _isPlaced = value;
+            get => _isPlaced;
+        }
+
         public Transform GroundPoint => _groundPoint;
 
         public bool IsOverlappingObjects()
