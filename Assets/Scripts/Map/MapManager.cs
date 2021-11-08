@@ -76,7 +76,7 @@ namespace Bug.Map
             PlaceDoors();
 
             // Reset seed
-            Random.InitState((int)System.DateTime.Now.Ticks);
+            Random.InitState((int)DateTime.Now.Ticks);
 
             RunPostProcessors();
         }
@@ -236,22 +236,22 @@ namespace Bug.Map
                 if (room.Up == null)
                 {
                     var go = Instantiate(_doorPrefab, new Vector3(room.Position.x + room.Size.x / 2f + 2f, 0f, room.Position.y + room.Size.y - .1f), Quaternion.Euler(0f, 90f, 0f));
-                    go.transform.parent = go.transform;
+                    go.transform.parent = room.transform;
                 }
                 if (room.Down == null)
                 {
                     var go = Instantiate(_doorPrefab, new Vector3(room.Position.x + room.Size.x / 2f + 2f, 0f, room.Position.y), Quaternion.Euler(0f, 90f, 0f));
-                    go.transform.parent = go.transform;
+                    go.transform.parent = room.transform;
                 }
                 if (room.Left == null)
                 {
                     var go = Instantiate(_doorPrefab, new Vector3(room.Position.x + .1f, 0f, room.Position.y + room.Size.y / 2f + 2f), Quaternion.identity);
-                    go.transform.parent = go.transform;
+                    go.transform.parent = room.transform;
                 }
                 if (room.Right == null)
                 {
                     var go = Instantiate(_doorPrefab, new Vector3(room.Position.x + room.Size.x, 0f, room.Position.y + room.Size.y / 2f + 2f), Quaternion.identity);
-                    go.transform.parent = go.transform;
+                    go.transform.parent = room.transform;
                 }
             }
         }

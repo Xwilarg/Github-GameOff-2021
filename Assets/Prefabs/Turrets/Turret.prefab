@@ -474,7 +474,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _detectionCollider: {fileID: 1620160549901354346}
   _groundPoint: {fileID: 6809454856154668449}
-  _isPlaced: 1
+  _isPlaced: 0
 --- !u!114 &732296465
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -488,7 +488,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _head: {fileID: 1620160549814678149}
-  _maxRot: 45
+  _maxRot: 0.45
+  _rotSpeed: 30
 --- !u!1 &5295942687070781687
 GameObject:
   m_ObjectHideFlags: 0
