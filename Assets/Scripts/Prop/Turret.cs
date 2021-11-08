@@ -16,6 +16,8 @@ namespace Bug.Prop
         private Placable _placable;
         private bool _goLeft;
 
+        private float _baseRot = -1f, _prog;
+
         private void Start()
         {
             _placable = GetComponent<Placable>();
@@ -25,18 +27,24 @@ namespace Bug.Prop
         {
             if (_placable.IsPlaced)
             {
+                if (_baseRot == -1f)
+                {
+                    _baseRot = transform.rotation.eulerAngles.y;
+                }
                 if (_goLeft)
                 {
-                    _head.transform.Rotate(0f, -1f * Time.deltaTime * _rotSpeed, 0f);
-                    if (_head.transform.rotation.y < -_maxRot)
+                    _prog -= Time.deltaTime * _rotSpeed;
+                    _head.transform.rotation = Quaternion.AngleAxis(_baseRot + _prog, Vector3.up);
+                    if (_prog < -_maxRot)
                     {
                         _goLeft = false;
                     }
                 }
                 else
                 {
-                    _head.transform.Rotate(0f, 1f * Time.deltaTime * _rotSpeed, 0f);
-                    if (_head.transform.rotation.y > _maxRot)
+                    _prog += Time.deltaTime * _rotSpeed;
+                    _head.transform.rotation = Quaternion.AngleAxis(_baseRot + _prog, Vector3.up);
+                    if (_prog > _maxRot)
                     {
                         _goLeft = true;
                     }

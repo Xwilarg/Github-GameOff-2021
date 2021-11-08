@@ -488,7 +488,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _head: {fileID: 1620160549814678149}
-  _maxRot: 0.45
+  _maxRot: 45
   _rotSpeed: 30
 --- !u!1 &5295942687070781687
 GameObject:
