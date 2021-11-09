@@ -1,6 +1,6 @@
 ﻿using Bug.SO;
 
-namespace Bug.Weapon
+namespace Bug.WeaponSystem
 {
     public record WeaponData
     {

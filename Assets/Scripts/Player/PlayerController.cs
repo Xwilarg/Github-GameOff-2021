@@ -2,7 +2,7 @@ using System;
 using Bug.Menu;
 using Bug.Prop;
 using Bug.SO;
-using Bug.Weapon;
+using Bug.WeaponSystem;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,9 +24,10 @@ namespace Bug.Player
 		[SerializeField]
 		[Range(0f, 1000000f)]
 		private float _forceMultiplier = 1f;
-		[SerializeField]
-		[Range(-1f, 1f)]
-		private float _horizontalLookMultiplier = 1f, _verticalLookMultiplier = 1f;
+		[Range(0, 10f)]
+		[SerializeField] private float _horizontalLookMultiplier = 1f;
+		[Range(0, 10f)]
+		[SerializeField] private  float _verticalLookMultiplier = 1f;
 
 		[Header("Skeleton")]
 		[SerializeField] private GameObject _skeletonRoot;
@@ -40,21 +41,23 @@ namespace Bug.Player
 		private Transform _gunEnd;
 		[SerializeField]
 		private int _gunForce;
+		[SerializeField]
+		private GameObject _heldObject;
 
 		[Header("Animations")]
 		[SerializeField] private Animator _armsAnimator;
-		[SerializeField] private string _animShootTrigger = "Shoot";
 
 		private WeaponData[] _slotWeapons;
 		private WeaponType _currentWeapon;
 		private CarriedObject _carriedObject;
 		public Camera Camera => _fpsCamera;
 		public CharacterController Controller => _controller;
+		public Animator Animator => _armsAnimator;
 
 		public Transform LeftHandAnchor { get; private set; }
 		public Transform RightHandAnchor { get; private set; }
 
-		private int _animShootTriggerHash;
+		public GameObject HeldObject { get => _heldObject; set => _heldObject = value; }
 
 		private CharacterController _controller;
 		private float _headRotation;
@@ -68,8 +71,6 @@ namespace Bug.Player
 		{
 			LeftHandAnchor = _skeletonRoot.transform.FindChildRecursive(_leftHandAnchorName);
 			RightHandAnchor = _skeletonRoot.transform.FindChildRecursive(_rightHandAnchorName);
-
-			_animShootTriggerHash = Animator.StringToHash(_animShootTrigger);
 		}
 
 		private void Start()
@@ -218,7 +219,8 @@ namespace Bug.Player
 
 				transform.rotation *= Quaternion.AngleAxis(rot.x * _horizontalLookMultiplier, Vector3.up);
 
-				_headRotation += rot.y * _verticalLookMultiplier;
+				_headRotation -= rot.y * _verticalLookMultiplier; // Vertical look is inverted by default, hence the -=
+
 				_headRotation = Mathf.Clamp(_headRotation, -89, 89);
 				_head.transform.localRotation = Quaternion.AngleAxis(_headRotation, Vector3.right);
 			}
@@ -226,27 +228,17 @@ namespace Bug.Player
 
 		public void OnShoot(InputAction.CallbackContext value)
 		{
-			if (value.phase == InputActionPhase.Performed && // Already done the action when the button is pressed
-				!IsGamePaused() && // Don't shoot if the game is paused
-				!_isReloading && // We can't do it if we are reloading
-				_slotWeapons[(int)_currentWeapon].AmmoInGun > 0 && // We can't do it if there are no ammo left
-				_carriedObject == null) // Can't do anything while we are carrying an object
+			if (!IsGamePaused() && value.performed)
 			{
-				var go = Instantiate(_bulletPrefab, _gunEnd.position, Quaternion.identity);
-				go.GetComponent<Rigidbody>().AddForce(_gunEnd.forward * _gunForce, ForceMode.Impulse);
-				Destroy(go, 2f);
-
-				if (_armsAnimator != null)
+				if (_heldObject != null && _carriedObject == null)
 				{
-					_armsAnimator.SetTrigger(_animShootTriggerHash);
+					if (_heldObject.TryGetComponent(out IPrimaryActionHandler primaryActionHandler) &&
+					    primaryActionHandler.CanHandlePrimaryAction)
+					{
+						StartCoroutine(primaryActionHandler.HandlePrimaryAction());
+					}
 				}
 
-				_slotWeapons[(int)_currentWeapon].AmmoInGun--;
-				if (_slotWeapons[(int)_currentWeapon].AmmoInGun == 0 && _slotWeapons[(int)_currentWeapon].NbOfMagazines > 0)
-				{
-					StartCoroutine(Reload());
-				}
-				UpdateAmmoDisplay();
 			}
 		}
 

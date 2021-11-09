@@ -202,8 +202,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3748699599944422875}
   - component: {fileID: 7126421635055996833}
+  - component: {fileID: 5913460251849574210}
   m_Layer: 0
-  m_Name: SK_Gun_TPose
+  m_Name: HandCannon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -249,6 +250,25 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &5913460251849574210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4561546914396786529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb3a5c6b25274174ab66af86dea215df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _fireRate: 2
+  _shootingLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  _tip: {fileID: 4987248468686393409}
+  _muzzleEffect: {fileID: 3399747336141133107, guid: 155f2ec06e109ef488a47c40dbdcc2e5, type: 3}
+  _impactEffect: {fileID: 8203373482648835319, guid: ccf7e3f034dcb244b927e0c245c17045, type: 3}
 --- !u!1 &4952688985018053091
 GameObject:
   m_ObjectHideFlags: 0
