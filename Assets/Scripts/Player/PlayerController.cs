@@ -230,7 +230,7 @@ namespace Bug.Player
 		{
 			if (!IsGamePaused() && value.performed)
 			{
-				if (_heldObject != null)
+				if (_heldObject != null && _carriedObject == null)
 				{
 					if (_heldObject.TryGetComponent(out IPrimaryActionHandler primaryActionHandler) &&
 					    primaryActionHandler.CanHandlePrimaryAction)
