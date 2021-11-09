@@ -266,13 +266,13 @@ namespace Bug.Player
 					_eTarget?.InvokeCallback(this);
 				}
 				else // Try to place the object we are carrying on the ground
-                {
+				{
 					if (_carriedObject.CanBePlaced())
-                    {
+					{
 						_carriedObject.PlaceOnGround();
 						_carriedObject = null;
-                    }
-                }
+					}
+				}
 			}
 		}
 
