@@ -1,4 +1,4 @@
-﻿namespace Bug.Weapon
+﻿namespace Bug.WeaponSystem
 {
     public enum WeaponType
     {

@@ -1,4 +1,4 @@
-﻿using Bug.Weapon;
+﻿using Bug.WeaponSystem;
 using UnityEngine;
 
 namespace Bug.SO
