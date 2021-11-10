@@ -76,14 +76,16 @@ namespace Bug.WeaponSystem
 
 					var enemy = hit.collider.GetComponentInParent<EnemyData>();
 					if (enemy != null) // We hit an ennemy!
-                    {
+					{
 						var finalDamage = enemy.TakeDamage(hit.collider, 10);
 						if (_damageDisplay != null)
 						{
 							var go = Instantiate(_damageDisplay, hit.point, Quaternion.identity);
 							go.GetComponent<TMP_Text>().text = finalDamage.ToString();
-                        }
-                    }
+							go.transform.LookAt(player.transform.position, Vector3.up);
+							go.transform.rotation = Quaternion.Euler(0f, go.transform.rotation.eulerAngles.y + 180, 0f);
+						}
+					}
 				}
 
 				if (player.Animator != null)
