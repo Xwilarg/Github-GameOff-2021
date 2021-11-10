@@ -79,9 +79,9 @@ namespace Bug.WeaponSystem
                     {
 						var finalDamage = enemy.TakeDamage(hit.collider, 10);
 						if (_damageDisplay != null)
-                        {
+						{
 							var go = Instantiate(_damageDisplay, hit.point, Quaternion.identity);
-							go.GetComponent<TMP_Text>().text = _damageDisplay.ToString();
+							go.GetComponent<TMP_Text>().text = finalDamage.ToString();
                         }
                     }
 				}

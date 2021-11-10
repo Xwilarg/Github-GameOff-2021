@@ -4,7 +4,7 @@ namespace Bug.WeaponSystem
 {
     public class DamageDisplay : MonoBehaviour
     {
-        private float _remainingTime;
+        private float _remainingTime = 3f;
 
         private void Update()
         {

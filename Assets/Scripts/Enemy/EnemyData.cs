@@ -30,7 +30,10 @@ namespace Bug.Enemy
                 finalDamage = damage;
             }
             _health -= finalDamage;
-            Destroy(gameObject);
+            if (_health <= 0)
+            {
+                Destroy(gameObject);
+            }
             return finalDamage;
         }
     }
