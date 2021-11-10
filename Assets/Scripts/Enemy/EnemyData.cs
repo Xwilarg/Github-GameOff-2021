@@ -16,14 +16,15 @@ namespace Bug.Enemy
             _internalModifier = _damageModifier.ToDictionary(x => x.Collider, x => x.Modifier);
         }
 
-        private int _health = 100;
+        private float _health = 100f;
 
         public int TakeDamage(Collider collider, int damage)
         {
-            int finalDamage;
+            var baseHealth = _health;
+            float finalDamage;
             if (_internalModifier.ContainsKey(collider))
             {
-                finalDamage = Mathf.FloorToInt(damage * _internalModifier[collider]);
+                finalDamage = damage * _internalModifier[collider];
             }
             else
             {
@@ -34,7 +35,7 @@ namespace Bug.Enemy
             {
                 Destroy(gameObject);
             }
-            return finalDamage;
+            return Mathf.FloorToInt(baseHealth - _health); // Because of rounding, we can't just rely on damages done
         }
     }
 }
