@@ -8,5 +8,6 @@ namespace Bug.Showcase
     {
         public Author Author;
         public GameObject Prefab;
+        public string Name;
     }
 }

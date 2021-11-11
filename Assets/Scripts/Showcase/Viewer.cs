@@ -1,5 +1,8 @@
-﻿using TMPro;
+﻿using System.Linq;
+using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.UI;
 
 namespace Bug.Showcase
 {
@@ -11,12 +14,34 @@ namespace Bug.Showcase
         [SerializeField]
         private TMP_Text _madeBy;
 
+        [SerializeField]
+        private GameObject _uiPrefab;
+
+        [SerializeField]
+        private RectTransform _buttonContainer;
+
         private int _currentIndex;
         private GameObject _currentInstance;
 
         private void Start()
         {
             DisplayAsset();
+
+            var ySize = ((RectTransform)_uiPrefab.transform).sizeDelta.y;
+            var i = 0;
+            foreach (var asset in _assets)
+            {
+                var go = Instantiate(_uiPrefab, _buttonContainer);
+                ((RectTransform)go.transform).anchoredPosition = new(0f, -i * ySize);
+                go.GetComponentInChildren<TMP_Text>().text = asset.Name;
+                var current = i;
+                go.GetComponentInChildren<Button>().onClick.AddListener(new UnityAction(() =>
+                {
+                    _currentIndex = current;
+                    DisplayAsset();
+                }));
+                i++;
+            }
         }
 
         private void Update()
