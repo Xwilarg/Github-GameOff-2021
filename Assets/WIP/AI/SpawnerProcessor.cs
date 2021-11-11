@@ -8,7 +8,6 @@ namespace Bug
 	{
 		[SerializeField] private GameObject[] _prefabs;
 
-
 		public override void Execute(MapManager manager)
 		{
 			foreach (Room room in manager.AllRooms)

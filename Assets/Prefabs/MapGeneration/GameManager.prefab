@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 553104810232111400}
   - component: {fileID: 553104810232111401}
+  - component: {fileID: 4635244417913998387}
   m_Layer: 0
-  m_Name: MapGenerator
+  m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -58,3 +59,18 @@ MonoBehaviour:
   _spawner: {fileID: 7504251229411816750, guid: 101e8646b1285a0418de1beac2705268, type: 3}
   _doorPrefab: {fileID: 4617168697432879534, guid: c803a77937f01584f8929eb39f2a77b9, type: 3}
   _postProcessors: []
+--- !u!114 &4635244417913998387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 553104810232111403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6167a27b5f9d5a04d85ce80c081fd84e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PauseMenu: {fileID: 0}
+  PressE: {fileID: 0}
+  AmmoDisplay: {fileID: 0}

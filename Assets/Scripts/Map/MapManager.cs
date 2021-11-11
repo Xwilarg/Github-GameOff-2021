@@ -56,7 +56,10 @@ namespace Bug.Map
             // Add starting room and spawn player
             var start = CreateFromRoomInfo(Vector2Int.zero, _startingRoom, RoomState.STARTING, _mapInfo.MaxPathLength);
             var playerIns = Instantiate(_playerPrefab, new Vector3(start.Position.x + start.Size.x / 2f, 2f, start.Position.y + start.Size.y / 2f), Quaternion.identity);
-            _follow.Target = playerIns.transform; // Make sure minimap follow player
+            if (_follow != null)
+            {
+                _follow.Target = playerIns.transform; // Make sure minimap follow player
+            }
 
             AllRooms.Add(start);
 
