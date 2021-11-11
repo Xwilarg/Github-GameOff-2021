@@ -469,7 +469,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 152547248446895113}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ceiling
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1025,7 +1025,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5237526815545604747}
   - component: {fileID: 8396149927105140909}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Armory_4x8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1189,7 +1189,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4142680727789570054}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1478,7 +1478,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7144496015244847069}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1599,6 +1599,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_TempDoorWay (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 786f933248a36ec47b93f519ced2ecbe, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 786f933248a36ec47b93f519ced2ecbe, type: 3}
 --- !u!1 &905123095755368707 stripped
@@ -1678,6 +1682,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_TempCeiling (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b19c0231293d36c418f30298963f75f8, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b19c0231293d36c418f30298963f75f8, type: 3}
 --- !u!1 &958898080634717305 stripped
@@ -1748,6 +1756,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
       propertyPath: m_Name
       value: SM_TempFloor (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
@@ -1828,6 +1840,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_TempCeiling (21)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b19c0231293d36c418f30298963f75f8, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b19c0231293d36c418f30298963f75f8, type: 3}
 --- !u!4 &252202572518898959 stripped
@@ -1907,6 +1923,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_TempCeiling (23)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b19c0231293d36c418f30298963f75f8, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b19c0231293d36c418f30298963f75f8, type: 3}
 --- !u!4 &275155498860826125 stripped
@@ -1977,6 +1997,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
       propertyPath: m_Name
       value: SM_TempFloor (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
@@ -2057,6 +2081,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_TempCeiling (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b19c0231293d36c418f30298963f75f8, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b19c0231293d36c418f30298963f75f8, type: 3}
 --- !u!1 &569498192200467629 stripped
@@ -2127,6 +2155,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
       propertyPath: m_Name
       value: SM_TempFloor (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
@@ -2202,6 +2234,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 786f933248a36ec47b93f519ced2ecbe, type: 3}
       propertyPath: m_Name
       value: SM_TempDoorWay (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 786f933248a36ec47b93f519ced2ecbe, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 786f933248a36ec47b93f519ced2ecbe, type: 3}
@@ -2282,6 +2318,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_TempCeiling (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b19c0231293d36c418f30298963f75f8, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b19c0231293d36c418f30298963f75f8, type: 3}
 --- !u!4 &698962076423459220 stripped
@@ -2352,6 +2392,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: c97f85c22fb62cd4a962295f6c23e561, type: 3}
       propertyPath: m_Name
       value: SM_TempWall (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c97f85c22fb62cd4a962295f6c23e561, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c97f85c22fb62cd4a962295f6c23e561, type: 3}
@@ -2424,6 +2468,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_TempWall (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c97f85c22fb62cd4a962295f6c23e561, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c97f85c22fb62cd4a962295f6c23e561, type: 3}
 --- !u!4 &681167490775316157 stripped
@@ -2495,6 +2543,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_TempFloor (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
 --- !u!1 &231534041398394906 stripped
@@ -2565,6 +2617,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
       propertyPath: m_Name
       value: SM_TempFloor (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
@@ -2707,6 +2763,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_TempCeiling (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b19c0231293d36c418f30298963f75f8, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b19c0231293d36c418f30298963f75f8, type: 3}
 --- !u!4 &1469921640519299484 stripped
@@ -2777,6 +2837,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: c97f85c22fb62cd4a962295f6c23e561, type: 3}
       propertyPath: m_Name
       value: SM_TempWall (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c97f85c22fb62cd4a962295f6c23e561, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c97f85c22fb62cd4a962295f6c23e561, type: 3}
@@ -2849,6 +2913,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_TempFloor (25)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
 --- !u!4 &1398236276539454708 stripped
@@ -2919,6 +2987,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
       propertyPath: m_Name
       value: SM_TempFloor (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
@@ -3182,6 +3254,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_TempFloor (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
 --- !u!4 &2178423200412246984 stripped
@@ -3260,6 +3336,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: b19c0231293d36c418f30298963f75f8, type: 3}
       propertyPath: m_Name
       value: SM_TempCeiling (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b19c0231293d36c418f30298963f75f8, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b19c0231293d36c418f30298963f75f8, type: 3}
@@ -3340,6 +3420,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_TempCeiling (27)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b19c0231293d36c418f30298963f75f8, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b19c0231293d36c418f30298963f75f8, type: 3}
 --- !u!4 &2845626269485870484 stripped
@@ -3410,6 +3494,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
       propertyPath: m_Name
       value: SM_TempFloor (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
@@ -3490,6 +3578,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_TempCeiling (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b19c0231293d36c418f30298963f75f8, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b19c0231293d36c418f30298963f75f8, type: 3}
 --- !u!1 &3414534452578905033 stripped
@@ -3560,6 +3652,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: c97f85c22fb62cd4a962295f6c23e561, type: 3}
       propertyPath: m_Name
       value: SM_TempWall (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c97f85c22fb62cd4a962295f6c23e561, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c97f85c22fb62cd4a962295f6c23e561, type: 3}
@@ -3694,6 +3790,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_TempFloor (27)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
 --- !u!4 &2509075283876925695 stripped
@@ -3764,6 +3864,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
       propertyPath: m_Name
       value: SM_TempFloor (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
@@ -3844,6 +3948,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_TempCeiling (22)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b19c0231293d36c418f30298963f75f8, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b19c0231293d36c418f30298963f75f8, type: 3}
 --- !u!4 &2477062256934343466 stripped
@@ -3914,6 +4022,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
       propertyPath: m_Name
       value: SM_TempFloor (29)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
@@ -3994,6 +4106,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_TempCeiling (29)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b19c0231293d36c418f30298963f75f8, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b19c0231293d36c418f30298963f75f8, type: 3}
 --- !u!1 &2816953750917804506 stripped
@@ -4064,6 +4180,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
       propertyPath: m_Name
       value: SM_TempFloor (20)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
@@ -4144,6 +4264,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_TempCeiling
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b19c0231293d36c418f30298963f75f8, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b19c0231293d36c418f30298963f75f8, type: 3}
 --- !u!4 &3014754015951853945 stripped
@@ -4219,6 +4343,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_TempDoorWay
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 786f933248a36ec47b93f519ced2ecbe, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 786f933248a36ec47b93f519ced2ecbe, type: 3}
 --- !u!1 &2560971376469756152 stripped
@@ -4293,6 +4421,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: c97f85c22fb62cd4a962295f6c23e561, type: 3}
       propertyPath: m_Name
       value: SM_TempWall (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c97f85c22fb62cd4a962295f6c23e561, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c97f85c22fb62cd4a962295f6c23e561, type: 3}
@@ -4427,6 +4559,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_TempFloor (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
 --- !u!1 &4560070995279722598 stripped
@@ -4506,6 +4642,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_TempDoorWay (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 786f933248a36ec47b93f519ced2ecbe, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 786f933248a36ec47b93f519ced2ecbe, type: 3}
 --- !u!1 &4097201027760258726 stripped
@@ -4576,6 +4716,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: c97f85c22fb62cd4a962295f6c23e561, type: 3}
       propertyPath: m_Name
       value: SM_TempWall (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c97f85c22fb62cd4a962295f6c23e561, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c97f85c22fb62cd4a962295f6c23e561, type: 3}
@@ -4656,6 +4800,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_TempCeiling (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b19c0231293d36c418f30298963f75f8, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b19c0231293d36c418f30298963f75f8, type: 3}
 --- !u!1 &4135777831779860843 stripped
@@ -4734,6 +4882,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: b19c0231293d36c418f30298963f75f8, type: 3}
       propertyPath: m_Name
       value: SM_TempCeiling (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b19c0231293d36c418f30298963f75f8, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b19c0231293d36c418f30298963f75f8, type: 3}
@@ -4814,6 +4966,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_TempCeiling (18)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b19c0231293d36c418f30298963f75f8, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b19c0231293d36c418f30298963f75f8, type: 3}
 --- !u!4 &4539127687210539306 stripped
@@ -4892,6 +5048,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: b19c0231293d36c418f30298963f75f8, type: 3}
       propertyPath: m_Name
       value: SM_TempCeiling (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b19c0231293d36c418f30298963f75f8, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b19c0231293d36c418f30298963f75f8, type: 3}
@@ -5026,6 +5186,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_TempWall (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c97f85c22fb62cd4a962295f6c23e561, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c97f85c22fb62cd4a962295f6c23e561, type: 3}
 --- !u!1 &3712256101614083863 stripped
@@ -5096,6 +5260,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
       propertyPath: m_Name
       value: SM_TempFloor (30)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
@@ -5230,6 +5398,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_TempFloor (21)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
 --- !u!1 &5612499326255938378 stripped
@@ -5305,6 +5477,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_TempWall (15)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c97f85c22fb62cd4a962295f6c23e561, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c97f85c22fb62cd4a962295f6c23e561, type: 3}
 --- !u!4 &5112717749037672833 stripped
@@ -5375,6 +5551,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
       propertyPath: m_Name
       value: SM_TempFloor (17)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
@@ -5455,6 +5635,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_TempCeiling (25)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b19c0231293d36c418f30298963f75f8, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b19c0231293d36c418f30298963f75f8, type: 3}
 --- !u!4 &4744665288523140320 stripped
@@ -5533,6 +5717,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: b19c0231293d36c418f30298963f75f8, type: 3}
       propertyPath: m_Name
       value: SM_TempCeiling (20)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b19c0231293d36c418f30298963f75f8, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b19c0231293d36c418f30298963f75f8, type: 3}
@@ -5613,6 +5801,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_TempCeiling (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b19c0231293d36c418f30298963f75f8, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b19c0231293d36c418f30298963f75f8, type: 3}
 --- !u!4 &4681443746690940519 stripped
@@ -5683,6 +5875,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: c97f85c22fb62cd4a962295f6c23e561, type: 3}
       propertyPath: m_Name
       value: SM_TempWall (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c97f85c22fb62cd4a962295f6c23e561, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c97f85c22fb62cd4a962295f6c23e561, type: 3}
@@ -5763,6 +5959,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_TempCeiling (26)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b19c0231293d36c418f30298963f75f8, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b19c0231293d36c418f30298963f75f8, type: 3}
 --- !u!1 &4956919759865882500 stripped
@@ -5833,6 +6033,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: c97f85c22fb62cd4a962295f6c23e561, type: 3}
       propertyPath: m_Name
       value: SM_TempWall (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c97f85c22fb62cd4a962295f6c23e561, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c97f85c22fb62cd4a962295f6c23e561, type: 3}
@@ -5974,6 +6178,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: b19c0231293d36c418f30298963f75f8, type: 3}
       propertyPath: m_Name
       value: SM_TempCeiling (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b19c0231293d36c418f30298963f75f8, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b19c0231293d36c418f30298963f75f8, type: 3}
@@ -6188,6 +6396,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_TempCeiling (31)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b19c0231293d36c418f30298963f75f8, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b19c0231293d36c418f30298963f75f8, type: 3}
 --- !u!4 &6011204993548113769 stripped
@@ -6258,6 +6470,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
       propertyPath: m_Name
       value: SM_TempFloor (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
@@ -6338,6 +6554,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_TempCeiling (17)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b19c0231293d36c418f30298963f75f8, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b19c0231293d36c418f30298963f75f8, type: 3}
 --- !u!1 &6453428693800607205 stripped
@@ -6408,6 +6628,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
       propertyPath: m_Name
       value: SM_TempFloor
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
@@ -6554,6 +6778,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_TempFloor (28)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
 --- !u!4 &6629138031711260724 stripped
@@ -6686,6 +6914,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
       propertyPath: m_Name
       value: SM_TempFloor (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
@@ -6820,6 +7052,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_TempFloor (26)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
 --- !u!4 &6423881307320144272 stripped
@@ -6891,6 +7127,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_TempWall (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c97f85c22fb62cd4a962295f6c23e561, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c97f85c22fb62cd4a962295f6c23e561, type: 3}
 --- !u!4 &7434954012167038079 stripped
@@ -6961,6 +7201,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
       propertyPath: m_Name
       value: SM_TempFloor (23)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
@@ -7041,6 +7285,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_TempCeiling (28)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b19c0231293d36c418f30298963f75f8, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b19c0231293d36c418f30298963f75f8, type: 3}
 --- !u!1 &7932643849495132291 stripped
@@ -7111,6 +7359,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
       propertyPath: m_Name
       value: SM_TempFloor (22)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
@@ -7191,6 +7443,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_TempCeiling (24)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b19c0231293d36c418f30298963f75f8, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b19c0231293d36c418f30298963f75f8, type: 3}
 --- !u!4 &7082911890651106847 stripped
@@ -7261,6 +7517,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
       propertyPath: m_Name
       value: SM_TempFloor (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
@@ -7341,6 +7601,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_TempCeiling (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b19c0231293d36c418f30298963f75f8, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b19c0231293d36c418f30298963f75f8, type: 3}
 --- !u!4 &6957261435776698642 stripped
@@ -7412,6 +7676,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_TempWall (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c97f85c22fb62cd4a962295f6c23e561, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c97f85c22fb62cd4a962295f6c23e561, type: 3}
 --- !u!1 &7348425646248396065 stripped
@@ -7482,6 +7750,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
       propertyPath: m_Name
       value: SM_TempFloor (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
@@ -7562,6 +7834,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_TempCeiling (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b19c0231293d36c418f30298963f75f8, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b19c0231293d36c418f30298963f75f8, type: 3}
 --- !u!4 &7783022008147003619 stripped
@@ -7637,6 +7913,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_TempWall (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c97f85c22fb62cd4a962295f6c23e561, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c97f85c22fb62cd4a962295f6c23e561, type: 3}
 --- !u!1 &7429982792790535126 stripped
@@ -7707,6 +7987,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
       propertyPath: m_Name
       value: SM_TempFloor (19)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
@@ -7787,6 +8071,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_TempCeiling (19)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b19c0231293d36c418f30298963f75f8, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b19c0231293d36c418f30298963f75f8, type: 3}
 --- !u!4 &7508484036741906444 stripped
@@ -7857,6 +8145,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
       propertyPath: m_Name
       value: SM_TempFloor (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
@@ -7929,6 +8221,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_TempFloor (16)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
 --- !u!1 &8960230851583028920 stripped
@@ -7999,6 +8295,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: c97f85c22fb62cd4a962295f6c23e561, type: 3}
       propertyPath: m_Name
       value: SM_TempWall (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c97f85c22fb62cd4a962295f6c23e561, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c97f85c22fb62cd4a962295f6c23e561, type: 3}
@@ -8079,6 +8379,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_TempCeiling (16)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b19c0231293d36c418f30298963f75f8, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b19c0231293d36c418f30298963f75f8, type: 3}
 --- !u!1 &8675831069279623879 stripped
@@ -8158,6 +8462,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_TempCeiling (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b19c0231293d36c418f30298963f75f8, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b19c0231293d36c418f30298963f75f8, type: 3}
 --- !u!1 &8681626691452814865 stripped
@@ -8228,6 +8536,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
       propertyPath: m_Name
       value: SM_TempFloor (31)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
@@ -8307,6 +8619,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: b19c0231293d36c418f30298963f75f8, type: 3}
       propertyPath: m_Name
       value: SM_TempCeiling (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b19c0231293d36c418f30298963f75f8, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b19c0231293d36c418f30298963f75f8, type: 3}
@@ -8481,6 +8797,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_TempWall
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c97f85c22fb62cd4a962295f6c23e561, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c97f85c22fb62cd4a962295f6c23e561, type: 3}
 --- !u!1 &8372524106959326946 stripped
@@ -8551,6 +8871,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
       propertyPath: m_Name
       value: SM_TempFloor (18)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
@@ -8627,6 +8951,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_TempWall (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c97f85c22fb62cd4a962295f6c23e561, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c97f85c22fb62cd4a962295f6c23e561, type: 3}
 --- !u!4 &9146952847853008854 stripped
@@ -8697,6 +9025,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
       propertyPath: m_Name
       value: SM_TempFloor (24)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 375e26c0f1d35b34c993d169ef4e3c23, type: 3}
@@ -8776,6 +9108,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: b19c0231293d36c418f30298963f75f8, type: 3}
       propertyPath: m_Name
       value: SM_TempCeiling (30)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b19c0231293d36c418f30298963f75f8, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b19c0231293d36c418f30298963f75f8, type: 3}
