@@ -269,6 +269,7 @@ MonoBehaviour:
   _tip: {fileID: 4987248468686393409}
   _muzzleEffect: {fileID: 3399747336141133107, guid: 155f2ec06e109ef488a47c40dbdcc2e5, type: 3}
   _impactEffect: {fileID: 8203373482648835319, guid: ccf7e3f034dcb244b927e0c245c17045, type: 3}
+  _damageDisplay: {fileID: 3051956391752801534, guid: 7530983dabdd65446b53c3069f40f1f1, type: 3}
 --- !u!1 &4952688985018053091
 GameObject:
   m_ObjectHideFlags: 0

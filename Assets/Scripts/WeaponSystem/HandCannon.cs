@@ -1,7 +1,8 @@
 ﻿using System.Collections;
+using Bug.Enemy;
 using Bug.Player;
+using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Bug.WeaponSystem
 {
@@ -16,6 +17,8 @@ namespace Bug.WeaponSystem
 		[SerializeField] private GameObject _muzzleEffect;
 
 		[SerializeField] private GameObject _impactEffect;
+
+		[SerializeField] private GameObject _damageDisplay;
 
 		public bool CanHandlePrimaryAction { get; set; } = true;
 
@@ -60,10 +63,7 @@ namespace Bug.WeaponSystem
 			{
 				Camera camera = player.Camera;
 
-				Ray ray = new Ray {
-					origin = camera.transform.position,
-					direction = camera.transform.forward
-				};
+				Ray ray = new(camera.transform.position, camera.transform.forward);
 
 				if (Physics.Raycast(ray, out RaycastHit hit, 100f, _shootingLayerMask))
 				{
@@ -74,7 +74,18 @@ namespace Bug.WeaponSystem
 						Destroy(impact, impact.TryGetComponent(out ParticleSystem particles) ? particles.main.duration : 2f);
 					}
 
-					//TODO: Deal damage
+					var enemy = hit.collider.GetComponentInParent<EnemyData>();
+					if (enemy != null) // We hit an ennemy!
+					{
+						var finalDamage = enemy.TakeDamage(hit.collider, 10);
+						if (_damageDisplay != null)
+						{
+							var go = Instantiate(_damageDisplay, hit.point, Quaternion.identity);
+							go.GetComponent<TMP_Text>().text = finalDamage.ToString();
+							go.transform.LookAt(player.transform.position, Vector3.up);
+							go.transform.rotation = Quaternion.Euler(0f, go.transform.rotation.eulerAngles.y + 180, 0f);
+						}
+					}
 				}
 
 				if (player.Animator != null)
