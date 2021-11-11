@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5641110026324900974}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 2830046513067414108}
   - component: {fileID: 1098729826691045312}
   - component: {fileID: 8612834809598339375}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Locker_Test
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,7 +102,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7012040741646869398}
   - component: {fileID: 1900259368703706012}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Locker_test1:Group4973
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -189,7 +189,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4046095590461457459}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Locker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -221,7 +221,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4735283537032487782}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
