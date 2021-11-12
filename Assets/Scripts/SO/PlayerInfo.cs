@@ -11,5 +11,9 @@ namespace Bug.SO
         public WeaponInfo MainWeapon;
         [Tooltip("Speed multiplicator when the player is running")]
         public float SpeedRunningMultiplicator;
+        [Tooltip("Jump force of the player")]
+        public float JumpForce;
+        [Tooltip("Local gravity multiplicator for jump")]
+        public float GravityMultiplicator;
     }
 }

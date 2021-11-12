@@ -64,6 +64,8 @@ namespace Bug.Player
 		private bool _isSprinting;
 
 		private Interactible _eTarget;
+		// Current Y velocity, used when we are jumping
+		private float _verticalSpeed;
 
 
 		private void Awake()
@@ -148,13 +150,15 @@ namespace Bug.Player
 			moveDir.z = desiredMove.z * _forceMultiplier * (_isSprinting ? _info.SpeedRunningMultiplicator : 1f);
 
 
-			if (_controller.isGrounded)
+			if (_controller.isGrounded && _verticalSpeed < 0f) // We are on the ground and not jumping
 			{
-				moveDir.y = -.1f;
+				moveDir.y = -.1f; // Stick to the ground
 			}
 			else
 			{
-				moveDir += Physics.gravity;
+				// We are currently jumping, reduce our jump velocity by gravity and apply it
+				_verticalSpeed += Physics.gravity.y * _info.GravityMultiplicator;
+				moveDir.y += _verticalSpeed;
 			}
 			_controller.Move(moveDir);
 		}
@@ -253,6 +257,14 @@ namespace Bug.Player
 		public void OnSprint(InputAction.CallbackContext value)
         {
 			_isSprinting = value.ReadValueAsButton();
+        }
+
+		public void OnJump(InputAction.CallbackContext value)
+        {
+			if (_controller.isGrounded)
+            {
+				_verticalSpeed = _info.JumpForce;
+			}
         }
 
 		public void OnAction(InputAction.CallbackContext value)

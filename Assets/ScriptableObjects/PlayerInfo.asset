@@ -15,3 +15,5 @@ MonoBehaviour:
   NbOfMagazine: 10
   MainWeapon: {fileID: 11400000, guid: 9fb85e9df01596741b25a8c195d362ef, type: 2}
   SpeedRunningMultiplicator: 1.5
+  JumpForce: 0.1
+  GravityMultiplicator: 0.001
