@@ -1,10 +1,8 @@
 using System;
-using Bug.Menu;
 using Bug.Prop;
 using Bug.SO;
 using Bug.WeaponSystem;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -63,6 +61,7 @@ namespace Bug.Player
 		private float _headRotation;
 		private Vector2 _groundMovement = Vector2.zero;
 		private bool _isReloading;
+		private bool _isSprinting;
 
 		private Interactible _eTarget;
 
@@ -78,13 +77,15 @@ namespace Bug.Player
 			_playerInput = GetComponent<PlayerInput>();
 			_controller = GetComponent<CharacterController>();
 			Cursor.lockState = CursorLockMode.Locked;
+
+			// Starting weapon of the player
 			_slotWeapons = new WeaponData[]
 			{
 				null,
 				new()
 				{
-					Info = _info._mainWeapon,
-					AmmoInGun = _info._mainWeapon.MaxNbOfBullets,
+					Info = _info.MainWeapon,
+					AmmoInGun = _info.MainWeapon.MaxNbOfBullets,
 					NbOfMagazines = _info.NbOfMagazine
 				},
 				null
@@ -143,8 +144,8 @@ namespace Bug.Player
 			desiredMove = Vector3.ProjectOnPlane(desiredMove, hitInfo.normal).normalized;
 
 			Vector3 moveDir = Vector3.zero;
-			moveDir.x = desiredMove.x * _forceMultiplier;
-			moveDir.z = desiredMove.z * _forceMultiplier;
+			moveDir.x = desiredMove.x * _forceMultiplier * (_isSprinting ? _info.SpeedRunningMultiplicator : 1f);
+			moveDir.z = desiredMove.z * _forceMultiplier * (_isSprinting ? _info.SpeedRunningMultiplicator : 1f);
 
 
 			if (_controller.isGrounded)
@@ -248,6 +249,11 @@ namespace Bug.Player
 			Cursor.lockState = GameStateManager.Paused ? CursorLockMode.None : CursorLockMode.Locked;
 			Cursor.visible = GameStateManager.Paused;
 		}
+
+		public void OnSprint(InputAction.CallbackContext value)
+        {
+			_isSprinting = value.ReadValueAsButton();
+        }
 
 		public void OnAction(InputAction.CallbackContext value)
 		{

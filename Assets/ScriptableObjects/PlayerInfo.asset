@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: PlayerInfo
   m_EditorClassIdentifier: 
   NbOfMagazine: 10
-  _mainWeapon: {fileID: 11400000, guid: 9fb85e9df01596741b25a8c195d362ef, type: 2}
+  MainWeapon: {fileID: 11400000, guid: 9fb85e9df01596741b25a8c195d362ef, type: 2}
+  SpeedRunningMultiplicator: 1.5
