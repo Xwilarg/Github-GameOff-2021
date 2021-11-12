@@ -4,8 +4,8 @@ namespace Bug.WeaponSystem
 {
 	public interface IReloadHandler
 	{
-		bool CanReload { get; }
+		void ReloadRequested();
 
-		IEnumerator HandleReload();
+		void ReloadCancel();
 	}
 }

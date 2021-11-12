@@ -30,25 +30,14 @@ namespace Bug.Player
 		[SerializeField] private  float _verticalLookMultiplier = 1f;
 
 		[Header("Skeleton")]
+		[SerializeField] private Animator _armsAnimator;
 		[SerializeField] private GameObject _skeletonRoot;
 		[SerializeField] private string _leftHandAnchorName = "Anchor_Left";
 		[SerializeField] private string _rightHandAnchorName = "Anchor_Right";
 
-		[Header("Shooting")]
-		[SerializeField]
-		private GameObject _bulletPrefab;
-		[SerializeField]
-		private Transform _gunEnd;
-		[SerializeField]
-		private int _gunForce;
 		[SerializeField]
 		private GameObject _heldObject;
 
-		[Header("Animations")]
-		[SerializeField] private Animator _armsAnimator;
-
-		private WeaponData[] _slotWeapons;
-		private WeaponType _currentWeapon;
 		private CarriedObject _carriedObject;
 		public Camera Camera => _fpsCamera;
 		public CharacterController Controller => _controller;
@@ -62,7 +51,6 @@ namespace Bug.Player
 		private CharacterController _controller;
 		private float _headRotation;
 		private Vector2 _groundMovement = Vector2.zero;
-		private bool _isReloading;
 
 		private Interactible _eTarget;
 
@@ -78,19 +66,9 @@ namespace Bug.Player
 			_playerInput = GetComponent<PlayerInput>();
 			_controller = GetComponent<CharacterController>();
 			Cursor.lockState = CursorLockMode.Locked;
-			_slotWeapons = new WeaponData[]
-			{
-				null,
-				new()
-				{
-					Info = _info._mainWeapon,
-					AmmoInGun = _info._mainWeapon.MaxNbOfBullets,
-					NbOfMagazines = _info.NbOfMagazine
-				},
-				null
-			};
-			_currentWeapon = WeaponType.Secondary;
-			UpdateAmmoDisplay();
+
+			if (_heldObject != null && _heldObject.TryGetComponent(out IHoldable holdable))
+				holdable.HoldBegin(gameObject);
 		}
 
 		private void FixedUpdate()
@@ -158,51 +136,12 @@ namespace Bug.Player
 			_controller.Move(moveDir);
 		}
 
-		public void PickObject(WeaponInfo weapon)
-		{
-			if (_slotWeapons[(int)weapon.Type] != null)
-			{
-				// TODO: Throw weapon on the ground
-			}
-			_slotWeapons[(int)weapon.Type] = new()
-			{
-				Info = weapon,
-				NbOfMagazines = 0,
-				AmmoInGun = weapon.MaxNbOfBullets
-			};
-		}
-
 		public void PickObject(GameObject obj)
 		{
 			_carriedObject = new(transform, obj);
 		}
 
-		private void UpdateAmmoDisplay()
-		{
-			if (PlayerManager.S != null && PlayerManager.S.AmmoDisplay != null)
-			{
-				PlayerManager.S.AmmoDisplay.text = $"{_slotWeapons[(int)_currentWeapon].AmmoInGun} / {_slotWeapons[(int)_currentWeapon].NbOfMagazines}";
-			}
-		}
-
 		private bool IsGamePaused() => GameStateManager.Paused;
-
-		public void EarnMagazine()
-		{
-			_slotWeapons[(int)_currentWeapon].NbOfMagazines++;
-			UpdateAmmoDisplay();
-		}
-
-		private IEnumerator Reload()
-		{
-			_isReloading = true;
-			yield return new WaitForSeconds(_slotWeapons[(int)_currentWeapon].Info.ReloadDuration);
-			_slotWeapons[(int)_currentWeapon].AmmoInGun = _slotWeapons[(int)_currentWeapon].Info.MaxNbOfBullets;
-			_slotWeapons[(int)_currentWeapon].NbOfMagazines--;
-			UpdateAmmoDisplay();
-			_isReloading = false;
-
-		}
 
 		#region Input callbacks
 
@@ -232,13 +171,32 @@ namespace Bug.Player
 			{
 				if (_heldObject != null && _carriedObject == null)
 				{
-					if (_heldObject.TryGetComponent(out IPrimaryActionHandler primaryActionHandler) &&
-					    primaryActionHandler.CanHandlePrimaryAction)
+					if (_heldObject.TryGetComponent(out IPrimaryActionHandler primaryActionHandler))
 					{
-						StartCoroutine(primaryActionHandler.HandlePrimaryAction());
+						primaryActionHandler.PrimaryActionBegin();
 					}
 				}
+			}
+			else if (value.canceled && _heldObject != null && _carriedObject == null)
+			{
+				if (_heldObject.TryGetComponent(out IPrimaryActionHandler primaryActionHandler))
+				{
+					primaryActionHandler.PrimaryActionEnd();
+				}
+			}
+		}
 
+		public void OnReload(InputAction.CallbackContext value)
+		{
+			if (!IsGamePaused() && value.performed)
+			{
+				if (_heldObject != null && _carriedObject == null)
+				{
+					if (_heldObject.TryGetComponent(out IReloadHandler reloadHandler))
+					{
+						reloadHandler.ReloadRequested();
+					}
+				}
 			}
 		}
 

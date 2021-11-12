@@ -433,6 +433,26 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: fcafdf50-4aea-4223-96b1-45c75e3d00a3
     m_ActionName: Character/Menu[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 62d36272-cb00-43c7-b203-4976f81c0427
+    m_ActionName: Character/Aim[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 9106413484592079858}
+        m_TargetAssemblyTypeName: Bug.Player.PlayerController, Assembly-CSharp
+        m_MethodName: OnReload
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 1391ffc0-36a4-47d2-9ac0-8c4cb9f04647
+    m_ActionName: Character/Reload[/Keyboard/r]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboad & Mouse
   m_DefaultActionMap: Character
@@ -457,14 +477,11 @@ MonoBehaviour:
   _forceMultiplier: 0.1
   _horizontalLookMultiplier: 0.05
   _verticalLookMultiplier: 0.05
+  _armsAnimator: {fileID: 450439564953144023}
   _skeletonRoot: {fileID: 2101826038116083792}
   _leftHandAnchorName: Anchor_Left
   _rightHandAnchorName: Anchor_Right
-  _bulletPrefab: {fileID: 4506322839194982373, guid: 7427124b05d669b4c9e2ab378bb7b371, type: 3}
-  _gunEnd: {fileID: 0}
-  _gunForce: 10
   _heldObject: {fileID: 2571888243094750037}
-  _armsAnimator: {fileID: 450439564953144023}
 --- !u!143 &6620464942649378226
 CharacterController:
   m_ObjectHideFlags: 0
@@ -549,6 +566,10 @@ PrefabInstance:
     - target: {fileID: 3218904949381767580, guid: d3cbe953d0f3f324b932224ee913b012, type: 3}
       propertyPath: m_Name
       value: Gun_Mosquito
+      objectReference: {fileID: 0}
+    - target: {fileID: 5471256357087088756, guid: d3cbe953d0f3f324b932224ee913b012, type: 3}
+      propertyPath: _fillAmmoOnStart
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d3cbe953d0f3f324b932224ee913b012, type: 3}
