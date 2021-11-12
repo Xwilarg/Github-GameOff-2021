@@ -1,4 +1,5 @@
 ﻿using Bug.Prop;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -23,6 +24,19 @@ namespace Bug.Player
         public bool CanBePlaced()
         {
             return !_placeInfo.IsOverlappingObjects();
+        }
+
+        public void PlaceOnGround()
+        {
+            if (Physics.Raycast(new Ray(_placeInfo.GroundPoint.position, Vector3.down), out RaycastHit hit))
+            {
+                _hint.transform.position = new Vector3(_hint.transform.position.x, _hint.transform.position.y - hit.distance, _hint.transform.position.z);
+            }
+            else
+            {
+                Debug.LogWarning("Couldn't find ground while placing object...");
+            }
+            _placeInfo.IsPlaced = true;
         }
 
         private GameObject _hint;

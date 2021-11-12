@@ -253,7 +253,18 @@ namespace Bug.Player
 		{
 			if (value.phase == InputActionPhase.Performed)
 			{
-				_eTarget?.InvokeCallback(this);
+				if (_carriedObject == null) // We are not carrying an object so we interact with an object is available
+				{
+					_eTarget?.InvokeCallback(this);
+				}
+				else // Try to place the object we are carrying on the ground
+				{
+					if (_carriedObject.CanBePlaced())
+					{
+						_carriedObject.PlaceOnGround();
+						_carriedObject = null;
+					}
+				}
 			}
 		}
 
