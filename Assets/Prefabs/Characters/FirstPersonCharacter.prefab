@@ -465,7 +465,6 @@ MonoBehaviour:
   _gunForce: 10
   _heldObject: {fileID: 6332115056743663947}
   _armsAnimator: {fileID: 450439564953144023}
-  _animShootTrigger: Shoot
 --- !u!143 &6620464942649378226
 CharacterController:
   m_ObjectHideFlags: 0
