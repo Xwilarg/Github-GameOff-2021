@@ -1,5 +1,4 @@
-﻿using Bug.Prop;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Bug.Craft
 {
