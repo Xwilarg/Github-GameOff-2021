@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7791364214145949096}
+  - component: {fileID: 4424026749224196678}
   m_Layer: 0
   m_Name: Screen choice 2
   m_TagString: Untagged
@@ -33,6 +34,19 @@ Transform:
   m_Father: {fileID: 3860548413613058267}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+--- !u!65 &4424026749224196678
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 194109746139278223}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.2, y: 0, z: 0.5}
+  m_Center: {x: 0.035, y: 0, z: 0}
 --- !u!1 &368805861822897374
 GameObject:
   m_ObjectHideFlags: 0
@@ -44,6 +58,7 @@ GameObject:
   - component: {fileID: 7820557007873151252}
   - component: {fileID: 2884011867084167089}
   - component: {fileID: 8947658303090403697}
+  - component: {fileID: 8704023794879276258}
   m_Layer: 0
   m_Name: Right
   m_TagString: Untagged
@@ -205,6 +220,19 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 2884011867084167089}
   m_maskType: 0
+--- !u!65 &8704023794879276258
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 368805861822897374}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.06337209, y: 0.0622093, z: 0}
+  m_Center: {x: 0.00005001761, y: -0.0050168037, z: 0}
 --- !u!1 &546865837489113513
 GameObject:
   m_ObjectHideFlags: 0
@@ -985,6 +1013,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1430341378578046933}
+  - component: {fileID: 1428529623358510985}
   m_Layer: 0
   m_Name: Screen choice 4
   m_TagString: Untagged
@@ -1009,6 +1038,19 @@ Transform:
   m_Father: {fileID: 3860548413613058267}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+--- !u!65 &1428529623358510985
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3605299411329453688}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.2, y: 0, z: 0.5}
+  m_Center: {x: 0.035, y: 0, z: 0}
 --- !u!1 &3908755244191361497
 GameObject:
   m_ObjectHideFlags: 0
@@ -1393,6 +1435,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2590719319228261942}
+  - component: {fileID: 6235237266233659914}
   m_Layer: 0
   m_Name: Screen choice
   m_TagString: Untagged
@@ -1417,6 +1460,19 @@ Transform:
   m_Father: {fileID: 3860548413613058267}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+--- !u!65 &6235237266233659914
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6326456635859992313}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.2, y: 0, z: 0.5}
+  m_Center: {x: 0.035, y: 0, z: 0}
 --- !u!1 &7281628797730036530
 GameObject:
   m_ObjectHideFlags: 0
@@ -2110,6 +2166,7 @@ GameObject:
   - component: {fileID: 980347661359883991}
   - component: {fileID: 7520512675283941785}
   - component: {fileID: 1258605595967021304}
+  - component: {fileID: 7353508133405816198}
   m_Layer: 0
   m_Name: Left
   m_TagString: Untagged
@@ -2271,6 +2328,19 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 7520512675283941785}
   m_maskType: 0
+--- !u!65 &7353508133405816198
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8794895899135736960}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.06337209, y: 0.0622093, z: 0}
+  m_Center: {x: 0.00005001761, y: -0.0050168037, z: 0}
 --- !u!1 &8854279627610592880
 GameObject:
   m_ObjectHideFlags: 0
@@ -2443,6 +2513,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1336988064951041434}
+  - component: {fileID: 6301709070554791456}
   m_Layer: 0
   m_Name: Screen choice 3
   m_TagString: Untagged
@@ -2467,3 +2538,16 @@ Transform:
   m_Father: {fileID: 3860548413613058267}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+--- !u!65 &6301709070554791456
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8999014646505313073}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.2, y: 0, z: 0.5}
+  m_Center: {x: 0.035, y: 0, z: 0}

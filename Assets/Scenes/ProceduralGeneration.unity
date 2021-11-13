@@ -865,7 +865,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PauseMenu: {fileID: 346002206}
-  PressE: {fileID: 1590317944}
+  PressE: {fileID: 0}
   AmmoDisplay: {fileID: 1113589661}
 --- !u!1 &696854321
 GameObject:
