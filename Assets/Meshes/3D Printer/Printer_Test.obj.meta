@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 68a94cfcb13ce664293e26efb48240ac
+guid: f6722fb07f204f24bab4973fd5e68680
 ModelImporter:
   serializedVersion: 21202
   internalIDToNameTable: []
@@ -7,8 +7,33 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: SM_Pistol1_defaultMat1
-    second: {fileID: 2100000, guid: 3dcd4c9fd14178444b2a90c053326b80, type: 2}
+      name: Group15662Mat
+    second: {fileID: 2100000, guid: 71887fd311f3ef8468d36556098e32f8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Group1728Mat
+    second: {fileID: 2100000, guid: 71887fd311f3ef8468d36556098e32f8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Group22150Mat
+    second: {fileID: 2100000, guid: 71887fd311f3ef8468d36556098e32f8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Group30755Mat
+    second: {fileID: 2100000, guid: 71887fd311f3ef8468d36556098e32f8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Group5187Mat
+    second: {fileID: 2100000, guid: 71887fd311f3ef8468d36556098e32f8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Group9085Mat
+    second: {fileID: 2100000, guid: 71887fd311f3ef8468d36556098e32f8, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -54,7 +79,7 @@ ModelImporter:
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    keepQuads: 1
+    keepQuads: 0
     weldVertices: 1
     bakeAxisConversion: 0
     preserveHierarchy: 0
@@ -75,7 +100,7 @@ ModelImporter:
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
-    tangentImportMode: 0
+    tangentImportMode: 3
     normalCalculationMode: 4
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
