@@ -1,10 +1,8 @@
 using System;
-using Bug.Menu;
 using Bug.Prop;
 using Bug.SO;
 using Bug.WeaponSystem;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -110,18 +108,27 @@ namespace Bug.Player
 						if (interac != null)
 						{
 							PlayerManager.S.PressE.SetActive(true);
+							interac.Hover(hit.point);
 							_eTarget = interac;
 
 						}
 						else
 						{
 							PlayerManager.S.PressE.SetActive(false);
+							if (_eTarget != null)
+                            {
+								_eTarget.HoverLeave();
+                            }
 							_eTarget = null;
 						}
 					}
 					else
 					{
 						PlayerManager.S.PressE.SetActive(false);
+						if (_eTarget != null)
+						{
+							_eTarget.HoverLeave();
+						}
 						_eTarget = null;
 					}
 				}
@@ -255,7 +262,7 @@ namespace Bug.Player
 			{
 				if (_carriedObject == null) // We are not carrying an object so we interact with an object is available
 				{
-					_eTarget?.InvokeCallback(this);
+					_eTarget?.Activate(this);
 				}
 				else // Try to place the object we are carrying on the ground
 				{
