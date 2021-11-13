@@ -1,10 +1,8 @@
 using System;
-using Bug.Menu;
 using Bug.Prop;
 using Bug.SO;
 using Bug.WeaponSystem;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -99,40 +97,42 @@ namespace Bug.Player
 			{
 				return; // We can't move if we are in the menu
 			}
-
-			if (PlayerManager.S != null && PlayerManager.S.PressE != null)
+			if (_carriedObject == null) // Since we are not carrying an object, we are able to pick one
 			{
-				if (_carriedObject == null) // Since we are not carrying an object, we are able to pick one
+				if (Physics.Raycast(new Ray(_fpsCamera.transform.position, _fpsCamera.transform.forward), out RaycastHit hit, 1f))
 				{
-					if (Physics.Raycast(new Ray(_fpsCamera.transform.position, _fpsCamera.transform.forward), out RaycastHit hit, 1f))
+					var interac = hit.collider.GetComponent<Interactible>();
+					if (interac != null)
 					{
-						var interac = hit.collider.GetComponent<Interactible>();
-						if (interac != null)
-						{
-							PlayerManager.S.PressE.SetActive(true);
-							_eTarget = interac;
+						interac.Hover(hit.point);
+						_eTarget = interac;
 
-						}
-						else
-						{
-							PlayerManager.S.PressE.SetActive(false);
-							_eTarget = null;
-						}
 					}
 					else
 					{
-						PlayerManager.S.PressE.SetActive(false);
+						if (_eTarget != null)
+						{
+							_eTarget.HoverLeave();
+						}
 						_eTarget = null;
 					}
 				}
-				else // We are carrying an object, update position
+				else
 				{
-					PlayerManager.S.PressE.SetActive(false);
+					if (_eTarget != null)
+					{
+						_eTarget.HoverLeave();
+					}
 					_eTarget = null;
-
-					_carriedObject.UpdatePosition(transform);
-					_carriedObject.CanBePlaced();
 				}
+			}
+			else // We are carrying an object, update position
+			{
+				PlayerManager.S?.PressE?.SetActive(false);
+				_eTarget = null;
+
+				_carriedObject.UpdatePosition(transform);
+				_carriedObject.CanBePlaced();
 			}
 
 			Vector3 desiredMove = transform.forward * _groundMovement.y + transform.right * _groundMovement.x;
@@ -255,7 +255,7 @@ namespace Bug.Player
 			{
 				if (_carriedObject == null) // We are not carrying an object so we interact with an object is available
 				{
-					_eTarget?.InvokeCallback(this);
+					_eTarget?.Activate(this);
 				}
 				else // Try to place the object we are carrying on the ground
 				{
