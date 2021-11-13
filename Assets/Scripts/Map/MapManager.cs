@@ -233,22 +233,22 @@ namespace Bug.Map
         {
             foreach (var room in AllRooms)
             {
-                if (room.Up == null)
+                if (room.Up == null || (room.Type != RoomState.LOCKED && room.Up.Type == RoomState.LOCKED))
                 {
                     var go = Instantiate(_doorPrefab, new Vector3(room.Position.x + room.Size.x / 2f + 2f, 0f, room.Position.y + room.Size.y - .1f), Quaternion.Euler(0f, 90f, 0f));
                     go.transform.parent = room.transform;
                 }
-                if (room.Down == null)
+                if (room.Down == null || (room.Type != RoomState.LOCKED && room.Down.Type == RoomState.LOCKED))
                 {
                     var go = Instantiate(_doorPrefab, new Vector3(room.Position.x + room.Size.x / 2f + 2f, 0f, room.Position.y), Quaternion.Euler(0f, 90f, 0f));
                     go.transform.parent = room.transform;
                 }
-                if (room.Left == null)
+                if (room.Left == null || (room.Type != RoomState.LOCKED && room.Left.Type == RoomState.LOCKED))
                 {
                     var go = Instantiate(_doorPrefab, new Vector3(room.Position.x + .1f, 0f, room.Position.y + room.Size.y / 2f + 2f), Quaternion.identity);
                     go.transform.parent = room.transform;
                 }
-                if (room.Right == null)
+                if (room.Right == null || (room.Type != RoomState.LOCKED && room.Right.Type == RoomState.LOCKED))
                 {
                     var go = Instantiate(_doorPrefab, new Vector3(room.Position.x + room.Size.x, 0f, room.Position.y + room.Size.y / 2f + 2f), Quaternion.identity);
                     go.transform.parent = room.transform;

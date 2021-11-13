@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ea3c88348318304b9da9ac846fcae93, type: 3}
   m_Name: Map
   m_EditorClassIdentifier: 
-  MaxPathLength: 15
-  UnlockedRange: 5
+  MaxPathLength: 10
+  UnlockedRange: 3
