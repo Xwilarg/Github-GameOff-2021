@@ -287,6 +287,7 @@ GameObject:
   - component: {fileID: 4527852943765616909}
   - component: {fileID: 307149809123451909}
   - component: {fileID: 8918040694905644568}
+  - component: {fileID: 7211723445171892840}
   m_Layer: 3
   m_Name: FirstPersonCharacter
   m_TagString: Player
@@ -557,6 +558,18 @@ MonoBehaviour:
   - {fileID: 9106413484283387208}
   - {fileID: 7542948663999236652}
   _aimAnimDefaultDuration: 0.16
+--- !u!114 &7211723445171892840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9106413484592079863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72d9a96c090dbf440a7fe0133366481b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7351545709154673156
 PrefabInstance:
   m_ObjectHideFlags: 0
