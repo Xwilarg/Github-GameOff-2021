@@ -7,7 +7,6 @@ namespace Bug.Prop
     {
         public void EarnAmmo(PlayerController pc)
         {
-            pc.EarnMagazine();
             Destroy(gameObject);
         }
     }

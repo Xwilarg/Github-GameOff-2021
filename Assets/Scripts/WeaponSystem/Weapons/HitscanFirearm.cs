@@ -6,50 +6,19 @@ using UnityEngine;
 
 namespace Bug.WeaponSystem
 {
-	public class HandCannon : MonoBehaviour, IWeapon
+	public class HitscanFirearm : Firearm
 	{
-		[SerializeField] private float _fireRate = 2f;
-
 		[SerializeField] private LayerMask _shootingLayerMask = -1;
 
 		[SerializeField] private Transform _tip;
 
 		[SerializeField] private GameObject _muzzleEffect;
-
 		[SerializeField] private GameObject _impactEffect;
 
 		[SerializeField] private GameObject _damageDisplay;
 
-		public bool CanHandlePrimaryAction { get; set; } = true;
 
-		public bool CanHandleSecondaryAction { get; set; } = true;
-
-		public bool CanReload { get; set; } = true;
-
-		private readonly int _shootAnimTrigger = Animator.StringToHash("Shoot");
-
-
-		public IEnumerator HandlePrimaryAction()
-		{
-			CanHandlePrimaryAction = false;
-
-			Shoot();
-
-			yield return new WaitForSeconds(1f / _fireRate);
-			CanHandlePrimaryAction = true;
-		}
-
-		public IEnumerator HandleSecondaryAction()
-		{
-			yield break;
-		}
-
-		public IEnumerator HandleReload()
-		{
-			yield break;
-		}
-
-		public void Shoot()
+		protected override void Shoot(int _)
 		{
 			if (_muzzleEffect != null)
 			{
@@ -57,11 +26,9 @@ namespace Bug.WeaponSystem
 				Destroy(effect, effect.TryGetComponent(out ParticleSystem particles) ? particles.main.duration : 2f);
 			}
 
-			PlayerController player = GetComponentInParent<PlayerController>();
-
-			if (player != null && player.HeldObject == gameObject)
+			if (Player != null)
 			{
-				Camera camera = player.Camera;
+				Camera camera = Player.Camera;
 
 				Ray ray = new(camera.transform.position, camera.transform.forward);
 
@@ -82,15 +49,10 @@ namespace Bug.WeaponSystem
 						{
 							var go = Instantiate(_damageDisplay, hit.point, Quaternion.identity);
 							go.GetComponent<TMP_Text>().text = finalDamage.ToString();
-							go.transform.LookAt(player.transform.position, Vector3.up);
+							go.transform.LookAt(Player.transform.position, Vector3.up);
 							go.transform.rotation = Quaternion.Euler(0f, go.transform.rotation.eulerAngles.y + 180, 0f);
 						}
 					}
-				}
-
-				if (player.Animator != null)
-				{
-					player.Animator.SetTrigger(_shootAnimTrigger);
 				}
 			}
 		}
