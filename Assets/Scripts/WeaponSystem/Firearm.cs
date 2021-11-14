@@ -17,6 +17,9 @@ namespace Bug.WeaponSystem
 		[SerializeField] private float _fireRate = 5f;
 		[SerializeField] private ShootingMode _shootingMode = ShootingMode.Burst;
 		[SerializeField] private int _burstCount = 1;
+		[SerializeField] private RecoilData _recoil = new(2, 2, 2);
+		[SerializeField] private float _aimRecoilFactor = 0.5f;
+		[SerializeField] private float _aimZoom = 1.2f;
 
 		[Header("Audio")]
 		[SerializeField] private AudioSource _audioSource;
@@ -29,10 +32,10 @@ namespace Bug.WeaponSystem
 		public int BurstCount { get => _burstCount; set => _burstCount = value; }
 		public bool TriggerPulled { get; protected set; }
 		public bool Shooting { get; protected set; }
+		public bool Aiming { get; protected set; }
 
 		public int AmmoCapacity { get => _ammoCapacity; set => _ammoCapacity = value; }
 		public int AmmoCount { get; set; }
-
 		public bool Reloading { get; protected set; }
 
 		private Coroutine _reloadCoroutine;
@@ -100,6 +103,8 @@ namespace Bug.WeaponSystem
 			Shooting = true;
 			SetAnimatorBool(_animParamShoot, true);
 
+			RecoilMotor recoilMotor = Holder != null ? Holder.GetComponent<RecoilMotor>() : null;
+
 			int currentBurst = 0;
 			float timeBetweenShots = 1f / Mathf.Max(_fireRate, Mathf.Epsilon);
 
@@ -108,6 +113,8 @@ namespace Bug.WeaponSystem
 				Shoot(currentBurst++);
 
 				PlaySound(_audioClipShoot);
+				if (recoilMotor != null)
+					recoilMotor.AddRecoil(_recoil * (Aiming ? _aimRecoilFactor : 1f));
 
 				AmmoCount--;
 				if (AmmoCount <= 0) break;
@@ -120,6 +127,28 @@ namespace Bug.WeaponSystem
 		}
 
 		#endregion Primary Action
+
+		#region Secondary Action
+
+		public virtual void SecondaryActionBegin()
+		{
+			SetAnimatorBool(_animParamAiming, true);
+			Aiming = true;
+
+			if (Holder != null && Holder.TryGetComponent(out CameraAimFOV cameraAimFOV))
+				cameraAimFOV.SetZoomAnimated(_aimZoom);
+		}
+
+		public virtual void SecondaryActionEnd()
+		{
+			SetAnimatorBool(_animParamAiming, false);
+			Aiming = false;
+
+			if (Holder != null && Holder.TryGetComponent(out CameraAimFOV cameraAimFOV))
+				cameraAimFOV.RestoreZoomAnimated();
+		}
+
+		#endregion Secondary Action
 
 		#region Reload
 
@@ -183,16 +212,6 @@ namespace Bug.WeaponSystem
 			{
 				Player.Animator.SetBool(property, state);
 			}
-		}
-
-		public virtual void SecondaryActionBegin()
-		{
-			SetAnimatorBool(_animParamAiming, true);
-		}
-
-		public virtual void SecondaryActionEnd()
-		{
-			SetAnimatorBool(_animParamAiming, false);
 		}
 	}
 }
