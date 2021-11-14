@@ -186,6 +186,27 @@ namespace Bug.Player
 			}
 		}
 
+		public void OnAim(InputAction.CallbackContext value)
+		{
+			if (!IsGamePaused())
+			{
+				if (value.performed)
+				{
+					if (_heldObject != null && _carriedObject == null && _heldObject.TryGetComponent(out ISecondaryActionHandler secondaryActionHandler))
+					{
+						secondaryActionHandler.SecondaryActionBegin();
+					}
+				}
+				else if (value.canceled)
+				{
+					if (_heldObject != null && _carriedObject == null && _heldObject.TryGetComponent(out ISecondaryActionHandler secondaryActionHandler))
+					{
+						secondaryActionHandler.SecondaryActionEnd();
+					}
+				}
+			}
+		}
+
 		public void OnReload(InputAction.CallbackContext value)
 		{
 			if (!IsGamePaused() && value.performed)

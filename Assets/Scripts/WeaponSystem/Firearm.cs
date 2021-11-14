@@ -38,6 +38,7 @@ namespace Bug.WeaponSystem
 		private Coroutine _reloadCoroutine;
 
 		private static readonly int _animParamShoot = Animator.StringToHash("Shooting");
+		private static readonly int _animParamAiming = Animator.StringToHash("Aiming");
 		private static readonly int _animParamReload = Animator.StringToHash("Reload");
 
 
@@ -184,7 +185,14 @@ namespace Bug.WeaponSystem
 			}
 		}
 
-		public abstract void SecondaryActionBegin();
-		public abstract void SecondaryActionEnd();
+		public virtual void SecondaryActionBegin()
+		{
+			SetAnimatorBool(_animParamAiming, true);
+		}
+
+		public virtual void SecondaryActionEnd()
+		{
+			SetAnimatorBool(_animParamAiming, false);
+		}
 	}
 }

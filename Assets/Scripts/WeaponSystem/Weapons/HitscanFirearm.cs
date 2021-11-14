@@ -56,9 +56,5 @@ namespace Bug.WeaponSystem
 				}
 			}
 		}
-
-		public override void SecondaryActionBegin() { }
-
-		public override void SecondaryActionEnd() { }
 	}
 }

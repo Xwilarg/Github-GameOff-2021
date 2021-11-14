@@ -108,7 +108,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -227,7 +227,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -434,7 +434,19 @@ MonoBehaviour:
     m_ActionId: fcafdf50-4aea-4223-96b1-45c75e3d00a3
     m_ActionName: Character/Menu[/Keyboard/escape]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 9106413484592079858}
+        m_TargetAssemblyTypeName: Bug.Player.PlayerController, Assembly-CSharp
+        m_MethodName: OnAim
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 62d36272-cb00-43c7-b203-4976f81c0427
     m_ActionName: Character/Aim[/Mouse/rightButton]
   - m_PersistentCalls:
@@ -481,7 +493,7 @@ MonoBehaviour:
   _skeletonRoot: {fileID: 2101826038116083792}
   _leftHandAnchorName: Anchor_Left
   _rightHandAnchorName: Anchor_Right
-  _heldObject: {fileID: 2571888243094750037}
+  _heldObject: {fileID: 5381299217104077720}
 --- !u!143 &6620464942649378226
 CharacterController:
   m_ObjectHideFlags: 0
@@ -512,13 +524,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ef37cd462f34f2ab0cb318db0f90267, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1001 &1088453032721457865
+--- !u!1001 &7351545709154673156
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 2262522222565221248}
+    m_TransformParent: {fileID: 5286325132150537282}
     m_Modifications:
+    - target: {fileID: 1129649984726161717, guid: d3cbe953d0f3f324b932224ee913b012, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2866384055125146301, guid: d3cbe953d0f3f324b932224ee913b012, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2873305717573810982, guid: d3cbe953d0f3f324b932224ee913b012, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -567,16 +587,44 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gun_Mosquito
       objectReference: {fileID: 0}
+    - target: {fileID: 3218904949381767580, guid: d3cbe953d0f3f324b932224ee913b012, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3281572561623690336, guid: d3cbe953d0f3f324b932224ee913b012, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3433911432798664830, guid: d3cbe953d0f3f324b932224ee913b012, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4120419830717141435, guid: d3cbe953d0f3f324b932224ee913b012, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5281147462725401237, guid: d3cbe953d0f3f324b932224ee913b012, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5471256357087088756, guid: d3cbe953d0f3f324b932224ee913b012, type: 3}
       propertyPath: _fillAmmoOnStart
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6284153277053627488, guid: d3cbe953d0f3f324b932224ee913b012, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8774079330015807112, guid: d3cbe953d0f3f324b932224ee913b012, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d3cbe953d0f3f324b932224ee913b012, type: 3}
---- !u!1 &2571888243094750037 stripped
+--- !u!1 &5381299217104077720 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3218904949381767580, guid: d3cbe953d0f3f324b932224ee913b012, type: 3}
-  m_PrefabInstance: {fileID: 1088453032721457865}
+  m_PrefabInstance: {fileID: 7351545709154673156}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7542948662253358752
 PrefabInstance:
@@ -645,9 +693,9 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 7993229347086320759, guid: e49198e3dd1b2c94fb12e153c2280437, type: 3}
   m_PrefabInstance: {fileID: 7542948662253358752}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &2262522222565221248 stripped
+--- !u!4 &5286325132150537282 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 8632265932627242272, guid: e49198e3dd1b2c94fb12e153c2280437, type: 3}
+  m_CorrespondingSourceObject: {fileID: 2445775015133836002, guid: e49198e3dd1b2c94fb12e153c2280437, type: 3}
   m_PrefabInstance: {fileID: 7542948662253358752}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &2101826038116083792 stripped
