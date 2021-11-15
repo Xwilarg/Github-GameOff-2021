@@ -6,14 +6,14 @@ using UnityEngine;
 
 namespace Bug.UI
 {
-	public class InventoryLayout : MonoBehaviour
+	public class InventoryItemList : MonoBehaviour
 	{
 		[SerializeField] private List<ItemType> _filter;
 		[SerializeField] private GameObject _rowPrefab;
 		[SerializeField] private RectTransform _content;
 		[SerializeField] private Inventory _inventory;
 
-		private Dictionary<Item, ItemRow> _rows = new();
+		private readonly Dictionary<Item, ItemRow> _rows = new();
 
 
 		private void OnEnable()
@@ -34,13 +34,31 @@ namespace Bug.UI
 
 		public bool MatchFilter(Item item) => _filter == null || _filter.Count == 0 || _filter.Contains(item.type);
 
+		public void Clear()
+		{
+			foreach (ItemRow row in _rows.Values)
+				Destroy(row.gameObject);
+			_rows.Clear();
+		}
+
+		public void SetInventory(Inventory inventory)
+		{
+			if (_inventory != null)
+				_inventory.OnInventoryUpdated -= HandleOnInventoryUpdated;
+
+			_inventory = inventory;
+
+			if (_inventory != null)
+				_inventory.OnInventoryUpdated += HandleOnInventoryUpdated;
+
+			Refresh();
+		}
+
 		public void Refresh()
 		{
 			if (_inventory == null)
 			{
-				foreach (ItemRow row in _rows.Values)
-					Destroy(row.gameObject);
-				_rows.Clear();
+				Clear();
 				return;
 			}
 
@@ -67,15 +85,6 @@ namespace Bug.UI
 			int index = 0;
 			foreach (ItemRow row in _rows.OrderBy(x => x.Key.name).Select(x => x.Value))
 				row.transform.SetSiblingIndex(index++);
-		}
-
-		public void SetInventory(Inventory inventory)
-		{
-			if (_inventory != null)
-				_inventory.OnInventoryUpdated -= HandleOnInventoryUpdated;
-			_inventory = inventory;
-			_inventory.OnInventoryUpdated += HandleOnInventoryUpdated;
-			Refresh();
 		}
 
 		private void HandleOnInventoryUpdated(InventoryOperation _)
