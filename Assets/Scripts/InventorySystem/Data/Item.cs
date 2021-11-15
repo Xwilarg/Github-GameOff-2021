@@ -5,7 +5,7 @@ namespace Bug.InventorySystem
 	[System.Serializable]
 	public class Item
 	{
-		public ItemType type;
+		public ItemType type = ItemType.Resource;
 		public string name;
 		public Sprite icon;
 	}
