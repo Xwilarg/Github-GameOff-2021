@@ -66,7 +66,7 @@ namespace Bug.InventorySystem
 			return entry;
 		}
 
-		public IEnumerable<InventoryEntry> AllItems() => _items;
+		public IEnumerable<InventoryEntry> AllEntries() => _items;
 
 		public bool TryGetEntry(string itemName, out InventoryEntry entry)
 		{

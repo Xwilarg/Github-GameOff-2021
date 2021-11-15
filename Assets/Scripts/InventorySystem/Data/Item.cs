@@ -7,6 +7,7 @@ namespace Bug.InventorySystem
 	{
 		public ItemType type = ItemType.Resource;
 		public string name;
+		[LargeSprite]
 		public Sprite icon;
 	}
 }

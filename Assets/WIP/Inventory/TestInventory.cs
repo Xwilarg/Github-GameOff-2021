@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace Bug
 {
+	/// <summary>
+	/// This is only a test class.
+	/// </summary>
 	public class TestInventory : MonoBehaviour
 	{
 		[SerializeField] private Inventory m_Inventory;
@@ -16,7 +19,8 @@ namespace Bug
 
 		private void HandleOnInventoryUpdated(InventoryOperation operation)
 		{
-			Debug.Log($"{(operation.type == InventoryOperationType.Addition ? "Added" : "Removed")} {operation.operationCount} {operation.item.name} {(operation.type == InventoryOperationType.Addition ? "to" : "from")} inventory.");
+			(string opName, string direction) = operation.type == InventoryOperationType.Addition ? ("Added", "to") : ("Removed", "from");
+			Debug.Log($"{opName} {operation.operationCount} {operation.item.name} {direction} inventory.");
 		}
 
 		private void Update()
@@ -31,7 +35,7 @@ namespace Bug
 		private void RaycastAndAddOrRemove(bool add)
 		{
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-			if (Physics.Raycast(ray, out RaycastHit hit, 1000, -1) && hit.rigidbody.TryGetComponent(out ItemBehaviour itemBehaviour))
+			if (Physics.Raycast(ray, out RaycastHit hit, 1000, -1) && hit.rigidbody != null && hit.rigidbody.TryGetComponent(out ItemBehaviour itemBehaviour))
 			{
 				int count = itemBehaviour.Count;
 
