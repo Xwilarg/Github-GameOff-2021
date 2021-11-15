@@ -1,10 +1,8 @@
 using System;
-using Bug.Menu;
 using Bug.Prop;
 using Bug.SO;
 using Bug.WeaponSystem;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -51,8 +49,11 @@ namespace Bug.Player
 		private CharacterController _controller;
 		private float _headRotation;
 		private Vector2 _groundMovement = Vector2.zero;
+		private bool _isSprinting;
 
 		private Interactible _eTarget;
+		// Current Y velocity, used when we are jumping
+		private float _verticalSpeed;
 
 
 		private void Awake()
@@ -121,17 +122,19 @@ namespace Bug.Player
 			desiredMove = Vector3.ProjectOnPlane(desiredMove, hitInfo.normal).normalized;
 
 			Vector3 moveDir = Vector3.zero;
-			moveDir.x = desiredMove.x * _forceMultiplier;
-			moveDir.z = desiredMove.z * _forceMultiplier;
+			moveDir.x = desiredMove.x * _forceMultiplier * (_isSprinting ? _info.SpeedRunningMultiplicator : 1f);
+			moveDir.z = desiredMove.z * _forceMultiplier * (_isSprinting ? _info.SpeedRunningMultiplicator : 1f);
 
 
-			if (_controller.isGrounded)
+			if (_controller.isGrounded && _verticalSpeed < 0f) // We are on the ground and not jumping
 			{
-				moveDir.y = -.1f;
+				moveDir.y = -.1f; // Stick to the ground
 			}
 			else
 			{
-				moveDir += Physics.gravity;
+				// We are currently jumping, reduce our jump velocity by gravity and apply it
+				_verticalSpeed += Physics.gravity.y * _info.GravityMultiplicator;
+				moveDir.y += _verticalSpeed;
 			}
 			_controller.Move(moveDir);
 		}
@@ -227,6 +230,19 @@ namespace Bug.Player
 			Cursor.lockState = GameStateManager.Paused ? CursorLockMode.None : CursorLockMode.Locked;
 			Cursor.visible = GameStateManager.Paused;
 		}
+
+		public void OnSprint(InputAction.CallbackContext value)
+        {
+			_isSprinting = value.ReadValueAsButton();
+        }
+
+		public void OnJump(InputAction.CallbackContext value)
+        {
+			if (_controller.isGrounded)
+            {
+				_verticalSpeed = _info.JumpForce;
+			}
+        }
 
 		public void OnAction(InputAction.CallbackContext value)
 		{
