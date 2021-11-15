@@ -7,11 +7,27 @@ namespace Bug.Prop
     public class Interactible : MonoBehaviour
     {
         [SerializeField]
-        private UnityEvent<PlayerController> _callback;
+        private UnityEvent<PlayerController> _activated;
 
-        public void InvokeCallback(PlayerController pc)
+        [SerializeField]
+        private UnityEvent<Vector3> _onHover;
+
+        [SerializeField]
+        private UnityEvent _onHoverLeave;
+
+        public void Activate(PlayerController pc)
         {
-            _callback?.Invoke(pc);
+            _activated?.Invoke(pc);
+        }
+
+        public void Hover(Vector3 pos)
+        {
+            _onHover?.Invoke(pos);
+        }
+
+        public void HoverLeave()
+        {
+            _onHoverLeave?.Invoke();
         }
     }
 }
