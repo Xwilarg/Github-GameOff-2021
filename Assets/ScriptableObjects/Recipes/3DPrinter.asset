@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Recipes:
   - Name: Ammunition
+    CraftingTime: 2
     Requirements:
     - Material: 0
       Amount: 1

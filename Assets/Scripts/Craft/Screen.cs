@@ -1,5 +1,6 @@
 ﻿using Bug.Player;
 using Bug.SO;
+using System.Collections;
 using System.Linq;
 using UnityEngine;
 
@@ -21,8 +22,20 @@ namespace Bug.Craft
         [SerializeField]
         private ScreenButton _previous, _next;
 
+        [SerializeField]
+        private GameObject _readyScreen, _waitScreen;
+
+        [SerializeField]
+        private Transform _out;
+
         private int _index;
         private int _currentRecipe;
+
+        private void Awake()
+        {
+            _readyScreen.SetActive(true);
+            _waitScreen.SetActive(false);
+        }
 
         private void Start()
         {
@@ -56,9 +69,28 @@ namespace Bug.Craft
             // TODO: handle pages
         }
 
-        public void Action(PlayerController pc)
+        private IEnumerator Produce(float waitingTime, GameObject obj)
         {
+            // Set screen to "Loading..."
+            _readyScreen.SetActive(false);
+            _waitScreen.SetActive(true);
 
+            yield return new WaitForSeconds(waitingTime); // Craft object...
+
+            Instantiate(obj, _out.position, Quaternion.identity); // Done, instantiate the object
+
+            // Set the screen back to normal
+            _readyScreen.SetActive(true);
+            _waitScreen.SetActive(false);
+        }
+
+        public void Action(PlayerController _)
+        {
+            if (_currentRecipe != -1)
+            {
+                var target = _recipes.Recipes[_currentRecipe];
+                StartCoroutine(Produce(target.CraftingTime, target.Output));
+            }
         }
 
         public void Hover(Vector3 pos)

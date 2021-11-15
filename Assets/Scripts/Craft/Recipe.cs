@@ -7,6 +7,7 @@ namespace Bug.Craft
     public class Recipe
     {
         public string Name;
+        public float CraftingTime;
         public Requirement[] Requirements;
         public GameObject Output;
     }
