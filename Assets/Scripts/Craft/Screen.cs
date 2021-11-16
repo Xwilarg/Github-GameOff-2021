@@ -28,11 +28,15 @@ namespace Bug.Craft
         [SerializeField]
         private Transform _out;
 
+        private Animator _anim;
+
         private int _index;
         private int _currentRecipe;
 
         private void Awake()
         {
+            _anim = GetComponentInParent<Animator>();
+
             _readyScreen.SetActive(true);
             _waitScreen.SetActive(false);
         }
@@ -75,7 +79,9 @@ namespace Bug.Craft
             _readyScreen.SetActive(false);
             _waitScreen.SetActive(true);
 
+            _anim.SetBool("Printing", true);
             yield return new WaitForSeconds(waitingTime); // Craft object...
+            _anim.SetBool("Printing", false);
 
             Instantiate(obj, _out.position, Quaternion.identity); // Done, instantiate the object
 

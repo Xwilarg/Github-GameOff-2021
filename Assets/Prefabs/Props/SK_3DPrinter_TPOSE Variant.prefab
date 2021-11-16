@@ -68,6 +68,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SK_3DPrinter_TPOSE Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 4565f00c3e26d34468246f880deabceb, type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 9000000, guid: 4565f00c3e26d34468246f880deabceb, type: 3}
+    - target: {fileID: 5866666021909216657, guid: 4565f00c3e26d34468246f880deabceb, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: ea4563b649f061a43904f1b16e8ca9a8, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4565f00c3e26d34468246f880deabceb, type: 3}
 --- !u!1 &5163806973155039223 stripped
