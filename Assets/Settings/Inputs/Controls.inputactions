@@ -15,6 +15,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Look",
+                    "type": "PassThrough",
+                    "id": "6880b569-6889-4176-ad7b-fe5772d8f275",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Shoot",
                     "type": "Button",
                     "id": "c7b5927d-50d7-4926-9cdd-17c7e1dfb7c1",
@@ -24,9 +33,45 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Aim",
+                    "type": "Button",
+                    "id": "62d36272-cb00-43c7-b203-4976f81c0427",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Reload",
+                    "type": "Button",
+                    "id": "1391ffc0-36a4-47d2-9ac0-8c4cb9f04647",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Menu",
                     "type": "Button",
                     "id": "fcafdf50-4aea-4223-96b1-45c75e3d00a3",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Sprint",
+                    "type": "Button",
+                    "id": "e909ab88-1b06-4dcb-8e39-ac3e819eef3e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Jump",
+                    "type": "Button",
+                    "id": "d0555845-7161-4a2c-99c2-cbf477b3c209",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -46,15 +91,6 @@
                     "type": "Button",
                     "id": "bac6875a-3582-41c6-ad41-74f50c46f112",
                     "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Look",
-                    "type": "PassThrough",
-                    "id": "6880b569-6889-4176-ad7b-fe5772d8f275",
-                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -173,6 +209,17 @@
                 },
                 {
                     "name": "",
+                    "id": "aa7b3a78-4d32-4751-a3cc-95781c020e87",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboad & Mouse",
+                    "action": "Menu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "0fa01f6c-614c-49fe-807b-e4f23b4d8af8",
                     "path": "<Mouse>/delta",
                     "interactions": "",
@@ -195,12 +242,56 @@
                 },
                 {
                     "name": "",
-                    "id": "aa7b3a78-4d32-4751-a3cc-95781c020e87",
-                    "path": "<Keyboard>/escape",
+                    "id": "9f37ff38-0e77-4bbb-97ce-26d15907586e",
+                    "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboad & Mouse",
-                    "action": "Menu",
+                    "action": "Aim",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "041678ba-cd20-4e4e-a739-47f824b14124",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Aim",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "aef33109-9cae-4296-9a2c-06b30758be7c",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboad & Mouse",
+                    "action": "Reload",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "acd7c68c-909e-4aeb-a442-4208900c4c0a",
+                    "path": "<Keyboard>/leftShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboad & Mouse",
+                    "action": "Sprint",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2bdd9e68-a9a2-40f4-bd3e-957b3317060e",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboad & Mouse",
+                    "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
