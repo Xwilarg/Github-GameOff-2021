@@ -4,6 +4,7 @@ using Bug.Visual;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Bug.Objective;
 using Random = UnityEngine.Random;
 
 namespace Bug.Map
@@ -44,6 +45,8 @@ namespace Bug.Map
 
         [SerializeField]
         private MapPostProcessor[] _postProcessors;
+
+        private GameProgression _progression;
 
         public List<Room> AllRooms { get; } = new();
         private GameObject _roomContainer;
@@ -227,6 +230,8 @@ namespace Bug.Map
                     }
                 }
             }
+
+            _progression = new(ids.Keys.Count + 1);
         }
 
         private void PlaceDoors()

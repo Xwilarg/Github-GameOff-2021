@@ -10,5 +10,8 @@ namespace Bug.SO
 
         [Tooltip("Every rooms before this number will already be unlocked at the start of the game")]
         public int UnlockedRange;
+
+        [Tooltip("Number of objectives the player need to do")]
+        public int NbObjectives;
     }
 }
