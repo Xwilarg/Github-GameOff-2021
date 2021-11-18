@@ -3,6 +3,7 @@ using Bug.Prop;
 using Bug.SO;
 using Bug.WeaponSystem;
 using System.Collections;
+using Bug.InventorySystem;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -243,6 +244,14 @@ namespace Bug.Player
 				_verticalSpeed = _info.JumpForce;
 			}
         }
+
+		public void OnInventory(InputAction.CallbackContext value)
+		{
+			if (value.performed && TryGetComponent(out InventoryDisplay inventoryDisplay))
+			{
+				inventoryDisplay.Toggle();
+			}
+		}
 
 		public void OnAction(InputAction.CallbackContext value)
 		{
