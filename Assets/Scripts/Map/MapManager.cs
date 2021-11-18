@@ -81,10 +81,10 @@ namespace Bug.Map
             for (int i = endRooms.Length - 1; i >= 0; i--)
             {
                 var c = endRooms[i];
-                if (c.Info.HaveSouthDoor) AddRoom(objArr, c.Position, start, _mapInfo.MaxPathLength - 1, Vector2Int.down);
-                if (c.Info.HaveNorthDoor) AddRoom(objArr, c.Position, start, _mapInfo.MaxPathLength - 1, Vector2Int.up);
-                if (c.Info.HaveEastDoor) AddRoom(objArr, c.Position, start, _mapInfo.MaxPathLength - 1, Vector2Int.right);
-                if (c.Info.HaveWestDoor) AddRoom(objArr, c.Position, start, _mapInfo.MaxPathLength - 1, Vector2Int.left);
+                if (c.Info.HaveSouthDoor) AddRoom(objArr, c.Position, c, _mapInfo.MaxPathLength - 1, Vector2Int.down);
+                if (c.Info.HaveNorthDoor) AddRoom(objArr, c.Position, c, _mapInfo.MaxPathLength - 1, Vector2Int.up);
+                if (c.Info.HaveEastDoor) AddRoom(objArr, c.Position, c, _mapInfo.MaxPathLength - 1, Vector2Int.right);
+                if (c.Info.HaveWestDoor) AddRoom(objArr, c.Position, c, _mapInfo.MaxPathLength - 1, Vector2Int.left);
             }
 
             // Set zones
