@@ -77,6 +77,7 @@ namespace Bug
 						}
 
 						_agent.destination = player.transform.position;
+						Debug.Log(_agent.destination);
 						_agent.autoRepath = true;
 						_agent.isStopped = false;
 					}

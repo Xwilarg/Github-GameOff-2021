@@ -849,6 +849,7 @@ MonoBehaviour:
   _playerPrefab: {fileID: 9106413484592079863, guid: ec9fb251875b2d3449f4327d40268b7b, type: 3}
   _follow: {fileID: 1005296071}
   _spawner: {fileID: 7504251229411816750, guid: 101e8646b1285a0418de1beac2705268, type: 3}
+  _doorPrefab: {fileID: 4617168697432879534, guid: c803a77937f01584f8929eb39f2a77b9, type: 3}
   _postProcessors:
   - {fileID: 1507753455}
   - {fileID: 1370957220}
