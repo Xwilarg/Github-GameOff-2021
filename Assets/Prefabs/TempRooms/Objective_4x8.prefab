@@ -974,6 +974,7 @@ MonoBehaviour:
   HaveNorthDoor: 1
   HaveEastDoor: 1
   HaveWestDoor: 1
+  Type: 2
 --- !u!64 &7596579426647791424
 MeshCollider:
   m_ObjectHideFlags: 0
