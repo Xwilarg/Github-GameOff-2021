@@ -24,6 +24,10 @@ namespace Bug.Map
         private RoomInfo _startingRoom;
 
         [SerializeField]
+        [Tooltip("Rooms containing objectives")]
+        private RoomInfo _objectiveRoom;
+
+        [SerializeField]
         [Tooltip("Seed used for the generation")]
         private string _seed;
 
@@ -67,10 +71,21 @@ namespace Bug.Map
             Random.InitState(_seed.GetHashCode());
 
             // Add all rooms
-            if (_startingRoom.HaveSouthDoor) AddRoom(Vector2Int.zero, start, 0, Vector2Int.down);
-            if (_startingRoom.HaveNorthDoor) AddRoom(Vector2Int.zero, start, 0, Vector2Int.up);
-            if (_startingRoom.HaveEastDoor) AddRoom(Vector2Int.zero, start, 0, Vector2Int.right);
-            if (_startingRoom.HaveWestDoor) AddRoom(Vector2Int.zero, start, 0, Vector2Int.left);
+            if (_startingRoom.HaveSouthDoor) AddRoom(_availableRooms, Vector2Int.zero, start, 0, Vector2Int.down);
+            if (_startingRoom.HaveNorthDoor) AddRoom(_availableRooms, Vector2Int.zero, start, 0, Vector2Int.up);
+            if (_startingRoom.HaveEastDoor) AddRoom(_availableRooms, Vector2Int.zero, start, 0, Vector2Int.right);
+            if (_startingRoom.HaveWestDoor) AddRoom(_availableRooms, Vector2Int.zero, start, 0, Vector2Int.left);
+
+            var endRooms = AllRooms.Where(x => x.Distance == _mapInfo.MaxPathLength - 1 && x.Type != RoomState.AVAILABLE).ToArray();
+            var objArr = new[] { _objectiveRoom };
+            for (int i = endRooms.Length - 1; i >= 0; i--)
+            {
+                var c = endRooms[i];
+                if (c.Info.HaveSouthDoor) AddRoom(objArr, c.Position, start, _mapInfo.MaxPathLength - 1, Vector2Int.down);
+                if (c.Info.HaveNorthDoor) AddRoom(objArr, c.Position, start, _mapInfo.MaxPathLength - 1, Vector2Int.up);
+                if (c.Info.HaveEastDoor) AddRoom(objArr, c.Position, start, _mapInfo.MaxPathLength - 1, Vector2Int.right);
+                if (c.Info.HaveWestDoor) AddRoom(objArr, c.Position, start, _mapInfo.MaxPathLength - 1, Vector2Int.left);
+            }
 
             // Set zones
             DrawZones();
@@ -84,12 +99,12 @@ namespace Bug.Map
             RunPostProcessors();
         }
 
-        private void AddRoom(Vector2 lastPosition, Room lastRoom, int remainingIteration, Vector2Int direction)
+        private void AddRoom(RoomInfo[] allRooms, Vector2 lastPosition, Room lastRoom, int remainingIteration, Vector2Int direction)
         {
             if (remainingIteration < _mapInfo.MaxPathLength)
             {
                 // Get all rooms that can fit
-                var available = _availableRooms
+                var available = allRooms
                     .Where(roomInfo => // Make sure there is a door matching where we want to go
                     {
                         return
@@ -167,10 +182,10 @@ namespace Bug.Map
                 AllRooms.Add(r);
 
                 // Create child rooms
-                if (ri.roomInfo.HaveSouthDoor && direction != Vector2Int.down) AddRoom(ri.currPos, r, remainingIteration + 1, Vector2Int.down);
-                if (ri.roomInfo.HaveNorthDoor && direction != Vector2Int.up) AddRoom(ri.currPos, r, remainingIteration + 1, Vector2Int.up);
-                if (ri.roomInfo.HaveEastDoor && direction != Vector2Int.left) AddRoom(ri.currPos, r, remainingIteration + 1, Vector2Int.right);
-                if (ri.roomInfo.HaveWestDoor && direction != Vector2Int.right) AddRoom(ri.currPos, r, remainingIteration + 1, Vector2Int.left);
+                if (ri.roomInfo.HaveSouthDoor && direction != Vector2Int.down) AddRoom(_availableRooms, ri.currPos, r, remainingIteration + 1, Vector2Int.down);
+                if (ri.roomInfo.HaveNorthDoor && direction != Vector2Int.up) AddRoom(_availableRooms, ri.currPos, r, remainingIteration + 1, Vector2Int.up);
+                if (ri.roomInfo.HaveEastDoor && direction != Vector2Int.left) AddRoom(_availableRooms, ri.currPos, r, remainingIteration + 1, Vector2Int.right);
+                if (ri.roomInfo.HaveWestDoor && direction != Vector2Int.right) AddRoom(_availableRooms, ri.currPos, r, remainingIteration + 1, Vector2Int.left);
             }
         }
 
@@ -232,6 +247,32 @@ namespace Bug.Map
             }
 
             _progression = new(ids.Keys.Count + 1);
+
+            var objPerRoom = _mapInfo.NbObjectives / id - 1;
+            var objLeft = _mapInfo.NbObjectives % id - 1;
+            int PlaceObjectiveRoom(int id, int count)
+            {
+                var availableRooms = AllRooms.Where(r => r.ZoneId == id && r.Distance == _mapInfo.MaxPathLength - 1).ToList();
+                while (count > 0 && availableRooms.Count > 0)
+                {
+                    var rand = Random.Range(0, availableRooms.Count);
+                    var room = availableRooms[rand];
+                    //var available
+                    availableRooms.RemoveAt(rand);
+                    count--;
+                }
+                return count;
+            }
+            for (int i = 0; i < id - 1; i++)
+            {
+                var objPlace = objPerRoom;
+                if (objLeft > 0)
+                {
+                    objLeft--;
+                    objPlace++;
+                }
+                objLeft += PlaceObjectiveRoom(i, objPlace);
+            }
         }
 
         private void PlaceDoors()

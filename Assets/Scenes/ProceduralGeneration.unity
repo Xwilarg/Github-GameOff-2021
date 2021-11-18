@@ -846,6 +846,7 @@ MonoBehaviour:
   - {fileID: -6918844536806175057, guid: 8a7f17406e58b3340ac5fd8f54ec8fe4, type: 3}
   - {fileID: 7282100081989194296, guid: aa958c98913d967499852cff593146ea, type: 3}
   _startingRoom: {fileID: 8396149927105140909, guid: cd0f739d34af5fb4295ad3fe455f4fad, type: 3}
+  _objectiveRoom: {fileID: 0}
   _seed: Zekamashi
   _playerPrefab: {fileID: 9106413484592079863, guid: ec9fb251875b2d3449f4327d40268b7b, type: 3}
   _follow: {fileID: 1005296071}
