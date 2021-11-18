@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using Bug.Player;
 using UnityEngine;
 
@@ -9,7 +10,6 @@ namespace Bug.WeaponSystem
 		[SerializeField] private int _animationIndex; //TODO: Branch animation tree based on weapon animation index - Antoine F. 12/11/2021
 
 		[Header("Ammo, Reload")]
-		[SerializeField] private float _reloadDuration;
 		[SerializeField] private int _ammoCapacity;
 		[SerializeField] private bool _fillAmmoOnStart;
 
@@ -27,7 +27,7 @@ namespace Bug.WeaponSystem
 		[SerializeField] private AudioClip _audioClipReload;
 
 		public GameObject Holder { get; set; }
-		protected PlayerController Player { get; set; }
+		public Animator Animator { get; private set; }
 
 		public int BurstCount { get => _burstCount; set => _burstCount = value; }
 		public bool TriggerPulled { get; protected set; }
@@ -38,12 +38,19 @@ namespace Bug.WeaponSystem
 		public int AmmoCount { get; set; }
 		public bool Reloading { get; protected set; }
 
+		protected PlayerController Player { get; set; }
+
 		private Coroutine _reloadCoroutine;
 
 		private static readonly int _animParamShoot = Animator.StringToHash("Shooting");
 		private static readonly int _animParamAiming = Animator.StringToHash("Aiming");
 		private static readonly int _animParamReload = Animator.StringToHash("Reload");
 
+
+		protected void Awake()
+		{
+			Animator = GetComponent<Animator>();
+		}
 
 		protected virtual void Start()
 		{
@@ -61,6 +68,10 @@ namespace Bug.WeaponSystem
 			if (holder != null)
 			{
 				Player = holder.GetComponent<PlayerController>();
+				if (Player != null && Player.AnimationEvents != null)
+				{
+					Player.AnimationEvents.OnReloaded += HandleOnReloaded;
+				}
 			}
 		}
 
@@ -70,6 +81,11 @@ namespace Bug.WeaponSystem
 			{
 				Holder = null;
 				Player = null;
+			}
+
+			if (Player != null && Player.AnimationEvents != null)
+			{
+				Player.AnimationEvents.OnReloaded -= HandleOnReloaded;
 			}
 		}
 
@@ -101,7 +117,7 @@ namespace Bug.WeaponSystem
 			if (AmmoCount <= 0) yield break;
 
 			Shooting = true;
-			SetAnimatorBool(_animParamShoot, true);
+			SetPlayerAnimatorBool(_animParamShoot, true);
 
 			RecoilMotor recoilMotor = Holder != null ? Holder.GetComponent<RecoilMotor>() : null;
 
@@ -113,6 +129,7 @@ namespace Bug.WeaponSystem
 				Shoot(currentBurst++);
 
 				PlaySound(_audioClipShoot);
+				PlayAnimation("Shooting");
 				if (recoilMotor != null)
 					recoilMotor.AddRecoil(_recoil * (Aiming ? _aimRecoilFactor : 1f));
 
@@ -122,7 +139,7 @@ namespace Bug.WeaponSystem
 				yield return new WaitForSeconds(timeBetweenShots);
 			}
 
-			SetAnimatorBool(_animParamShoot, false);
+			SetPlayerAnimatorBool(_animParamShoot, false);
 			Shooting = false;
 		}
 
@@ -132,7 +149,7 @@ namespace Bug.WeaponSystem
 
 		public virtual void SecondaryActionBegin()
 		{
-			SetAnimatorBool(_animParamAiming, true);
+			SetPlayerAnimatorBool(_animParamAiming, true);
 			Aiming = true;
 
 			if (Holder != null && Holder.TryGetComponent(out CameraAimFOV cameraAimFOV))
@@ -141,7 +158,7 @@ namespace Bug.WeaponSystem
 
 		public virtual void SecondaryActionEnd()
 		{
-			SetAnimatorBool(_animParamAiming, false);
+			SetPlayerAnimatorBool(_animParamAiming, false);
 			Aiming = false;
 
 			if (Holder != null && Holder.TryGetComponent(out CameraAimFOV cameraAimFOV))
@@ -154,10 +171,15 @@ namespace Bug.WeaponSystem
 
 		public virtual void ReloadRequested()
 		{
-			if (!Reloading)
+			if (!Reloading && !Shooting && AmmoCount < AmmoCapacity)
 			{
 				_reloadCoroutine = StartCoroutine(ReloadCoroutine_Internal());
 			}
+		}
+
+		public bool IsReloading()
+		{
+			return Reloading;
 		}
 
 		public void ReloadCancel()
@@ -178,13 +200,18 @@ namespace Bug.WeaponSystem
 
 		protected virtual IEnumerator ReloadCoroutine()
 		{
-			if (Player != null && Player.Animator != null)
-			{
-				SetAnimatorTrigger(_animParamReload);
-				PlaySound(_audioClipReload);
-			}
-			yield return new WaitForSeconds(_reloadDuration);
+			SetPlayerAnimatorTrigger(_animParamReload);
+			PlaySound(_audioClipReload);
+			PlayAnimation("Reloading");
+
+			yield return new WaitUntil(() => !Reloading);
+
 			AmmoCount = AmmoCapacity;
+		}
+
+		private void HandleOnReloaded()
+		{
+			Reloading = false;
 		}
 
 		#endregion Reload
@@ -198,7 +225,15 @@ namespace Bug.WeaponSystem
 			}
 		}
 
-		protected void SetAnimatorTrigger(int property)
+		protected void PlayAnimation(string stateName)
+		{
+			if (Animator != null)
+			{
+				Animator.CrossFadeInFixedTime(stateName, 0.05f);
+			}
+		}
+
+		protected void SetPlayerAnimatorTrigger(int property)
 		{
 			if (Player != null && Player.Animator != null)
 			{
@@ -206,7 +241,7 @@ namespace Bug.WeaponSystem
 			}
 		}
 
-		protected void SetAnimatorBool(int property, bool state)
+		protected void SetPlayerAnimatorBool(int property, bool state)
 		{
 			if (Player != null && Player.Animator != null)
 			{
