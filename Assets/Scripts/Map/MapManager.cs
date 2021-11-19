@@ -276,8 +276,11 @@ namespace Bug.Map
             }
             foreach (var r in AllRooms.Where(r => r.Info.Type == RoomType.OBJECTIVE && !added.Any(x => x.Id == r.Id)))
             {
+                if (r.Up != null) r.Up.Down = null;
+                if (r.Down != null) r.Down.Up = null;
+                if (r.Left != null) r.Left.Right = null;
+                if (r.Right != null) r.Right.Left = null;
                 Destroy(r.gameObject);
-                // TODO: Remove doors etc
             }
         }
 
