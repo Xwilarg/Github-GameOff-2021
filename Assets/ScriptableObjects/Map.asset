@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxPathLength: 10
   UnlockedRange: 3
+  NbObjectives: 5

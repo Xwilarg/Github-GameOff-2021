@@ -250,6 +250,7 @@ namespace Bug.Map
 
             var objPerRoom = _mapInfo.NbObjectives / id - 1;
             var objLeft = _mapInfo.NbObjectives % id - 1;
+            var added = new List<Room>();
             int PlaceObjectiveRoom(int id, int count)
             {
                 var availableRooms = AllRooms.Where(r => r.Info.Type == RoomType.OBJECTIVE && r.ZoneId == id).ToList();
@@ -257,7 +258,7 @@ namespace Bug.Map
                 {
                     var rand = Random.Range(0, availableRooms.Count);
                     var room = availableRooms[rand];
-                    //var available
+                    added.Add(room);
                     availableRooms.RemoveAt(rand);
                     count--;
                 }
@@ -272,6 +273,11 @@ namespace Bug.Map
                     objPlace++;
                 }
                 objLeft += PlaceObjectiveRoom(i, objPlace);
+            }
+            foreach (var r in AllRooms.Where(r => r.Info.Type == RoomType.OBJECTIVE && !added.Any(x => x.Id == r.Id)))
+            {
+                Destroy(r.gameObject);
+                // TODO: Remove doors etc
             }
         }
 
