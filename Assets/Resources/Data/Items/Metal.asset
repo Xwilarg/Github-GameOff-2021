@@ -15,4 +15,4 @@ MonoBehaviour:
   _item:
     type: 0
     name: Metal
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: 8356fedc8616d8f41ada6f596c0484cc, type: 3}

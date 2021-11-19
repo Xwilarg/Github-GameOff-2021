@@ -2,6 +2,7 @@ using System;
 using Bug.Prop;
 using Bug.SO;
 using Bug.WeaponSystem;
+using Bug.InventorySystem;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -26,8 +27,11 @@ namespace Bug.Player
 		[Range(0, 10f)]
 		[SerializeField] private  float _verticalLookMultiplier = 1f;
 
-		[Header("Skeleton")]
+		[Header("Animations")]
 		[SerializeField] private Animator _armsAnimator;
+		[SerializeField] private PlayerAnimationEventsBroadcaster _animationEvents;
+
+		[Header("Skeleton")]
 		[SerializeField] private GameObject _skeletonRoot;
 		[SerializeField] private string _leftHandAnchorName = "Anchor_Left";
 		[SerializeField] private string _rightHandAnchorName = "Anchor_Right";
@@ -39,6 +43,7 @@ namespace Bug.Player
 		public Camera Camera => _fpsCamera;
 		public CharacterController Controller => _controller;
 		public Animator Animator => _armsAnimator;
+		public PlayerAnimationEventsBroadcaster AnimationEvents => _animationEvents;
 
 		public Transform LeftHandAnchor { get; private set; }
 		public Transform RightHandAnchor { get; private set; }
@@ -242,6 +247,14 @@ namespace Bug.Player
 				_verticalSpeed = _info.JumpForce;
 			}
         }
+
+		public void OnInventory(InputAction.CallbackContext value)
+		{
+			if (value.performed && TryGetComponent(out InventoryDisplay inventoryDisplay))
+			{
+				inventoryDisplay.Toggle();
+			}
+		}
 
 		public void OnAction(InputAction.CallbackContext value)
 		{

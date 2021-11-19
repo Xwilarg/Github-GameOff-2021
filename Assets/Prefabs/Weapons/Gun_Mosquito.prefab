@@ -75,6 +75,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2873305717573810982}
   - component: {fileID: 5471256357087088756}
+  - component: {fileID: 2249158452734606804}
   m_Layer: 0
   m_Name: Gun_Mosquito
   m_TagString: Untagged
@@ -114,7 +115,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animationIndex: 0
-  _reloadDuration: 0
   _ammoCapacity: 30
   _fillAmmoOnStart: 1
   _fireRate: 8
@@ -136,6 +136,26 @@ MonoBehaviour:
   _muzzleEffect: {fileID: 3399747336141133107, guid: 155f2ec06e109ef488a47c40dbdcc2e5, type: 3}
   _impactEffect: {fileID: 8203373482648835319, guid: ccf7e3f034dcb244b927e0c245c17045, type: 3}
   _damageDisplay: {fileID: 0}
+--- !u!95 &2249158452734606804
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3218904949381767580}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 73cfede468928af468a807e1b91f2290, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &3281572561623690336
 GameObject:
   m_ObjectHideFlags: 0

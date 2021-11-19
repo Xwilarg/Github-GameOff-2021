@@ -6,6 +6,8 @@ namespace Bug.WeaponSystem
 	{
 		void ReloadRequested();
 
+		bool IsReloading();
+
 		void ReloadCancel();
 	}
 }
