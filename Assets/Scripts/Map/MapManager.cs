@@ -248,8 +248,8 @@ namespace Bug.Map
 
             _progression = new(ids.Keys.Count + 1);
 
-            var objPerRoom = _mapInfo.NbObjectives / id - 1;
-            var objLeft = _mapInfo.NbObjectives % id - 1;
+            var objPerRoom = _mapInfo.NbObjectives / (id - 1);
+            var objLeft = _mapInfo.NbObjectives % (id - 1);
             var added = new List<Room>();
             int PlaceObjectiveRoom(int id, int count)
             {
