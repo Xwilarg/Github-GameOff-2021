@@ -4,9 +4,9 @@ namespace Bug.Map
 {
     public class Room : MonoBehaviour
     {
-        public void Configure(Vector2Int size, Vector2 position, RoomState type, RoomInfo info, int distance)
-            => (Id, Size, Position, Type, Info, Distance, ZoneId)
-            = (_idRef++, size, position, type, info, distance, type == RoomState.LOCKED ? -1 : 0);
+        public void Configure(Vector2Int size, Vector2 position, RoomState state, RoomInfo info, int distance)
+            => (Id, Size, Position, State, Info, Distance, ZoneId)
+            = (_idRef++, size, position, state, info, distance, state == RoomState.LOCKED ? -1 : 0);
 
         /// <summary>
         /// Unique id of the room
@@ -24,7 +24,7 @@ namespace Bug.Map
         /// <summary>
         /// Type of the room
         /// </summary>
-        public RoomState Type { private set; get; }
+        public RoomState State { private set; get; }
         /// <summary>
         /// Prefab information about the room
         /// </summary>

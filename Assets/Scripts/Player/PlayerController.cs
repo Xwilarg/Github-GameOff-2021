@@ -2,7 +2,6 @@ using System;
 using Bug.Prop;
 using Bug.SO;
 using Bug.WeaponSystem;
-using System.Collections;
 using Bug.InventorySystem;
 using UnityEngine;
 using UnityEngine.InputSystem;
