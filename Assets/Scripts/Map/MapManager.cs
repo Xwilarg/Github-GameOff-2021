@@ -4,6 +4,7 @@ using Bug.Visual;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Bug.Objective;
 using Random = UnityEngine.Random;
 
 namespace Bug.Map
@@ -21,6 +22,10 @@ namespace Bug.Map
         [SerializeField]
         [Tooltip("Rooom the player will start in")]
         private RoomInfo _startingRoom;
+
+        [SerializeField]
+        [Tooltip("Rooms containing objectives")]
+        private RoomInfo _objectiveRoom;
 
         [SerializeField]
         [Tooltip("Seed used for the generation")]
@@ -45,6 +50,8 @@ namespace Bug.Map
         [SerializeField]
         private MapPostProcessor[] _postProcessors;
 
+        private GameProgression _progression;
+
         public List<Room> AllRooms { get; } = new();
         private GameObject _roomContainer;
 
@@ -64,10 +71,21 @@ namespace Bug.Map
             Random.InitState(_seed.GetHashCode());
 
             // Add all rooms
-            if (_startingRoom.HaveSouthDoor) AddRoom(Vector2Int.zero, start, 0, Vector2Int.down);
-            if (_startingRoom.HaveNorthDoor) AddRoom(Vector2Int.zero, start, 0, Vector2Int.up);
-            if (_startingRoom.HaveEastDoor) AddRoom(Vector2Int.zero, start, 0, Vector2Int.right);
-            if (_startingRoom.HaveWestDoor) AddRoom(Vector2Int.zero, start, 0, Vector2Int.left);
+            if (_startingRoom.HaveSouthDoor) AddRoom(_availableRooms, Vector2Int.zero, start, 0, Vector2Int.down);
+            if (_startingRoom.HaveNorthDoor) AddRoom(_availableRooms, Vector2Int.zero, start, 0, Vector2Int.up);
+            if (_startingRoom.HaveEastDoor) AddRoom(_availableRooms, Vector2Int.zero, start, 0, Vector2Int.right);
+            if (_startingRoom.HaveWestDoor) AddRoom(_availableRooms, Vector2Int.zero, start, 0, Vector2Int.left);
+
+            var endRooms = AllRooms.Where(x => x.Distance == _mapInfo.MaxPathLength - 1 && x.State != RoomState.AVAILABLE).ToArray();
+            var objArr = new[] { _objectiveRoom };
+            for (int i = endRooms.Length - 1; i >= 0; i--)
+            {
+                var c = endRooms[i];
+                if (c.Info.HaveSouthDoor) AddRoom(objArr, c.Position, c, _mapInfo.MaxPathLength - 1, Vector2Int.down);
+                if (c.Info.HaveNorthDoor) AddRoom(objArr, c.Position, c, _mapInfo.MaxPathLength - 1, Vector2Int.up);
+                if (c.Info.HaveEastDoor) AddRoom(objArr, c.Position, c, _mapInfo.MaxPathLength - 1, Vector2Int.right);
+                if (c.Info.HaveWestDoor) AddRoom(objArr, c.Position, c, _mapInfo.MaxPathLength - 1, Vector2Int.left);
+            }
 
             // Set zones
             DrawZones();
@@ -81,12 +99,12 @@ namespace Bug.Map
             RunPostProcessors();
         }
 
-        private void AddRoom(Vector2 lastPosition, Room lastRoom, int remainingIteration, Vector2Int direction)
+        private void AddRoom(RoomInfo[] allRooms, Vector2 lastPosition, Room lastRoom, int remainingIteration, Vector2Int direction)
         {
             if (remainingIteration < _mapInfo.MaxPathLength)
             {
                 // Get all rooms that can fit
-                var available = _availableRooms
+                var available = allRooms
                     .Where(roomInfo => // Make sure there is a door matching where we want to go
                     {
                         return
@@ -164,10 +182,10 @@ namespace Bug.Map
                 AllRooms.Add(r);
 
                 // Create child rooms
-                if (ri.roomInfo.HaveSouthDoor && direction != Vector2Int.down) AddRoom(ri.currPos, r, remainingIteration + 1, Vector2Int.down);
-                if (ri.roomInfo.HaveNorthDoor && direction != Vector2Int.up) AddRoom(ri.currPos, r, remainingIteration + 1, Vector2Int.up);
-                if (ri.roomInfo.HaveEastDoor && direction != Vector2Int.left) AddRoom(ri.currPos, r, remainingIteration + 1, Vector2Int.right);
-                if (ri.roomInfo.HaveWestDoor && direction != Vector2Int.right) AddRoom(ri.currPos, r, remainingIteration + 1, Vector2Int.left);
+                if (ri.roomInfo.HaveSouthDoor && direction != Vector2Int.down) AddRoom(_availableRooms, ri.currPos, r, remainingIteration + 1, Vector2Int.down);
+                if (ri.roomInfo.HaveNorthDoor && direction != Vector2Int.up) AddRoom(_availableRooms, ri.currPos, r, remainingIteration + 1, Vector2Int.up);
+                if (ri.roomInfo.HaveEastDoor && direction != Vector2Int.left) AddRoom(_availableRooms, ri.currPos, r, remainingIteration + 1, Vector2Int.right);
+                if (ri.roomInfo.HaveWestDoor && direction != Vector2Int.right) AddRoom(_availableRooms, ri.currPos, r, remainingIteration + 1, Vector2Int.left);
             }
         }
 
@@ -176,7 +194,7 @@ namespace Bug.Map
             List<Room> _endRooms;
             List<Room> _nextRooms // Take all the rooms that were generated last
                 = AllRooms
-                .Where(x => x.Distance == _mapInfo.MaxPathLength - 1 && x.Type != RoomState.AVAILABLE)
+                .Where(x => x.Info.Type == RoomType.OBJECTIVE)
                 .ToList();
             int id = 1;
             foreach (var r in _nextRooms)
@@ -198,7 +216,7 @@ namespace Bug.Map
                     };
                     // Remove rooms we don't want
                     // If 2 rooms have a strictly positive ID, we merge them with the biggest
-                    rooms.RemoveAll(x => x == null || x.Type != RoomState.LOCKED || (x.ZoneId == 0 || (x.ZoneId > 0 && x.ZoneId >= r.ZoneId)));
+                    rooms.RemoveAll(x => x == null || x.State != RoomState.LOCKED || (x.ZoneId == 0 || (x.ZoneId > 0 && x.ZoneId >= r.ZoneId)));
                     foreach (var nr in rooms)
                     {
                         nr.ZoneId = r.ZoneId;
@@ -227,28 +245,65 @@ namespace Bug.Map
                     }
                 }
             }
+
+            _progression = new(ids.Keys.Count + 1);
+
+            var objPerRoom = _mapInfo.NbObjectives / (id - 1);
+            var objLeft = _mapInfo.NbObjectives % (id - 1);
+            var added = new List<Room>();
+            int PlaceObjectiveRoom(int id, int count)
+            {
+                var availableRooms = AllRooms.Where(r => r.Info.Type == RoomType.OBJECTIVE && r.ZoneId == id).ToList();
+                while (count > 0 && availableRooms.Count > 0)
+                {
+                    var rand = Random.Range(0, availableRooms.Count);
+                    var room = availableRooms[rand];
+                    added.Add(room);
+                    availableRooms.RemoveAt(rand);
+                    count--;
+                }
+                return count;
+            }
+            for (int i = 0; i < id - 1; i++)
+            {
+                var objPlace = objPerRoom;
+                if (objLeft > 0)
+                {
+                    objLeft--;
+                    objPlace++;
+                }
+                objLeft += PlaceObjectiveRoom(i, objPlace);
+            }
+            foreach (var r in AllRooms.Where(r => r.Info.Type == RoomType.OBJECTIVE && !added.Any(x => x.Id == r.Id)))
+            {
+                if (r.Up != null) r.Up.Down = null;
+                if (r.Down != null) r.Down.Up = null;
+                if (r.Left != null) r.Left.Right = null;
+                if (r.Right != null) r.Right.Left = null;
+                Destroy(r.gameObject);
+            }
         }
 
         private void PlaceDoors()
         {
             foreach (var room in AllRooms)
             {
-                if (room.Up == null)
+                if (room.Up == null || (room.State != RoomState.LOCKED && room.Up.State == RoomState.LOCKED))
                 {
                     var go = Instantiate(_doorPrefab, new Vector3(room.Position.x + room.Size.x / 2f + 2f, 0f, room.Position.y + room.Size.y - .1f), Quaternion.Euler(0f, 90f, 0f));
                     go.transform.parent = room.transform;
                 }
-                if (room.Down == null)
+                if (room.Down == null || (room.State != RoomState.LOCKED && room.Down.State == RoomState.LOCKED))
                 {
                     var go = Instantiate(_doorPrefab, new Vector3(room.Position.x + room.Size.x / 2f + 2f, 0f, room.Position.y), Quaternion.Euler(0f, 90f, 0f));
                     go.transform.parent = room.transform;
                 }
-                if (room.Left == null)
+                if (room.Left == null || (room.State != RoomState.LOCKED && room.Left.State == RoomState.LOCKED))
                 {
                     var go = Instantiate(_doorPrefab, new Vector3(room.Position.x + .1f, 0f, room.Position.y + room.Size.y / 2f + 2f), Quaternion.identity);
                     go.transform.parent = room.transform;
                 }
-                if (room.Right == null)
+                if (room.Right == null || (room.State != RoomState.LOCKED && room.Right.State == RoomState.LOCKED))
                 {
                     var go = Instantiate(_doorPrefab, new Vector3(room.Position.x + room.Size.x, 0f, room.Position.y + room.Size.y / 2f + 2f), Quaternion.identity);
                     go.transform.parent = room.transform;
@@ -293,22 +348,22 @@ namespace Bug.Map
                 #region limits
                 foreach (var r in AllRooms.OrderBy(x =>
                 {
-                    return x.Type switch
+                    return x.State switch
                     {
                         RoomState.STARTING => 1,
                         RoomState.AVAILABLE => 0,
                         RoomState.LOCKED => -1,
-                        _ => throw new System.NotImplementedException($"Invalid type {x.Type}")
+                        _ => throw new System.NotImplementedException($"Invalid type {x.State}")
                     };
                 }))
                 {
                     // Draw room
-                    Gizmos.color = r.Type switch
+                    Gizmos.color = r.State switch
                     {
                         RoomState.STARTING => Color.green,
                         RoomState.AVAILABLE => Color.white,
                         RoomState.LOCKED => Color.grey,
-                        _ => throw new System.NotImplementedException($"Invalid type {r.Type}")
+                        _ => throw new System.NotImplementedException($"Invalid type {r.State}")
                     };
                     Vector3 pos = new(r.Position.x, 0f, r.Position.y);
                     Vector3 size = new(r.Size.x, 0f, r.Size.y);
