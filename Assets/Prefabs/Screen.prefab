@@ -328,6 +328,7 @@ GameObject:
   - component: {fileID: 1697286059211567179}
   - component: {fileID: 3300851509801988285}
   - component: {fileID: 907585296852814974}
+  - component: {fileID: 6888973647979998046}
   m_Layer: 0
   m_Name: Screen
   m_TagString: Untagged
@@ -447,6 +448,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0, y: 0.63300705, z: 1.116787}
   m_Center: {x: 0.945619, y: 0.12139237, z: -1.0558968}
+--- !u!114 &6888973647979998046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2480267646130829379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 188c215a0b80f414ba3112552bc934d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _plateau: {fileID: 0}
+  _startPos: -0.295
+  _stopPos: 0.353
 --- !u!1 &2487861771737944755
 GameObject:
   m_ObjectHideFlags: 0

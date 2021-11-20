@@ -26,8 +26,8 @@ namespace Bug.Craft
             _prog += Time.deltaTime;
             if (_goUp)
             {
-                var p = _plateau.transform.position;
-                _plateau.transform.position = Vector3.Lerp(new Vector3(p.x, _startPos, p.z), new Vector3(p.x, _stopPos, p.z), _prog / _timeGoal); 
+                var p = _plateau.transform.localPosition;
+                _plateau.transform.localPosition = Vector3.Lerp(new Vector3(p.x, _startPos, p.z), new Vector3(p.x, _stopPos, p.z), _prog / _timeGoal); 
             }
         }
 
