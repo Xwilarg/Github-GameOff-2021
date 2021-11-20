@@ -10,5 +10,7 @@ namespace Bug.Map
         public bool HaveNorthDoor;
         public bool HaveEastDoor;
         public bool HaveWestDoor;
+
+        public RoomType Type;
     }
 }

@@ -290,6 +290,7 @@ GameObject:
   - component: {fileID: 8918040694905644568}
   - component: {fileID: 7211723445171892840}
   - component: {fileID: 986895695983781930}
+  - component: {fileID: 4625779670339600312}
   m_Layer: 3
   m_Name: FirstPersonCharacter
   m_TagString: Player
@@ -539,6 +540,7 @@ MonoBehaviour:
   _horizontalLookMultiplier: 0.05
   _verticalLookMultiplier: 0.05
   _armsAnimator: {fileID: 450439564953144023}
+  _animationEvents: {fileID: 4625779670339600312}
   _skeletonRoot: {fileID: 2101826038116083792}
   _leftHandAnchorName: Anchor_Left
   _rightHandAnchorName: Anchor_Right
@@ -629,6 +631,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _display: {fileID: 5740483705981815035}
+--- !u!114 &4625779670339600312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9106413484592079863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f28ba557d9936e49aaf4252dd95aa02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1662720348904575311
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1421,6 +1435,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9106413484313853678}
     m_Modifications:
+    - target: {fileID: 2461364111430874952, guid: e49198e3dd1b2c94fb12e153c2280437, type: 3}
+      propertyPath: _broadcaster
+      value: 
+      objectReference: {fileID: 4625779670339600312}
     - target: {fileID: 3694741449703900343, guid: e49198e3dd1b2c94fb12e153c2280437, type: 3}
       propertyPath: m_Name
       value: Arms
