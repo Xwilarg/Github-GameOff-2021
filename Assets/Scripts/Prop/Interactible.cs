@@ -15,6 +15,11 @@ namespace Bug.Prop
         [SerializeField]
         private UnityEvent _onHoverLeave;
 
+        public void AddListenerOnActivated(UnityAction<PlayerController> act)
+        {
+            _activated.AddListener(act);
+        }
+
         public void Activate(PlayerController pc)
         {
             _activated?.Invoke(pc);

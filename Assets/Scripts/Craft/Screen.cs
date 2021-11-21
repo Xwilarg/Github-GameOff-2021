@@ -1,4 +1,5 @@
 ﻿using Bug.Player;
+using Bug.Prop;
 using Bug.SO;
 using System.Collections;
 using System.Linq;
@@ -30,9 +31,12 @@ namespace Bug.Craft
         private Transform _out;
 
         public UnityEvent<float> StartCrafting { get; } = new();
+        public UnityEvent SlotEmptied { get; } = new();
 
         private int _index;
         private int _currentRecipe;
+
+        private bool _isPrinterAvailable = true;
 
         private void Awake()
         {
@@ -75,13 +79,15 @@ namespace Bug.Craft
         private IEnumerator Produce(float waitingTime, GameObject obj)
         {
             // Set screen to "Loading..."
+            _isPrinterAvailable = false;
             _readyScreen.SetActive(false);
             _waitScreen.SetActive(true);
 
             StartCrafting?.Invoke(waitingTime);
             yield return new WaitForSeconds(waitingTime); // Craft object...
 
-            Instantiate(obj, _out.position, Quaternion.identity); // Done, instantiate the object
+            var go = Instantiate(obj, _out.position, Quaternion.identity); // Done, instantiate the object
+            go.GetComponent<Interactible>().AddListenerOnActivated((_) => { _isPrinterAvailable = true; SlotEmptied.Invoke(); });
 
             // Set the screen back to normal
             _readyScreen.SetActive(true);
@@ -90,7 +96,7 @@ namespace Bug.Craft
 
         public void Action(PlayerController _)
         {
-            if (_currentRecipe != -1)
+            if (_currentRecipe != -1 && _isPrinterAvailable)
             {
                 var target = _recipes.Recipes[_currentRecipe];
                 StartCoroutine(Produce(target.CraftingTime, target.Output));
