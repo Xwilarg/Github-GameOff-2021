@@ -88,7 +88,7 @@ namespace Bug.Player
 				var ray = new Ray(_fpsCamera.transform.position, _fpsCamera.transform.forward);
 				if (!Physics.Raycast(ray, out hit, 1f))
 				{
-					Physics.SphereCast(ray, 1f, out hit, 1f);
+					Physics.SphereCast(ray, .1f, out hit, 1f);
 				}
 				if (hit.collider != null)
 				{
