@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd8b9c82f2fcf6841a8268cf28557249, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _callback:
+  _activated:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: -7559557174572607282}
@@ -126,6 +126,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _onHover:
+    m_PersistentCalls:
+      m_Calls: []
+  _onHoverLeave:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &-7559557174572607282
 MonoBehaviour:
   m_ObjectHideFlags: 0
