@@ -84,7 +84,13 @@ namespace Bug.Player
 			}
 			if (_carriedObject == null) // Since we are not carrying an object, we are able to pick one
 			{
-				if (Physics.Raycast(new Ray(_fpsCamera.transform.position, _fpsCamera.transform.forward), out RaycastHit hit, 1f))
+				RaycastHit hit;
+				var ray = new Ray(_fpsCamera.transform.position, _fpsCamera.transform.forward);
+				if (!Physics.Raycast(ray, out hit, 1f))
+				{
+					Physics.SphereCast(ray, 1f, out hit, 1f);
+				}
+				if (hit.collider != null)
 				{
 					var interac = hit.collider.GetComponent<Interactible>();
 					if (interac != null)
