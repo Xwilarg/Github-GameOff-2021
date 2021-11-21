@@ -25,7 +25,7 @@ namespace Bug.Craft
         private ScreenButton _previous, _next;
 
         [SerializeField]
-        private GameObject _readyScreen, _waitScreen;
+        private GameObject _readyScreen, _waitScreen, _doneScreen;
 
         [SerializeField]
         private Transform _out;
@@ -41,6 +41,7 @@ namespace Bug.Craft
         private void Awake()
         {
             _readyScreen.SetActive(true);
+            _doneScreen.SetActive(false);
             _waitScreen.SetActive(false);
         }
 
@@ -81,16 +82,24 @@ namespace Bug.Craft
             // Set screen to "Loading..."
             _isPrinterAvailable = false;
             _readyScreen.SetActive(false);
+            _doneScreen.SetActive(false);
             _waitScreen.SetActive(true);
 
             StartCrafting?.Invoke(waitingTime);
             yield return new WaitForSeconds(waitingTime); // Craft object...
 
             var go = Instantiate(obj, _out.position, Quaternion.identity); // Done, instantiate the object
-            go.GetComponent<Interactible>().AddListenerOnActivated((_) => { _isPrinterAvailable = true; SlotEmptied.Invoke(); });
+            go.GetComponent<Interactible>().AddListenerOnActivated((_) => {
+                _isPrinterAvailable = true;
+                _readyScreen.SetActive(true);
+                _doneScreen.SetActive(false);
+                _waitScreen.SetActive(false);
+                SlotEmptied.Invoke();
+            });
 
             // Set the screen back to normal
-            _readyScreen.SetActive(true);
+            _readyScreen.SetActive(false);
+            _doneScreen.SetActive(true);
             _waitScreen.SetActive(false);
         }
 
