@@ -16,3 +16,4 @@ MonoBehaviour:
     type: 1
     name: Light Ammo
     icon: {fileID: 21300000, guid: 29a6d73b0fd17134b8f99a10d6d59c29, type: 3}
+    prefab: {fileID: 6423258064566031576, guid: e07098de993f86e40830c2bfd17af13a, type: 3}

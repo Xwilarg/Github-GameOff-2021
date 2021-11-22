@@ -9,6 +9,8 @@ namespace Bug.InventorySystem
 	{
 		[SerializeField] private List<SerializedItemCount> _requirements = new();
 		[SerializeField] private List<SerializedItemCount> _results = new();
+		public string Name;
+		public int CraftingTime;
 
 		private Recipe _recipeData;
 		public Recipe RecipeData => _recipeData ??= new Recipe(_requirements.Select(x => x.ToRuntime()), _results.Select(x => x.ToRuntime()));

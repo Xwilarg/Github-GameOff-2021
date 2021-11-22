@@ -1,4 +1,5 @@
-﻿using Bug.Player;
+﻿using Bug.InventorySystem;
+using Bug.Player;
 using Bug.Prop;
 using Bug.SO;
 using System.Collections;
@@ -11,7 +12,7 @@ namespace Bug.Craft
     public class Screen : MonoBehaviour
     {
         [SerializeField]
-        private RecipeInfo _recipes;
+        private RecipeAsset[] _recipes;
 
         [SerializeField]
         private GameObject _pointer;
@@ -51,18 +52,18 @@ namespace Bug.Craft
             {
                 choice.gameObject.SetActive(false);
             }
-            if (_recipes.Recipes.Length <= _choices.Length)
+            if (_recipes.Length <= _choices.Length)
             {
                 _previous.gameObject.SetActive(false);
                 _next.gameObject.SetActive(false);
             }
-            int max = Mathf.Min(_recipes.Recipes.Length, _choices.Length);
+            int max = Mathf.Min(_recipes.Length, _choices.Length);
             for (int i = 0; i < max; i++)
             {
                 var choice = _choices[i];
-                var recipe = _recipes.Recipes[i];
+                var recipe = _recipes[i];
                 choice.MainText.text = recipe.Name;
-                choice.SubText.text = string.Join(" ", recipe.Requirements.Select(x => $"{x.Amount}x {x.Material}"));
+                choice.SubText.text = string.Join(" ", recipe.RecipeData.requirements.Select(x => $"{x.count}x {x.item.name}"));
                 var c = i;
                 choice.Button.OnHoverEnter.AddListener(new(() => {
                     choice.MainText.color = Color.red;
@@ -107,8 +108,8 @@ namespace Bug.Craft
         {
             if (_currentRecipe != -1 && _isPrinterAvailable)
             {
-                var target = _recipes.Recipes[_currentRecipe];
-                StartCoroutine(Produce(target.CraftingTime, target.Output));
+                var target = _recipes[_currentRecipe];
+                StartCoroutine(Produce(target.CraftingTime, target.RecipeData.results[0].item.prefab));
             }
         }
 
