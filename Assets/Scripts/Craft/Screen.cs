@@ -58,6 +58,7 @@ namespace Bug.Craft
                 _next.gameObject.SetActive(false);
             }
             int max = Mathf.Min(_recipes.Length, _choices.Length);
+            var player = PlayerManager.AllPlayers[0];
             for (int i = 0; i < max; i++)
             {
                 var choice = _choices[i];
@@ -65,14 +66,22 @@ namespace Bug.Craft
                 choice.MainText.text = recipe.Name;
                 choice.SubText.text = string.Join(" ", recipe.RecipeData.requirements.Select(x => $"{x.count}x {x.item.name}"));
                 var c = i;
-                choice.Button.OnHoverEnter.AddListener(new(() => {
-                    choice.MainText.color = Color.red;
-                    _currentRecipe = c;
-                }));
-                choice.Button.OnHoverExit.AddListener(new(() => {
+                if (recipe.RecipeData.requirements.All(x => player.GetComponent<Inventory>().GetItemCount(x.item) >= x.count))
+                {
+                    choice.Button.OnHoverEnter.AddListener(new(() => {
+                        choice.MainText.color = Color.red;
+                        _currentRecipe = c;
+                    }));
+                    choice.Button.OnHoverExit.AddListener(new(() => {
+                        choice.MainText.color = Color.black;
+                        _currentRecipe = -1;
+                    }));
                     choice.MainText.color = Color.black;
-                    _currentRecipe = -1;
-                }));
+                }
+                else
+                {
+                    choice.MainText.color = Color.gray;
+                }
                 choice.gameObject.SetActive(true);
             }
             // TODO: handle pages
@@ -109,6 +118,11 @@ namespace Bug.Craft
             if (_currentRecipe != -1 && _isPrinterAvailable)
             {
                 var target = _recipes[_currentRecipe];
+                var inv = PlayerManager.AllPlayers[0].GetComponent<Inventory>();
+                foreach (var req in target.RecipeData.requirements)
+                {
+                    inv.Remove(req.item, req.count);
+                }
                 StartCoroutine(Produce(target.CraftingTime, target.RecipeData.results[0].item.prefab));
             }
         }
