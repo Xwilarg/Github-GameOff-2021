@@ -1,0 +1,131 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Mantis_AllButPinchers
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: Back_Left_IK_1
+    m_Weight: 1
+  - m_Path: Back_Left_IK_2
+    m_Weight: 1
+  - m_Path: Back_Right_IK_1
+    m_Weight: 1
+  - m_Path: Back_Right_IK_2
+    m_Weight: 1
+  - m_Path: Front_Left_IK_1
+    m_Weight: 1
+  - m_Path: Front_Left_IK_2
+    m_Weight: 1
+  - m_Path: Front_Left_IK_3
+    m_Weight: 1
+  - m_Path: Front_Left_IK_4
+    m_Weight: 1
+  - m_Path: Root
+    m_Weight: 1
+  - m_Path: Root/Waist
+    m_Weight: 1
+  - m_Path: Root/Waist/HindLeg_1_Left
+    m_Weight: 1
+  - m_Path: Root/Waist/HindLeg_1_Left/HindLeg_2_Left
+    m_Weight: 1
+  - m_Path: Root/Waist/HindLeg_1_Left/HindLeg_2_Left/HindLeg_3_Left
+    m_Weight: 1
+  - m_Path: Root/Waist/HindLeg_1_Left/HindLeg_2_Left/HindLeg_3_Left/HindLeg_4_Left
+    m_Weight: 1
+  - m_Path: Root/Waist/HindLeg_1_Left/HindLeg_2_Left/HindLeg_3_Left/HindLeg_4_Left/HindLeg_5_Left
+    m_Weight: 1
+  - m_Path: Root/Waist/HindLeg_1_Right
+    m_Weight: 1
+  - m_Path: Root/Waist/HindLeg_1_Right/HindLeg_2_Right
+    m_Weight: 1
+  - m_Path: Root/Waist/HindLeg_1_Right/HindLeg_2_Right/HindLeg_3_Right
+    m_Weight: 1
+  - m_Path: Root/Waist/HindLeg_1_Right/HindLeg_2_Right/HindLeg_3_Right/HindLeg_4_Right
+    m_Weight: 1
+  - m_Path: Root/Waist/HindLeg_1_Right/HindLeg_2_Right/HindLeg_3_Right/HindLeg_4_Right/HindLeg_5_Right
+    m_Weight: 1
+  - m_Path: Root/Waist/Spine_1
+    m_Weight: 1
+  - m_Path: Root/Waist/Spine_1/Spine_2
+    m_Weight: 1
+  - m_Path: Root/Waist/Spine_1/Spine_2/Spine_3
+    m_Weight: 1
+  - m_Path: Root/Waist/Spine_1/Spine_2/Spine_3/FrontLeg_1_Left
+    m_Weight: 1
+  - m_Path: Root/Waist/Spine_1/Spine_2/Spine_3/FrontLeg_1_Left/FrontLeg_2_Left
+    m_Weight: 1
+  - m_Path: Root/Waist/Spine_1/Spine_2/Spine_3/FrontLeg_1_Left/FrontLeg_2_Left/FrontLeg_3_Left
+    m_Weight: 1
+  - m_Path: Root/Waist/Spine_1/Spine_2/Spine_3/FrontLeg_1_Left/FrontLeg_2_Left/FrontLeg_3_Left/FrontLeg_4_Left
+    m_Weight: 1
+  - m_Path: Root/Waist/Spine_1/Spine_2/Spine_3/FrontLeg_1_Left/FrontLeg_2_Left/FrontLeg_3_Left/FrontLeg_4_Left/FrontLeg_5_Left
+    m_Weight: 1
+  - m_Path: Root/Waist/Spine_1/Spine_2/Spine_3/FrontLeg_1_Right
+    m_Weight: 1
+  - m_Path: Root/Waist/Spine_1/Spine_2/Spine_3/FrontLeg_1_Right/FrontLeg_2_Right
+    m_Weight: 1
+  - m_Path: Root/Waist/Spine_1/Spine_2/Spine_3/FrontLeg_1_Right/FrontLeg_2_Right/FrontLeg_3_Right
+    m_Weight: 1
+  - m_Path: Root/Waist/Spine_1/Spine_2/Spine_3/FrontLeg_1_Right/FrontLeg_2_Right/FrontLeg_3_Right/FrontLeg_4_Left
+    m_Weight: 1
+  - m_Path: Root/Waist/Spine_1/Spine_2/Spine_3/FrontLeg_1_Right/FrontLeg_2_Right/FrontLeg_3_Right/FrontLeg_4_Left/FrontLeg_5_Left
+    m_Weight: 1
+  - m_Path: Root/Waist/Spine_1/Spine_2/Spine_3/Neck
+    m_Weight: 1
+  - m_Path: Root/Waist/Spine_1/Spine_2/Spine_3/Neck/Head
+    m_Weight: 1
+  - m_Path: Root/Waist/Spine_1/Spine_2/Spine_3/Neck/Head/Mouth_Joint_1_Right
+    m_Weight: 1
+  - m_Path: Root/Waist/Spine_1/Spine_2/Spine_3/Neck/Head/Mouth_Joint_2_Right
+    m_Weight: 1
+  - m_Path: Root/Waist/Spine_1/Spine_2/Spine_3/Neck/Head/Mouth_Joint_3_Right
+    m_Weight: 1
+  - m_Path: Root/Waist/Spine_1/Spine_2/Spine_3/Neck/Head/Mouth_Joint_4_Right
+    m_Weight: 1
+  - m_Path: Root/Waist/Spine_1/Spine_2/Spine_3/Neck/Head/Mouth_Joint_5_Right
+    m_Weight: 1
+  - m_Path: Root/Waist/Spine_1/Spine_2/Spine_3/Neck/Head/Mouth_Joint_6_Right
+    m_Weight: 1
+  - m_Path: Root/Waist/Spine_1/Spine_2/Spine_3/Neck/Head1
+    m_Weight: 1
+  - m_Path: Root/Waist/Spine_1/Spine_2/Spine_3/Neck/Head1/Mouth_Joint_1_Left
+    m_Weight: 1
+  - m_Path: Root/Waist/Spine_1/Spine_2/Spine_3/Neck/Head1/Mouth_Joint_2_Left
+    m_Weight: 1
+  - m_Path: Root/Waist/Spine_1/Spine_2/Spine_3/Neck/Head1/Mouth_Joint_3_Left
+    m_Weight: 1
+  - m_Path: Root/Waist/Spine_1/Spine_2/Spine_3/Neck/Head1/Mouth_Joint_4_Left
+    m_Weight: 1
+  - m_Path: Root/Waist/Spine_1/Spine_2/Spine_3/Neck/Head1/Mouth_Joint_5_Left
+    m_Weight: 1
+  - m_Path: Root/Waist/Spine_1/Spine_2/Spine_3/Neck/Head1/Mouth_Joint_6_Left
+    m_Weight: 1
+  - m_Path: Root/Waist/Spine_1/Spine_2/Spine_3/Neck/Pincher_1_Left
+    m_Weight: 0
+  - m_Path: Root/Waist/Spine_1/Spine_2/Spine_3/Neck/Pincher_1_Left/Pincher_2_Left
+    m_Weight: 0
+  - m_Path: Root/Waist/Spine_1/Spine_2/Spine_3/Neck/Pincher_1_Left/Pincher_2_Left/Pincher_3_Left
+    m_Weight: 0
+  - m_Path: Root/Waist/Spine_1/Spine_2/Spine_3/Neck/Pincher_1_Left/Pincher_2_Left/Pincher_3_Left/Pincher_4_Left
+    m_Weight: 0
+  - m_Path: Root/Waist/Spine_1/Spine_2/Spine_3/Neck/Pincher_1_Right
+    m_Weight: 0
+  - m_Path: Root/Waist/Spine_1/Spine_2/Spine_3/Neck/Pincher_1_Right/Pincher_2_Right
+    m_Weight: 0
+  - m_Path: Root/Waist/Spine_1/Spine_2/Spine_3/Neck/Pincher_1_Right/Pincher_2_Right/Pincher_3_Right
+    m_Weight: 0
+  - m_Path: Root/Waist/Spine_1/Spine_2/Spine_3/Neck/Pincher_1_Right/Pincher_2_Right/Pincher_3_Right/Pincher_4_Right
+    m_Weight: 0
+  - m_Path: Root/Waist/Tail_1
+    m_Weight: 1
+  - m_Path: Root/Waist/Tail_1/Tail_2
+    m_Weight: 1
+  - m_Path: Sk_MantisHopper
+    m_Weight: 1

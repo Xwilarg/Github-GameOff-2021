@@ -184,7 +184,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 119
+    m_Bits: 247
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -536,7 +536,7 @@ MonoBehaviour:
   _fpsCamera: {fileID: 9106413484283387208}
   _head: {fileID: 9106413484313853678}
   _playerInput: {fileID: 9106413484592079859}
-  _forceMultiplier: 0.1
+  _forceMultiplier: 0.08
   _horizontalLookMultiplier: 0.05
   _verticalLookMultiplier: 0.05
   _armsAnimator: {fileID: 450439564953144023}
