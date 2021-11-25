@@ -9,5 +9,6 @@ namespace Bug.InventorySystem
 		public string name;
 		[LargeSprite]
 		public Sprite icon;
+		public GameObject prefab;
 	}
 }

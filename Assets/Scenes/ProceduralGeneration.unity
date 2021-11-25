@@ -845,7 +845,7 @@ MonoBehaviour:
   - {fileID: 6993427876658535758, guid: f6a5f955511d1f6448dc093f8b57fb3c, type: 3}
   - {fileID: -6918844536806175057, guid: 8a7f17406e58b3340ac5fd8f54ec8fe4, type: 3}
   - {fileID: 7282100081989194296, guid: aa958c98913d967499852cff593146ea, type: 3}
-  _startingRoom: {fileID: 8396149927105140909, guid: cd0f739d34af5fb4295ad3fe455f4fad, type: 3}
+  _startingRoom: {fileID: 5957708645211939328, guid: b23db81016f49f74ba2047c5edf43784, type: 3}
   _objectiveRoom: {fileID: 8396149927105140909, guid: c059fe4d200830c4db9b06bc39f7b96f, type: 3}
   _seed: Zekamashi
   _playerPrefab: {fileID: 9106413484592079863, guid: ec9fb251875b2d3449f4327d40268b7b, type: 3}
@@ -866,7 +866,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PauseMenu: {fileID: 346002206}
-  PressE: {fileID: 1590317944}
+  PressE: {fileID: 0}
   AmmoDisplay: {fileID: 1113589661}
 --- !u!1 &696854321
 GameObject:
