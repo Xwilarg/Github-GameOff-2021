@@ -915,6 +915,51 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.54993457, y: 0.4561789, z: 0.52252597}
   m_Center: {x: 0.003517837, y: 4.877255e-10, z: -4.193588e-10}
+--- !u!1 &3372143026206441373
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7812019213444415428}
+  - component: {fileID: 4431314239543486759}
+  m_Layer: 7
+  m_Name: AttackArea
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7812019213444415428
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3372143026206441373}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4221691489805968103}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &4431314239543486759
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3372143026206441373}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1.6222185, z: 1.494916}
+  m_Center: {x: 0, y: 0.4843319, z: 1.2422304}
 --- !u!1 &3593211311680190557
 GameObject:
   m_ObjectHideFlags: 0
@@ -957,6 +1002,7 @@ Transform:
   - {fileID: 3507228496942690708}
   - {fileID: 6658348900208366557}
   - {fileID: 6681510596286852420}
+  - {fileID: 7812019213444415428}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1034,6 +1080,8 @@ MonoBehaviour:
   _sightBlockLayerMask:
     serializedVersion: 2
     m_Bits: 64
+  _rigRoot: {fileID: 6658348900208366557}
+  _headBoneName: Head
   _jumpRange: {x: 9.75, y: 6.86}
   _jumpWarningDuration: 0.7
   _jumpDuration: 0.6
@@ -1106,9 +1154,14 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  _meleeDamage: 20
   _meleeDistance: 2.3
   _attackCooldownMinMax: {x: 0.8, y: 1.4}
-  _moveAnimationSpeed: {x: 0, y: 1.5, z: 0.1, w: 2}
+  _meleeBoxCollider: {fileID: 4431314239543486759}
+  _meleeLayerMask:
+    serializedVersion: 2
+    m_Bits: 8
+  _moveAnimationSpeed: {x: 0, y: 1.5, z: 0, w: 2}
 --- !u!1 &3808498040245739356
 GameObject:
   m_ObjectHideFlags: 0

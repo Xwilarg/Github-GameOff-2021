@@ -17,6 +17,10 @@ namespace Bug.Enemy
 		[SerializeField] private float _aggroRange = 10f;
 		[SerializeField] private LayerMask _sightBlockLayerMask = -1;
 
+		[Header("Rig")]
+		[SerializeField] private Transform _rigRoot;
+		[SerializeField] private string _headBoneName = "Head";
+
 		[Header("Jump")]
 		[SerializeField] private Vector2 _jumpRange = new Vector2(6f, 4f);
 		[SerializeField] private float _jumpWarningDuration = 0.7f;
@@ -28,13 +32,15 @@ namespace Bug.Enemy
 		[SerializeField] private AnimationCurve _jumpHeightCurve = AnimationCurve.Constant(0, 1, 1);
 
 		[Header("Melee")]
+		[SerializeField] private float _meleeDamage = 20f;
 		[SerializeField] private float _meleeDistance = 1f;
 		[SerializeField] private Vector2 _attackCooldownMinMax = new Vector2(0.8f, 1.4f);
+		[SerializeField] private BoxCollider _meleeBoxCollider;
+		[SerializeField] private LayerMask _meleeLayerMask = -1;
 
 		[Header("Movement")]
 		[Tooltip("x: Minimum velocity, y: Maximum velocity, z: Minimum speed, w: Maximum speed.")]
 		[SerializeField] private Vector4 _moveAnimationSpeed;
-
 
 		public State CurrentState { get => _currentState; set => SetState(value); }
 
@@ -43,6 +49,7 @@ namespace Bug.Enemy
 
 		private NavMeshAgent _agent;
 		private Animator _animator;
+		private Transform _headTransform;
 
 		private int _moveSpeedAnimProperty = Animator.StringToHash("WalkSpeedFactor");
 		private int _attackTriggerProperty = Animator.StringToHash("Attack");
@@ -58,6 +65,9 @@ namespace Bug.Enemy
 		{
 			_agent = GetComponent<NavMeshAgent>();
 			_animator = GetComponent<Animator>();
+
+			_meleeBoxCollider.enabled = false;
+			_headTransform = _rigRoot.FindChildRecursive(_headBoneName);
 		}
 
 		private void Update()
@@ -126,6 +136,20 @@ namespace Bug.Enemy
 		{
 			_nextAttackTime = Time.time + RandomUtility.MinMax(_attackCooldownMinMax);
 			_animator.SetTrigger(_attackTriggerProperty);
+
+			Quaternion orientation = _meleeBoxCollider.transform.rotation;
+			Vector3 center = transform.position + (orientation * _meleeBoxCollider.center);
+			Vector3 size = _meleeBoxCollider.size * 0.5f;
+
+			RaycastHit[] hits = Physics.BoxCastAll(center, size, Vector3.forward, orientation, 0f, _meleeLayerMask);
+
+			foreach (RaycastHit hit in hits)
+			{
+				GameObject target = hit.rigidbody != null ? hit.rigidbody.gameObject : hit.collider.gameObject;
+				if (target.TryGetComponent(out IDamageHandler damageHandler))
+					damageHandler.TakeDamage(_meleeDamage);
+			}
+
 			yield break;
 		}
 
@@ -215,12 +239,12 @@ namespace Bug.Enemy
 
 		private bool TargetInSight(Transform target, Vector3 offset)
 		{
-			Vector3 start = transform.position + Vector3.up;
+			Vector3 start = _headTransform.position;
 			Vector3 end = target.position + offset;
 
 			Ray ray = new Ray(start, end - start);
 
-			bool hasHit = Physics.SphereCast(ray, 0.15f, 100f, _sightBlockLayerMask);
+			bool hasHit = Physics.SphereCast(ray, 0.3f, 100f, _sightBlockLayerMask);
 			Debug.DrawLine(start, end, hasHit ? Color.red : Color.green);
 
 			return !hasHit;
