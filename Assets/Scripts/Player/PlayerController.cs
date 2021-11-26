@@ -1,4 +1,5 @@
 using System;
+using Bug.Enemy;
 using Bug.Prop;
 using Bug.SO;
 using Bug.WeaponSystem;
@@ -8,9 +9,11 @@ using UnityEngine.InputSystem;
 
 namespace Bug.Player
 {
-	public class PlayerController : MonoBehaviour, IPlayerController
+	public class PlayerController : MonoBehaviour, IPlayerController, IDamageHandler
 	{
 		public PlayerInfo _info;
+
+		[SerializeField] private HealthPool _healthPool;
 
 		[Header("Movements")]
 		[SerializeField]
@@ -36,6 +39,7 @@ namespace Bug.Player
 		[SerializeField] private string _leftHandAnchorName = "Anchor_Left";
 		[SerializeField] private string _rightHandAnchorName = "Anchor_Right";
 
+		[Space]
 		[SerializeField]
 		private GameObject _heldObject;
 
@@ -43,6 +47,7 @@ namespace Bug.Player
 		public Camera Camera => _fpsCamera;
 		public CharacterController Controller => _controller;
 		public Animator Animator => _armsAnimator;
+		public HealthPool HealthPool => _healthPool;
 		public PlayerAnimationEventsBroadcaster AnimationEvents => _animationEvents;
 
 		public Transform LeftHandAnchor { get; private set; }
@@ -74,6 +79,16 @@ namespace Bug.Player
 
 			if (_heldObject != null && _heldObject.TryGetComponent(out IHoldable holdable))
 				holdable.HoldBegin(gameObject);
+		}
+
+		private void OnEnable()
+		{
+			_healthPool.OnDepleted += HandleHealthPoolOnDepleted;
+		}
+
+		private void OnDisable()
+		{
+			_healthPool.OnDepleted -= HandleHealthPoolOnDepleted;
 		}
 
 		private void FixedUpdate()
@@ -276,5 +291,22 @@ namespace Bug.Player
 		}
 
 		#endregion
+
+
+		public void TakeDamage(float delta)
+		{
+			HealthPool.Modify(-delta);
+		}
+
+		public void Heal(float delta)
+		{
+			HealthPool.Modify(delta);
+		}
+
+		private void HandleHealthPoolOnDepleted()
+		{
+			Debug.Log($"Character {name} is dead...");
+			//TODO: Handle player death
+		}
 	}
 }
