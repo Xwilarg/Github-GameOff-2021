@@ -3,7 +3,12 @@ guid: 282d09174573d484a826f24bd72bcdc6
 ModelImporter:
   serializedVersion: 21202
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: SM_Corner_Pillar0
+    second: {fileID: 2100000, guid: 9e5348ee4d4ecf44787bb924f7a96178, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -70,7 +75,7 @@ ModelImporter:
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
-    tangentImportMode: 3
+    tangentImportMode: 0
     normalCalculationMode: 4
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
