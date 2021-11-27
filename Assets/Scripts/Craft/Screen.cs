@@ -35,7 +35,7 @@ namespace Bug.Craft
         public UnityEvent SlotEmptied { get; } = new();
 
         private int _index;
-        private int _currentRecipe;
+        private int _currentRecipe = -1;
 
         private bool _isPrinterAvailable = true;
 

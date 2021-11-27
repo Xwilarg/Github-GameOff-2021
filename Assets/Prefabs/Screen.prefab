@@ -566,7 +566,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 746d04040d572124092673ed6e238b46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _recipes: {fileID: 11400000, guid: 1db14241a6fdc8b4a816a6333d2d5d1a, type: 2}
+  _recipes:
+  - {fileID: 11400000, guid: bcf021ac3f1365349bd8189fea396b4e, type: 2}
   _pointer: {fileID: 7288381794184877711, guid: 5c1dc65d9b1364546818e6ecd6daa93c, type: 3}
   _choices:
   - {fileID: 8062861647138679188}
@@ -662,8 +663,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _plateau: {fileID: 0}
-  _startPos: -0.295
-  _stopPos: 0.353
+  _startPos: -0.273
+  _stopPos: 0.358
 --- !u!1 &2487861771737944755
 GameObject:
   m_ObjectHideFlags: 0

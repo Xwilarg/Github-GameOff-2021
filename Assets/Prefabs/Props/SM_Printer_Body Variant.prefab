@@ -334,14 +334,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4710793812419022962}
     m_Modifications:
-    - target: {fileID: 1697286059211567179, guid: 6cda6cf02f3ff7444856012849347646, type: 3}
-      propertyPath: _recipes.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1697286059211567179, guid: 6cda6cf02f3ff7444856012849347646, type: 3}
-      propertyPath: _recipes.Array.data[0]
-      value: 
-      objectReference: {fileID: 11400000, guid: bcf021ac3f1365349bd8189fea396b4e, type: 2}
     - target: {fileID: 2480267646130829379, guid: 6cda6cf02f3ff7444856012849347646, type: 3}
       propertyPath: m_Name
       value: Screen
@@ -350,14 +342,6 @@ PrefabInstance:
       propertyPath: _plateau
       value: 
       objectReference: {fileID: 8360858839237991119}
-    - target: {fileID: 6888973647979998046, guid: 6cda6cf02f3ff7444856012849347646, type: 3}
-      propertyPath: _stopPos
-      value: 0.358
-      objectReference: {fileID: 0}
-    - target: {fileID: 6888973647979998046, guid: 6cda6cf02f3ff7444856012849347646, type: 3}
-      propertyPath: _startPos
-      value: -0.273
-      objectReference: {fileID: 0}
     - target: {fileID: 7861167785218017000, guid: 6cda6cf02f3ff7444856012849347646, type: 3}
       propertyPath: m_RootOrder
       value: 2
