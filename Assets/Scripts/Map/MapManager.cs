@@ -11,6 +11,8 @@ namespace Bug.Map
 {
     public class MapManager : MonoBehaviour
     {
+        public static MapManager S;
+
         [SerializeField]
         [Tooltip("Information about the map")]
         private MapInfo _mapInfo;
@@ -55,6 +57,10 @@ namespace Bug.Map
         public List<Room> AllRooms { get; } = new();
         private GameObject _roomContainer;
 
+        private void Awake()
+        {
+            S = this;
+        }
 
         private void Start()
         {
@@ -260,6 +266,7 @@ namespace Bug.Map
                     var room = availableRooms[rand];
                     added.Add(room);
                     availableRooms.RemoveAt(rand);
+                    room.GetComponentInChildren<Generator>().TargetZone = id + 1;
                     count--;
                 }
                 return count;

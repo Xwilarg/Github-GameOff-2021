@@ -1,13 +1,18 @@
-﻿namespace Bug.Objective
+﻿using System.Collections.Generic;
+
+namespace Bug.Objective
 {
     public class GameProgression
     {
         public GameProgression(int sectorCount)
         {
             _sectorCount = sectorCount;
-            _sectorUnlocked = 1;
+            _sectorUnlocked = new()
+            {
+                0
+            };
         }
         private int _sectorCount;
-        private int _sectorUnlocked;
+        private List<int> _sectorUnlocked;
     }
 }
