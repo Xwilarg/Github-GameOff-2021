@@ -133,8 +133,18 @@ namespace Bug.Enemy
 		private IEnumerator BlowUpCoroutine()
 		{
 			_blowingUp = true;
-
 			yield return new WaitForSeconds(_blowUpDelay);
+			yield return StartCoroutine(BlowUpNowCoroutine());
+		}
+
+		public void BlowUpNow()
+		{
+			StartCoroutine(BlowUpNowCoroutine());
+		}
+
+		private IEnumerator BlowUpNowCoroutine()
+		{
+			_blowingUp = true;
 
 			Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
 
@@ -143,6 +153,9 @@ namespace Bug.Enemy
 			foreach (RaycastHit hit in hits)
 			{
 				GameObject target = hit.rigidbody != null ? hit.rigidbody.gameObject : hit.collider.gameObject;
+
+				if (target == gameObject) continue;
+
 				if (target.TryGetComponent(out SpiderMaggotBehaviour otherMaggot))
 				{
 					otherMaggot.SetState(State.BlowUp);
@@ -156,6 +169,7 @@ namespace Bug.Enemy
 			}
 
 			Destroy(gameObject);
+			yield break;
 		}
 
 		public void Anim_SetMovementFactor(float arg0)

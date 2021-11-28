@@ -1582,10 +1582,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: SK_Mantis_Hopper_TPOSE
       objectReference: {fileID: 0}
-    - target: {fileID: 3593211311680190557, guid: 7f5b22bf7850eeb469213cfd7af70441, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4221691489805968103, guid: 7f5b22bf7850eeb469213cfd7af70441, type: 3}
       propertyPath: m_RootOrder
       value: 1

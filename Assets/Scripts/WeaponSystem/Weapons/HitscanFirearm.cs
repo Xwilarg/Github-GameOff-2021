@@ -15,8 +15,6 @@ namespace Bug.WeaponSystem
 		[SerializeField] private GameObject _muzzleEffect;
 		[SerializeField] private GameObject _impactEffect;
 
-		[SerializeField] private GameObject _damageDisplay;
-
 
 		protected override void Shoot(int _)
 		{
@@ -41,17 +39,11 @@ namespace Bug.WeaponSystem
 						Destroy(impact, impact.TryGetComponent(out ParticleSystem particles) ? particles.main.duration : 2f);
 					}
 
-					var enemy = hit.collider.GetComponentInParent<EnemyData>();
-					if (enemy != null) // We hit an ennemy!
+					GameObject target = hit.rigidbody != null ? hit.rigidbody.gameObject : hit.collider.gameObject;
+
+					if (target.TryGetComponent(out IDamageHandler damageHandler))
 					{
-						var finalDamage = enemy.TakeDamage(hit.collider, 10);
-						if (_damageDisplay != null)
-						{
-							var go = Instantiate(_damageDisplay, hit.point, Quaternion.identity);
-							go.GetComponent<TMP_Text>().text = finalDamage.ToString();
-							go.transform.LookAt(Player.transform.position, Vector3.up);
-							go.transform.rotation = Quaternion.Euler(0f, go.transform.rotation.eulerAngles.y + 180, 0f);
-						}
+						damageHandler.TakeDamage(Damage);
 					}
 				}
 			}

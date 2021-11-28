@@ -14,6 +14,7 @@ namespace Bug.WeaponSystem
 		[SerializeField] private bool _fillAmmoOnStart;
 
 		[Header("Shooting")]
+		[SerializeField] private float _damage = 12f;
 		[SerializeField] private float _fireRate = 5f;
 		[SerializeField] private ShootingMode _shootingMode = ShootingMode.Burst;
 		[SerializeField] private int _burstCount = 1;
@@ -29,6 +30,7 @@ namespace Bug.WeaponSystem
 		public GameObject Holder { get; set; }
 		public Animator Animator { get; private set; }
 
+		public float Damage { get => _damage; set => _damage = value; }
 		public int BurstCount { get => _burstCount; set => _burstCount = value; }
 		public bool TriggerPulled { get; protected set; }
 		public bool Shooting { get; protected set; }
