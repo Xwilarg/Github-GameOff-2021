@@ -51,10 +51,10 @@ namespace Bug.Enemy
 		private Animator _animator;
 		private Transform _headTransform;
 
-		private int _moveSpeedAnimProperty = Animator.StringToHash("WalkSpeedFactor");
-		private int _attackTriggerProperty = Animator.StringToHash("Attack");
-		private int _jumpTriggerProperty = Animator.StringToHash("Jump");
-		private int _pinchersOpenedProperty = Animator.StringToHash("PinchersOpened");
+		private readonly int _moveSpeedAnimProperty = Animator.StringToHash("WalkSpeedFactor");
+		private readonly int _attackTriggerProperty = Animator.StringToHash("Attack");
+		private readonly int _jumpTriggerProperty = Animator.StringToHash("Jump");
+		private readonly int _pinchersOpenedProperty = Animator.StringToHash("PinchersOpened");
 
 		private bool _jumping;
 		private float _nextJumpTime;
