@@ -287,5 +287,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scenes:
   - Main
-  - UserInterface
   _removeLoaderScene: 1
