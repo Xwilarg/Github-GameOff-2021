@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Bug.Enemy;
 using Bug.Prop;
 using Bug.SO;
@@ -165,6 +166,12 @@ namespace Bug.Player
 
 		private bool IsGamePaused() => GameStateManager.Paused;
 
+		[ContextMenu("Kill")]
+		public void Kill()
+		{
+			_healthPool.Set(0f);
+		}
+
 		#region Input callbacks
 
 		public void OnMovement(InputAction.CallbackContext value)
@@ -305,8 +312,14 @@ namespace Bug.Player
 
 		private void HandleHealthPoolOnDepleted()
 		{
-			Debug.Log($"Character {name} is dead...");
-			//TODO: Handle player death
+			StartCoroutine(GameOverCoroutine());
+		}
+
+		private IEnumerator GameOverCoroutine()
+		{
+			GameStateManager.Paused = true;
+			yield return new WaitForSeconds(1f);
+			GameLoop.Current.Restart();
 		}
 	}
 }
