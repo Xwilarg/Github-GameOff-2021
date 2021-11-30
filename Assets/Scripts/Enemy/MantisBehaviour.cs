@@ -10,9 +10,11 @@ using UnityEditor;
 namespace Bug.Enemy
 {
 	[RequireComponent(typeof(NavMeshAgent))]
-	public class MantisBehaviour : MonoBehaviour
+	public class MantisBehaviour : MonoBehaviour, IDamageHandler
 	{
 		[SerializeField] private State _currentState = State.Wander;
+
+		[SerializeField] private HealthPool _healthPool;
 
 		[SerializeField] private float _aggroRange = 10f;
 		[SerializeField] private LayerMask _sightBlockLayerMask = -1;
@@ -51,10 +53,10 @@ namespace Bug.Enemy
 		private Animator _animator;
 		private Transform _headTransform;
 
-		private int _moveSpeedAnimProperty = Animator.StringToHash("WalkSpeedFactor");
-		private int _attackTriggerProperty = Animator.StringToHash("Attack");
-		private int _jumpTriggerProperty = Animator.StringToHash("Jump");
-		private int _pinchersOpenedProperty = Animator.StringToHash("PinchersOpened");
+		private readonly int _moveSpeedAnimProperty = Animator.StringToHash("WalkSpeedFactor");
+		private readonly int _attackTriggerProperty = Animator.StringToHash("Attack");
+		private readonly int _jumpTriggerProperty = Animator.StringToHash("Jump");
+		private readonly int _pinchersOpenedProperty = Animator.StringToHash("PinchersOpened");
 
 		private bool _jumping;
 		private float _nextJumpTime;
@@ -68,6 +70,16 @@ namespace Bug.Enemy
 
 			_meleeBoxCollider.enabled = false;
 			_headTransform = _rigRoot.FindChildRecursive(_headBoneName);
+		}
+
+		private void OnEnable()
+		{
+			_healthPool.OnDepleted += HandleOnHealthPoolDeplete;
+		}
+
+		private void OnDisable()
+		{
+			_healthPool.OnDepleted -= HandleOnHealthPoolDeplete;
 		}
 
 		private void Update()
@@ -288,6 +300,11 @@ namespace Bug.Enemy
 			_timeStateEntered = Time.unscaledTime;
 		}
 
+		private void HandleOnHealthPoolDeplete()
+		{
+			Destroy(gameObject);
+		}
+
 		private void OnDrawGizmosSelected()
 		{
 #if UNITY_EDITOR
@@ -308,6 +325,16 @@ namespace Bug.Enemy
 			Wander,
 			Aggressive,
 			Melee
+		}
+
+		public void TakeDamage(float delta)
+		{
+			_healthPool.Modify(-delta);
+		}
+
+		public void Heal(float delta)
+		{
+			throw new NotImplementedException();
 		}
 	}
 }
