@@ -9,6 +9,11 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: SM_Wall_Hallway1000
     second: {fileID: 2100000, guid: acf6c423c394d0940828507a5e80ff19, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: SM_Wall_Hallway1010
+    second: {fileID: 2100000, guid: acf6c423c394d0940828507a5e80ff19, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
