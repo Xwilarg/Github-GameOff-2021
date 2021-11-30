@@ -63,7 +63,11 @@ namespace Bug.Map
             // Add starting room and spawn player
             var start = CreateFromRoomInfo(Vector2Int.zero, _startingRoom, RoomState.STARTING, _mapInfo.MaxPathLength);
             var playerIns = Instantiate(_playerPrefab, new Vector3(start.Position.x + start.Size.x / 2f, 2f, start.Position.y + start.Size.y / 2f), Quaternion.identity);
-            _follow.Target = playerIns.transform; // Make sure minimap follow player
+
+            if (_follow != null)
+            {
+                _follow.Target = playerIns.transform; // Make sure minimap follow player
+            }
 
             AllRooms.Add(start);
 
@@ -248,8 +252,8 @@ namespace Bug.Map
 
             _progression = new(ids.Keys.Count + 1);
 
-            var objPerRoom = _mapInfo.NbObjectives / (id - 1);
-            var objLeft = _mapInfo.NbObjectives % (id - 1);
+            var objPerRoom = id == 1 ? 0 : _mapInfo.NbObjectives / (id - 1);
+            var objLeft = id == 1 ? 0 : _mapInfo.NbObjectives % (id - 1);
             var added = new List<Room>();
             int PlaceObjectiveRoom(int id, int count)
             {
