@@ -74,9 +74,6 @@ namespace Bug.Map
             AllRooms.Add(start);
             Spawn = start;
 
-            // Init seed
-            Random.InitState(_seed.GetHashCode());
-
             // Add all rooms
             if (_startingRoom.HaveSouthDoor) AddRoom(_availableRooms, Vector2Int.zero, start, 0, Vector2Int.down);
             if (_startingRoom.HaveNorthDoor) AddRoom(_availableRooms, Vector2Int.zero, start, 0, Vector2Int.up);

@@ -255,6 +255,7 @@ namespace Bug.Player
 			GameStateManager.Paused = !GameStateManager.Paused;
 			Cursor.lockState = GameStateManager.Paused ? CursorLockMode.None : CursorLockMode.Locked;
 			Cursor.visible = GameStateManager.Paused;
+			Application.Quit();
 		}
 
 		public void OnSprint(InputAction.CallbackContext value)
