@@ -80,16 +80,16 @@ namespace Bug.Map
             if (_startingRoom.HaveEastDoor) AddRoom(_availableRooms, Vector2Int.zero, start, 0, Vector2Int.right);
             if (_startingRoom.HaveWestDoor) AddRoom(_availableRooms, Vector2Int.zero, start, 0, Vector2Int.left);
 
-            var endRooms = AllRooms.Where(x => x.Distance == _mapInfo.MaxPathLength - 1 && x.State != RoomState.AVAILABLE).ToArray();
-            var objArr = new[] { _objectiveRoom };
-            for (int i = endRooms.Length - 1; i >= 0; i--)
-            {
-                var c = endRooms[i];
-                if (c.Info.HaveSouthDoor) AddRoom(objArr, c.Position, c, _mapInfo.MaxPathLength - 1, Vector2Int.down);
-                if (c.Info.HaveNorthDoor) AddRoom(objArr, c.Position, c, _mapInfo.MaxPathLength - 1, Vector2Int.up);
-                if (c.Info.HaveEastDoor) AddRoom(objArr, c.Position, c, _mapInfo.MaxPathLength - 1, Vector2Int.right);
-                if (c.Info.HaveWestDoor) AddRoom(objArr, c.Position, c, _mapInfo.MaxPathLength - 1, Vector2Int.left);
-            }
+            // var endRooms = AllRooms.Where(x => x.Distance == _mapInfo.MaxPathLength - 1 && x.State != RoomState.AVAILABLE).ToArray();
+            // var objArr = new[] { _objectiveRoom };
+            // for (int i = endRooms.Length - 1; i >= 0; i--)
+            // {
+            //     var c = endRooms[i];
+            //     if (c.Info.HaveSouthDoor) AddRoom(objArr, c.Position, c, _mapInfo.MaxPathLength - 1, Vector2Int.down);
+            //     if (c.Info.HaveNorthDoor) AddRoom(objArr, c.Position, c, _mapInfo.MaxPathLength - 1, Vector2Int.up);
+            //     if (c.Info.HaveEastDoor) AddRoom(objArr, c.Position, c, _mapInfo.MaxPathLength - 1, Vector2Int.right);
+            //     if (c.Info.HaveWestDoor) AddRoom(objArr, c.Position, c, _mapInfo.MaxPathLength - 1, Vector2Int.left);
+            // }
 
             // Set zones
             DrawZones();
