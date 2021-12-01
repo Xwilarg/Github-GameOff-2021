@@ -253,11 +253,13 @@ namespace Bug.Enemy
 		{
 			Vector3 start = _headTransform.position;
 			Vector3 end = target.position + offset;
+			Vector3 delta = end - start;
+			float distance = delta.magnitude;
 
-			Ray ray = new Ray(start, end - start);
+			Ray ray = new Ray(start, delta);
 
-			bool hasHit = Physics.SphereCast(ray, 0.3f, 100f, _sightBlockLayerMask);
-			Debug.DrawLine(start, end, hasHit ? Color.red : Color.green);
+			bool hasHit = Physics.SphereCast(ray, 0.3f, out RaycastHit hit, distance, _sightBlockLayerMask);
+			Debug.DrawLine(start, hasHit ? hit.point : end, hasHit ? Color.red : Color.green);
 
 			return !hasHit;
 		}
