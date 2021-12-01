@@ -53,6 +53,8 @@ namespace Bug.Map
         private GameProgression _progression;
 
         public List<Room> AllRooms { get; } = new();
+        public Room Spawn { get; private set; }
+
         private GameObject _roomContainer;
 
 
@@ -70,6 +72,7 @@ namespace Bug.Map
             }
 
             AllRooms.Add(start);
+            Spawn = start;
 
             // Init seed
             Random.InitState(_seed.GetHashCode());
