@@ -840,7 +840,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mapInfo: {fileID: 11400000, guid: 89b258d2b8d3f5b47a1cad7179da183d, type: 2}
   _availableRooms:
-  - {fileID: 435806586237228871, guid: 2d704c40873c7624fa54cdc3eda15c1b, type: 3}
+  - {fileID: 435806586237228871, guid: 857ce61e27a6e57439afb33949af0aad, type: 3}
   _startingRoom: {fileID: 8396149927105140909, guid: cd0f739d34af5fb4295ad3fe455f4fad, type: 3}
   _objectiveRoom: {fileID: 8396149927105140909, guid: c059fe4d200830c4db9b06bc39f7b96f, type: 3}
   _seed: Zekamashi

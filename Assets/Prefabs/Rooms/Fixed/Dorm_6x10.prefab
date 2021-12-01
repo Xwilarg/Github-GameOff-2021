@@ -703,7 +703,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cd23883daa4e3e44832ce29d06b0da7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Size: {x: 24, y: 30}
+  Size: {x: 24, y: 40}
   HaveSouthDoor: 0
   HaveNorthDoor: 0
   HaveEastDoor: 1
