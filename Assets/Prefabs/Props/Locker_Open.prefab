@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8990843359237475561}
   - component: {fileID: 8765748109562068091}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Collider1 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3518623087772233585}
   - component: {fileID: 6617013330332796779}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Collider1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,7 +100,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4951128641045634873}
   - component: {fileID: 7376148130156191594}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Collider1 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -145,7 +145,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3016141646375282950}
   - component: {fileID: 1592634586853865218}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Collider1 (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -190,7 +190,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7624470075152725023}
   - component: {fileID: 163944134490047385}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Collider1 (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -235,7 +235,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3359598101890116712}
   - component: {fileID: 6710916795390463925}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Collider1 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -280,7 +280,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1029690205088991967}
   - component: {fileID: 9045618439274031775}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Collider1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -325,7 +325,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8253124789233868095}
   - component: {fileID: 3836809903559513133}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Collider1 (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -418,6 +418,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: ebef220569bbc22469b69120a9037ea2, type: 3}
       propertyPath: m_Name
       value: Locker_Open
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ebef220569bbc22469b69120a9037ea2, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4141965776166574149, guid: ebef220569bbc22469b69120a9037ea2, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ebef220569bbc22469b69120a9037ea2, type: 3}

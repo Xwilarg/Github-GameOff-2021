@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6797583153906699205}
   - component: {fileID: 1932550183561149768}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Collider1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ GameObject:
   m_Component:
   - component: {fileID: 379066666942408424}
   - component: {fileID: 5042178259165246866}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Collider1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -144,6 +144,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: c68adb3565b6862489795df74a504a5a, type: 3}
       propertyPath: m_Name
       value: Shower
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c68adb3565b6862489795df74a504a5a, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c68adb3565b6862489795df74a504a5a, type: 3}

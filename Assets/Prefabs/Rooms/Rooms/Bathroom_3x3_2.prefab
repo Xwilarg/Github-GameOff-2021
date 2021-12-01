@@ -186,9 +186,17 @@ PrefabInstance:
       propertyPath: HaveSouthDoor
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 958231054230947543, guid: 834c14094f73cf049b53009d07d58200, type: 3}
+      propertyPath: m_RootOrder
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 1063584698899988466, guid: 834c14094f73cf049b53009d07d58200, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1671418663345554108, guid: 834c14094f73cf049b53009d07d58200, type: 3}
+      propertyPath: m_RootOrder
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 2426390954614409934, guid: 834c14094f73cf049b53009d07d58200, type: 3}
       propertyPath: m_IsActive
@@ -214,6 +222,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: -180
       objectReference: {fileID: 0}
+    - target: {fileID: 2708451966863247467, guid: 834c14094f73cf049b53009d07d58200, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2708451966863247467, guid: 834c14094f73cf049b53009d07d58200, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2708451966863247467, guid: 834c14094f73cf049b53009d07d58200, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -180
+      objectReference: {fileID: 0}
     - target: {fileID: 2808085878442129661, guid: 834c14094f73cf049b53009d07d58200, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.6
@@ -225,6 +245,10 @@ PrefabInstance:
     - target: {fileID: 3097842239293077074, guid: 834c14094f73cf049b53009d07d58200, type: 3}
       propertyPath: m_Name
       value: Bathroom_3x3_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3717060717659617437, guid: 834c14094f73cf049b53009d07d58200, type: 3}
+      propertyPath: m_RootOrder
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 3770237966606390465, guid: 834c14094f73cf049b53009d07d58200, type: 3}
       propertyPath: m_IsActive

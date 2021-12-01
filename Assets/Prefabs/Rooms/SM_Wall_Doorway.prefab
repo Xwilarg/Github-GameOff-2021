@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1883473633663582742}
   - component: {fileID: 3282186103877668275}
   - component: {fileID: 749952240043358585}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SM_Wall_Doorway
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4135206748155649019}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Colliders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -128,7 +128,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2998993274517754902}
   - component: {fileID: 1994416549364979968}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -173,7 +173,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7605685628579957731}
   - component: {fileID: 568385269673366755}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Collider (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -218,7 +218,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5643047474168985976}
   - component: {fileID: 3027370648874631371}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Collider (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

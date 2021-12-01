@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 321044647441669551}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SM_Wall_Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 1203078586406281810}
   - component: {fileID: 3296264342883020888}
   - component: {fileID: 1939895108455098351}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SM_Wall_Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
