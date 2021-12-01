@@ -46,12 +46,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mapInfo: {fileID: 11400000, guid: 89b258d2b8d3f5b47a1cad7179da183d, type: 2}
   _availableRooms:
-  - {fileID: 8396149927105140909, guid: 10cd559c60e67384f8319a588134e6f3, type: 3}
-  - {fileID: 8396149927105140909, guid: cd0f739d34af5fb4295ad3fe455f4fad, type: 3}
-  - {fileID: 6993427876658535758, guid: f6a5f955511d1f6448dc093f8b57fb3c, type: 3}
-  - {fileID: -6918844536806175057, guid: 8a7f17406e58b3340ac5fd8f54ec8fe4, type: 3}
-  - {fileID: 7282100081989194296, guid: aa958c98913d967499852cff593146ea, type: 3}
-  _startingRoom: {fileID: 8396149927105140909, guid: cd0f739d34af5fb4295ad3fe455f4fad, type: 3}
+  - {fileID: 222092987004014451, guid: 834c14094f73cf049b53009d07d58200, type: 3}
+  - {fileID: 2972835707911129648, guid: cc6e563a1b297014daf69229494ba8e0, type: 3}
+  - {fileID: 6033502710914401418, guid: 2f8ef9496da3b8449905024a6af55564, type: 3}
+  - {fileID: 1826211593099704047, guid: 8b299367e9a7fe94288a29c7d08c636f, type: 3}
+  - {fileID: 6033502710914401418, guid: 1cfeaec1685312a4381aa35c336657b2, type: 3}
+  - {fileID: 2563070404433312984, guid: 4788b7deb2acbdb4baf13824edc4c9a0, type: 3}
+  - {fileID: 1572853475016216736, guid: 7aabffcf2b448524b855c533296ad389, type: 3}
+  - {fileID: 134452645258707106, guid: f345b16f5becfa84d9de958f1a607281, type: 3}
+  - {fileID: 4766835096063562092, guid: 314f45ff683838b42a7ebc1e0c3d0b69, type: 3}
+  _startingRoom: {fileID: 1572853475016216736, guid: 7aabffcf2b448524b855c533296ad389, type: 3}
+  _objectiveRoom: {fileID: 0}
   _seed: Zekamashi
   _playerPrefab: {fileID: 9106413484592079863, guid: ec9fb251875b2d3449f4327d40268b7b, type: 3}
   _follow: {fileID: 0}

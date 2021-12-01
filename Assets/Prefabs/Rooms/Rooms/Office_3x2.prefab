@@ -27,7 +27,11 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 451190690343078140}
+  - {fileID: 2322709819086251053}
+  - {fileID: 4440649170621710944}
+  - {fileID: 2109865544816867039}
   m_Father: {fileID: 6033502710914401419}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -115,10 +119,6 @@ Transform:
   m_Children:
   - {fileID: 3665171655830726192}
   - {fileID: 7183521531221244421}
-  - {fileID: 451190690343078140}
-  - {fileID: 2322709819086251053}
-  - {fileID: 4440649170621710944}
-  - {fileID: 2109865544816867039}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -135,8 +135,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Size: {x: 12, y: 8}
-  HaveSouthDoor: 0
-  HaveNorthDoor: 0
+  HaveSouthDoor: 1
+  HaveNorthDoor: 1
   HaveEastDoor: 0
   HaveWestDoor: 0
   Type: 0
@@ -641,15 +641,19 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 6033502710914401419}
+    m_TransformParent: {fileID: 7183521531221244421}
     m_Modifications:
+    - target: {fileID: 8504183661157086472, guid: ce64e82b4750bb04cb97985bac68adc8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8507953369317941560, guid: ce64e82b4750bb04cb97985bac68adc8, type: 3}
       propertyPath: m_Name
       value: Cubicle_Variation_1
       objectReference: {fileID: 0}
     - target: {fileID: 9032393669222136706, guid: ce64e82b4750bb04cb97985bac68adc8, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9032393669222136706, guid: ce64e82b4750bb04cb97985bac68adc8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1385,15 +1389,19 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 6033502710914401419}
+    m_TransformParent: {fileID: 7183521531221244421}
     m_Modifications:
+    - target: {fileID: 8504183661157086472, guid: 7f0d828839d165d49b6436cb6f2d2f94, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8507953369317941560, guid: 7f0d828839d165d49b6436cb6f2d2f94, type: 3}
       propertyPath: m_Name
       value: Cubicle_Variation_3
       objectReference: {fileID: 0}
     - target: {fileID: 9032393669222136706, guid: 7f0d828839d165d49b6436cb6f2d2f94, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9032393669222136706, guid: 7f0d828839d165d49b6436cb6f2d2f94, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1447,7 +1455,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 6033502710914401419}
+    m_TransformParent: {fileID: 7183521531221244421}
     m_Modifications:
     - target: {fileID: 8507953369317941560, guid: 8b0f7d34ec05ecc439eee38481f2cbd1, type: 3}
       propertyPath: m_Name
@@ -1455,7 +1463,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9032393669222136706, guid: 8b0f7d34ec05ecc439eee38481f2cbd1, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 9032393669222136706, guid: 8b0f7d34ec05ecc439eee38481f2cbd1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1695,15 +1703,19 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 6033502710914401419}
+    m_TransformParent: {fileID: 7183521531221244421}
     m_Modifications:
+    - target: {fileID: 8504183661157086472, guid: 181bea6dd0a0f97439018418f420ad80, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8507953369317941560, guid: 181bea6dd0a0f97439018418f420ad80, type: 3}
       propertyPath: m_Name
       value: Cubicle_Variation_4
       objectReference: {fileID: 0}
     - target: {fileID: 9032393669222136706, guid: 181bea6dd0a0f97439018418f420ad80, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9032393669222136706, guid: 181bea6dd0a0f97439018418f420ad80, type: 3}
       propertyPath: m_LocalPosition.x
