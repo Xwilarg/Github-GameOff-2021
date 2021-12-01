@@ -1830,6 +1830,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cubicle_Variation_3
       objectReference: {fileID: 0}
+    - target: {fileID: 2449853382974752984, guid: 1b41eb532a4e513458139eea257f6182, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1b41eb532a4e513458139eea257f6182, type: 3}
 --- !u!4 &9032393669222136706 stripped
