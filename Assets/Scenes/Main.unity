@@ -823,5 +823,9 @@ PrefabInstance:
       propertyPath: _follow
       value: 
       objectReference: {fileID: 1005296071}
+    - target: {fileID: 7760791592771419114, guid: 9213d2fdff3377346846b6422d090f4b, type: 3}
+      propertyPath: _doorPrefab
+      value: 
+      objectReference: {fileID: 1098672474876102421, guid: a67563f2254d3a34ea93bf148454bf5e, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9213d2fdff3377346846b6422d090f4b, type: 3}
