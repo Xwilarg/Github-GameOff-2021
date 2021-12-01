@@ -24,13 +24,13 @@ namespace Bug.Map
             Gizmos.color = Color.red;
 
             if (HaveSouthDoor)
-                Gizmos.DrawWireCube(transform.position + Vector3.up * 1.5f + new Vector3(0, 0, -Size.y * 0.5f), new Vector3(1, 3, 0.2f));
+                Gizmos.DrawWireCube(transform.position + Vector3.up * 1f + new Vector3(0, 0, -Size.y * 0.5f), new Vector3(1.5f, 2, 0.2f));
             if (HaveNorthDoor)
-                Gizmos.DrawWireCube(transform.position + Vector3.up * 1.5f + new Vector3(0, 0, Size.y * 0.5f), new Vector3(1, 3, 0.2f));
+                Gizmos.DrawWireCube(transform.position + Vector3.up * 1f + new Vector3(0, 0, Size.y * 0.5f), new Vector3(1.5f, 2, 0.2f));
             if (HaveEastDoor)
-                Gizmos.DrawWireCube(transform.position + Vector3.up * 1.5f + new Vector3(Size.x * 0.5f, 0, 0), new Vector3(0.2f, 3, 1));
+                Gizmos.DrawWireCube(transform.position + Vector3.up * 1f + new Vector3(Size.x * 0.5f, 0, 0), new Vector3(0.2f, 2, 1.5f));
             if (HaveWestDoor)
-                Gizmos.DrawWireCube(transform.position + Vector3.up * 1.5f + new Vector3(-Size.x * 0.5f, 0, 0), new Vector3(0.2f, 3, 1));
+                Gizmos.DrawWireCube(transform.position + Vector3.up * 1f + new Vector3(-Size.x * 0.5f, 0, 0), new Vector3(0.2f, 2, 1.5f));
         }
     }
 }
