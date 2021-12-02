@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 638563526955598159}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Colliders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 195053305495414642}
   - component: {fileID: 4013170001094913958}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Collider1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86,7 +86,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5953266793920917444}
   - component: {fileID: 7622554333886739938}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Collider1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -131,7 +131,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6995985544524105691}
   - component: {fileID: 2080791851483219282}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Collider1 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -176,7 +176,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5435725344496311894}
   - component: {fileID: 5331889702009491994}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Collider1 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -266,9 +266,17 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 2163f2a7d469b1f4ebe76a2c8c291bb0, type: 2}
+    - target: {fileID: -1181104009477210764, guid: df777a757f60093499662766a4a07a00, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: df777a757f60093499662766a4a07a00, type: 3}
       propertyPath: m_Name
       value: Bunk_Loose
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: df777a757f60093499662766a4a07a00, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df777a757f60093499662766a4a07a00, type: 3}

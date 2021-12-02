@@ -1056,8 +1056,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damageProof: 0
-  _maxHealth: 300
-  _currentHealth: 300
+  _maxHealth: 250
+  _currentHealth: 250
 --- !u!195 &2625895986558086026
 NavMeshAgent:
   m_ObjectHideFlags: 0

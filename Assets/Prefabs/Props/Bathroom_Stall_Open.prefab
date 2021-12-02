@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3695547043732748158}
   - component: {fileID: 5698776940595086081}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Collider1 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6667542023038178843}
   - component: {fileID: 7892367253452051750}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Collider1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,7 +99,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1023563985708966804}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -131,7 +131,7 @@ GameObject:
   m_Component:
   - component: {fileID: 943956385881082779}
   - component: {fileID: 6812115366111787610}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Collider1 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -176,7 +176,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8914800420012772879}
   - component: {fileID: 178470324872675853}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Collider1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -221,7 +221,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3183670595700881126}
   - component: {fileID: 3129025299455105498}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Collider1 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -281,7 +281,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8978969519105464760, guid: 2755c3c9081a74540836efe27a14c271, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.05
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 8978969519105464760, guid: 2755c3c9081a74540836efe27a14c271, type: 3}
       propertyPath: m_LocalRotation.w
@@ -367,6 +367,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 2059ce992aefb6c4a94856800b092fab, type: 3}
       propertyPath: m_Name
       value: Bathroom_Stall_Open
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2059ce992aefb6c4a94856800b092fab, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2059ce992aefb6c4a94856800b092fab, type: 3}

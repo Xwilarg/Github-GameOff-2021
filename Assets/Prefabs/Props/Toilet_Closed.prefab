@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7372816379972216476}
   - component: {fileID: 6230784832340100781}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,6 +99,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 9d0d2af23f0282744827477b90dd8afe, type: 3}
       propertyPath: m_Name
       value: Toilet_Closed
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9d0d2af23f0282744827477b90dd8afe, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d0d2af23f0282744827477b90dd8afe, type: 3}
